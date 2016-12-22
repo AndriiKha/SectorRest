@@ -15,6 +15,7 @@
     </property>
     <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
     <property name="show_sql">false</property>
+    <!--<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>-->
     <mapping xmlns="urn:nhibernate-configuration-2.2" assembly="RBSector.DataBase"/>
   </session-factory>
 </hibernate-configuration>

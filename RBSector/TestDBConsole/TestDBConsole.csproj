@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\NHibernateBase.cs" />
-    <Compile Include="Logic\NHibernateConf.cs" />
+    <None Include="Logic\NHibernateConf.cs1" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestService\UserService.cs" />
@@ -64,9 +64,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RBSector.BusinessLogic\RBSector.BusinessLogic.csproj">
+      <Project>{e66d138e-a05a-46c3-98c2-9a3953f12299}</Project>
+      <Name>RBSector.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RBSector.DataBase\RBSector.DataBase.csproj">
       <Project>{14628356-9ba4-457d-829d-127cf891af21}</Project>
       <Name>RBSector.DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RBSector.Entry\RBSector.Entry.csproj">
+      <Project>{759f16c9-5577-40fd-ab16-ba1ebbfc7c3b}</Project>
+      <Name>RBSector.Entry</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

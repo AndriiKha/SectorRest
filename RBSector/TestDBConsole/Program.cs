@@ -12,7 +12,8 @@ namespace TestDBConsole
         static void Main(string[] args)
         {
             UserService us = new UserService();
-            us.AddUser("admin", "admin", "admin", "admin", "admin", "admin");
+            us.AddUser("admin4", "admin4", "admin4", "admin4", "admin4", "admin4");
         }
+
     }
 }

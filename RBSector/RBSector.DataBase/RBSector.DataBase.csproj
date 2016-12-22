@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>C:\Users\w4713\Desktop\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>C:\Users\w4713\Desktop\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,28 +79,31 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>RbDatabase.mdf</DependentUpon>
     </Content>
-    <EmbeddedResource Include="Mapping\Category.hbm.xml">
+    <EmbeddedResource Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Images.hbm.xml">
+    <EmbeddedResource Include="Mapping\Category.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Ingredients.hbm.xml">
+    <EmbeddedResource Include="Mapping\Images.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Orders.hbm.xml">
+    <EmbeddedResource Include="Mapping\Ingredients.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\OrdersProducts.hbm.xml">
+    <EmbeddedResource Include="Mapping\Orders.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Products.hbm.xml">
+    <EmbeddedResource Include="Mapping\OrdersProducts.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Tabs.hbm.xml">
+    <EmbeddedResource Include="Mapping\Products.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Usersdata.hbm.xml">
+    <EmbeddedResource Include="Mapping\Tabs.hbm1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\Usersdata.hbm1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

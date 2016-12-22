@@ -1,6 +1,7 @@
 ﻿using NHibernate;
 using NHibernate.Cfg;
 using RBSector.DataBase.Models;
+using RBSector.Entry.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;

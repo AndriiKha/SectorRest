@@ -26,5 +26,16 @@ namespace RBSector
         {
             this.InitializeComponent();
         }
+        private void btn_EditCreateFrame_Click(object sender, RoutedEventArgs e)
+        {
+            //switch()
+            
+            this.FrameEditCreate.Navigate(typeof(EditPage));
+        }
+
+        private void btn_editMode_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

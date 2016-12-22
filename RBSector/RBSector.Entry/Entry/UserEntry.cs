@@ -19,21 +19,28 @@ namespace RBSector.Entry.Entry
         {
             session = NHibernateConf.Session;
         }
-        public void AddUser(string login, string password, string lname, string fname, string email,string role)
+        public bool AddUser(string login, string password, string lname, string fname, string email, string role)
         {
             Usersdata user = new Usersdata();
-            user.Login = login;
-            user.Password = password;
-            user.Lname = lname;
-            user.Fname = fname;
-            user.Email = email;
-            user.Role = role;
-
-            using (session.BeginTransaction())
+            user.UsrLogin = login;
+            user.UsrPassword = password;
+            user.UsrLname = lname;
+            user.UsrFname = fname;
+            user.UsrEmail = email;
+            user.UsrRole = role;
+            try
             {
-                session.Save(user);
-                session.Transaction.Commit();
+                using (session.BeginTransaction())
+                {
+                    session.Save(user);
+                    session.Transaction.Commit();
+                }
             }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
         public bool isLogIn(string login, string password)
         {
@@ -41,10 +48,21 @@ namespace RBSector.Entry.Entry
             using (session.BeginTransaction())
             {
                 user = (from p in session.Query<Usersdata>()
-                        where p.Login.Equals(login) && p.Password.Equals(password)
+                        where p.UsrLogin.Equals(login) && p.UsrPassword.Equals(password)
                         select p).FirstOrDefault();
             }
-            return user!=null;
+            return user != null;
+        }
+        public bool isNotExistLogin(string login)
+        {
+            string checkedLogin = null;
+            using (session.BeginTransaction())
+            {
+                checkedLogin = (from p in session.Query<Usersdata>()
+                                where p.UsrLogin.ToLower().Equals(login.ToLower())
+                                select p.UsrLogin).FirstOrDefault();
+            }
+            return string.IsNullOrEmpty(checkedLogin);
         }
     }
 }
