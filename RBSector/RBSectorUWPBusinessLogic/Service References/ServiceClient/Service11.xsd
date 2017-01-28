@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Tabs">
+    <xs:sequence>
+      <xs:element name="_x003C_Category_x003E_k__BackingField" nillable="true" type="tns:ArrayOfCategory" />
+      <xs:element name="_x003C_Products_x003E_k__BackingField" nillable="true" type="tns:ArrayOfProducts" />
+      <xs:element name="_x003C_TbName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TbRecid_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tabs" nillable="true" type="tns:Tabs" />
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
+  <xs:complexType name="Category">
+    <xs:sequence>
+      <xs:element name="_x003C_CtName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CtRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Products_x003E_k__BackingField" nillable="true" type="tns:ArrayOfProducts" />
+      <xs:element name="_x003C_Tabs_x003E_k__BackingField" nillable="true" type="tns:Tabs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfProducts">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Products" nillable="true" type="tns:Products" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProducts" nillable="true" type="tns:ArrayOfProducts" />
+  <xs:complexType name="Products">
+    <xs:sequence>
+      <xs:element name="_x003C_Category_x003E_k__BackingField" nillable="true" type="tns:Category" />
+      <xs:element name="_x003C_Images_x003E_k__BackingField" nillable="true" type="tns:Images" />
+      <xs:element name="_x003C_Ingredients_x003E_k__BackingField" nillable="true" type="tns:Ingredients" />
+      <xs:element name="_x003C_Ordersproducts_x003E_k__BackingField" nillable="true" type="tns:ArrayOfOrdersproducts" />
+      <xs:element name="_x003C_PrName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PrPrice_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_PrRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Tabs_x003E_k__BackingField" nillable="true" type="tns:Tabs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Products" nillable="true" type="tns:Products" />
+  <xs:complexType name="Images">
+    <xs:sequence>
+      <xs:element name="_x003C_ImByte_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ImName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ImRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ImType_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Products_x003E_k__BackingField" nillable="true" type="tns:ArrayOfProducts" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Images" nillable="true" type="tns:Images" />
+  <xs:complexType name="Ingredients">
+    <xs:sequence>
+      <xs:element name="_x003C_IgCount_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IgDescription_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IgName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IgRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Products_x003E_k__BackingField" nillable="true" type="tns:ArrayOfProducts" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ingredients" nillable="true" type="tns:Ingredients" />
+  <xs:complexType name="ArrayOfOrdersproducts">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Ordersproducts" nillable="true" type="tns:Ordersproducts" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrdersproducts" nillable="true" type="tns:ArrayOfOrdersproducts" />
+  <xs:complexType name="Ordersproducts">
+    <xs:sequence>
+      <xs:element name="_x003C_OrdPrCount_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_OrdPrRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Orders_x003E_k__BackingField" nillable="true" type="tns:Orders" />
+      <xs:element name="_x003C_Products_x003E_k__BackingField" nillable="true" type="tns:Products" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ordersproducts" nillable="true" type="tns:Ordersproducts" />
+  <xs:complexType name="Orders">
+    <xs:sequence>
+      <xs:element name="_x003C_OrdGetmoney_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_OrdOrderdate_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_OrdPricecost_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_OrdRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Ordersproducts_x003E_k__BackingField" nillable="true" type="tns:ArrayOfOrdersproducts" />
+      <xs:element name="_x003C_Usersdata_x003E_k__BackingField" nillable="true" type="tns:Usersdata" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Orders" nillable="true" type="tns:Orders" />
+  <xs:complexType name="Usersdata">
+    <xs:sequence>
+      <xs:element name="_x003C_Orders_x003E_k__BackingField" nillable="true" type="tns:ArrayOfOrders" />
+      <xs:element name="_x003C_UsrEmail_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsrFname_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsrLname_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsrLogin_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsrPassword_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsrRecid_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_UsrRole_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Usersdata" nillable="true" type="tns:Usersdata" />
+  <xs:complexType name="ArrayOfOrders">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Orders" nillable="true" type="tns:Orders" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrders" nillable="true" type="tns:ArrayOfOrders" />
+</xs:schema>

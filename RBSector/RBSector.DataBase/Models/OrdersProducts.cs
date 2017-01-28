@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NHibernate.Mapping.ByCode.Conformist;
+﻿using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 
 namespace RBSector.DataBase.Models
 {
-    public class Ordersproducts
+    public class Ordersproducts: BaseModel
     {
         public Ordersproducts() { }
         public virtual int OrdPrRecid { get; set; }
@@ -21,20 +16,19 @@ namespace RBSector.DataBase.Models
 
         public OrdersproductsMap()
         {
+            Table("OrdersProducts");
             Id(x => x.OrdPrRecid, map => { map.Column("ORD_PR_RECID"); map.Generator(Generators.Identity); });
             Property(x => x.OrdPrCount, map => map.Column("ORD_PR_Count"));
             ManyToOne(x => x.Products, map =>
             {
                 map.Column("ORD_PR_IDProduct");
-                map.PropertyRef("PrRecid");
-                map.Cascade(Cascade.None);
+               // map.PropertyRef("PrRecid");
             });
 
             ManyToOne(x => x.Orders, map =>
             {
                 map.Column("ORD_PR_IDOrder");
-                map.PropertyRef("OrdRecid");
-                map.Cascade(Cascade.None);
+               // map.PropertyRef("OrdRecid");
             });
 
         }

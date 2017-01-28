@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RBSector.DataBase.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -17,6 +18,9 @@ namespace RBSector.WCF.IService
         string GetAllTabs();
 
         [OperationContract]
-        string GetTab(string name);
+        Tabs GetTab(string name);
+
+        [OperationContract]
+        bool AddCategory(string name);
     }
 }

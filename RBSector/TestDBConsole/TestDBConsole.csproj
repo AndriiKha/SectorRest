@@ -41,6 +41,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,7 +55,23 @@
     <None Include="Logic\NHibernateConf.cs1" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\TabsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="TestService\UserService.cs" />
+    <None Include="Properties\DataSources\RBSector.DataBase.Models.Tabs.datasource" />
+    <None Include="Service References\TabsService\Service1.wsdl" />
+    <None Include="Service References\TabsService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TabsService\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TabsService\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -76,6 +94,24 @@
       <Project>{759f16c9-5577-40fd-ab16-ba1ebbfc7c3b}</Project>
       <Name>RBSector.Entry</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\TabsService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TabsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TabsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TabsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

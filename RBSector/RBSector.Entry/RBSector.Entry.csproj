@@ -42,6 +42,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Json">
+      <HintPath>..\..\..\..\..\GitHub Projects\newParse_06.10.2016\trunk\UniversalSolution\DataParser\bin\Debug\System.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,13 +55,19 @@
   <ItemGroup>
     <Compile Include="Entry\CategoryEntry.cs" />
     <Compile Include="Entry\IngredientEntry.cs" />
+    <Compile Include="Entry\MainSubmitEntry.cs" />
     <Compile Include="Entry\ProductEntry.cs" />
     <Compile Include="Entry\TabsEntry.cs" />
+    <Compile Include="Entry\UniversalCRUD.cs" />
     <Compile Include="Entry\UserEntry.cs" />
+    <Compile Include="Interfaces\IUniversalCRUD.cs" />
     <Compile Include="Logic\NHibernateBase.cs" />
     <Compile Include="Logic\NHibernateConf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ImageTools.cs" />
+    <Compile Include="Tools\JsonTools.cs" />
     <Compile Include="Tools\ToolsDB.cs" />
+    <Compile Include="Tools\XMLTools.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />

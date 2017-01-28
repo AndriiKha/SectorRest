@@ -13,15 +13,18 @@ namespace TestDBConsole.TestService
 {
     public class UserService
     {
-        private ISession mySession;
+        //private ISession mySession;
+        TabsService.TabsServiceClient srv;
 
         public UserService()
         {
-            mySession = NHibernateConf.Session;
+           // mySession = NHibernateConf.Session;
+            srv = new TabsService.TabsServiceClient("BasicHttpBinding_ITabsService");
         }
         public void AddUser(string login, string password, string lname, string fname, string email, string role)
         {
-            Usersdata user = new Usersdata();
+            var a = srv.GetAllTabs();
+            /*Usersdata user = new Usersdata();
             user.Login = login;
             user.Password = password;
             user.Lname = lname;
@@ -33,7 +36,7 @@ namespace TestDBConsole.TestService
             {
                 mySession.Save(user);
                 mySession.Transaction.Commit();
-            }
+            }*/
         }
     }
 }

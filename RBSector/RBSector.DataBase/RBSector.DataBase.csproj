@@ -48,11 +48,18 @@
     <Reference Include="Iesi.Collections">
       <HintPath>C:\Users\w4713\Desktop\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>C:\Users\w4713\Desktop\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Json">
+      <HintPath>..\..\..\..\..\GitHub Projects\newParse_06.10.2016\trunk\UniversalSolution\DataParser\bin\Debug\System.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ISendData.cs" />
+    <Compile Include="Interfaces\ISerialize.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\Ingredients.cs" />
@@ -70,13 +80,11 @@
     <Compile Include="Models\Tabs.cs" />
     <Compile Include="Models\Usersdata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\SendDataType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\RbDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Data\RbDatabase.mdf" />
     <Content Include="Data\RbDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>RbDatabase.mdf</DependentUpon>
     </Content>
     <EmbeddedResource Include="hibernate.cfg.xml">
@@ -118,6 +126,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

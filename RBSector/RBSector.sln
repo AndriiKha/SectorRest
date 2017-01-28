@@ -11,6 +11,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBSector.DataBase", "RBSector.DataBase\RBSector.DataBase.csproj", "{14628356-9BA4-457D-829D-127CF891AF21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDBConsole", "TestDBConsole\TestDBConsole.csproj", "{150DE252-BC65-4F88-9939-7A02C2DBB9B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A3017A2-38C6-4D86-A103-536C6FA1229C} = {4A3017A2-38C6-4D86-A103-536C6FA1229C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBSector.Entry", "RBSector.Entry\RBSector.Entry.csproj", "{759F16C9-5577-40FD-AB16-BA1EBBFC7C3B}"
 EndProject

@@ -10,7 +10,7 @@
 
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
@@ -19,36 +19,80 @@
             <RowDefinition Height="16*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Name="stackPanelTab" Orientation="Horizontal" Grid.ColumnSpan="2" Background="OrangeRed"  BorderBrush="Black" Margin="0,0,0,-10">
-            <GridView ItemsSource="{x:Bind Tabs}">
+        <StackPanel Name="stackPanelTab" Orientation="Horizontal" Grid.ColumnSpan="2" Background="OrangeRed"  BorderBrush="Black" Margin="0,0,0,-10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+            <Button x:Name="btn_AddNewTab" 
+        		FontFamily="Segoe MDl2 Assets" 
+        		FontSize="40" Content="&#xE710;"  
+        		Visibility="{x:Bind EDITMODE}" 
+        		Margin="15,0,15,0" 
+        		Height="50" 
+        		Width="100" 
+        		Background="Black" 
+        		Foreground="OrangeRed" 
+                
+        		Click="btn_EditCreateFrame_Click"/>
+
+            <GridView 
+        		ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+        		ItemsSource="{x:Bind Tabs}" 
+        		IsItemClickEnabled="True" 
+        		ItemClick="GridView_ItemClickTabs"
+        		HorizontalAlignment="Center"
+        		VerticalAlignment="Center"
+                >
                 <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:TabViewModel">
-                        <TextBlock FontSize="35" Text="{x:Bind TabName}"/>
+                    <DataTemplate x:DataType="data:TabViewModel" 
+        				ScrollViewer.HorizontalScrollMode="Enabled">
+                        <TextBlock FontSize="35" Text="{x:Bind TB_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-            <Button Name="btn_AddNewTab" FontFamily="Segoe MDl2 Assets" FontSize="40" Content="&#xE710;" Margin="5,5,5,-10" Height="50" Width="100" BorderThickness="2" BorderBrush="Black" Background="Black" Foreground="OrangeRed" Click="btn_EditCreateFrame_Click"/>
         </StackPanel>
         <RelativePanel Name="relativePanelTab"  Grid.Column="2" Background="OrangeRed">
             <Button Name="btn_editMode" Content="Save" Margin="5,5,5,0" Height="50" Width="100"  Background="Black" Foreground="OrangeRed" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Click="btn_editMode_Click"/>
         </RelativePanel>
 
-        <RelativePanel Name="relativePanelCategory" Grid.Row="1">
-            <StackPanel Name="stackPanelCategory1" Orientation="Vertical" Background="Gray" Margin="5,5,5,5" RelativePanel.AlignTopWithPanel="True">
-                <TextBlock Name="txb_nameCategory" Text="Name Category" Margin="5,5,5,5" TextAlignment="Center" FontSize="20"/>
+        <RelativePanel Name="relativePanelCategory" Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Name="stackPanelCategory1" Orientation="Vertical" Background="Gray" Margin="5,5,5,5" RelativePanel.AlignTopWithPanel="True" HorizontalAlignment="Center">
+                <TextBlock Name="txb_nameCategory" Text="Name Category" Margin="5,5,5,5" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center"/>
                 <Button Name="btn_Up" Content="UP" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"/>
             </StackPanel>
-            <StackPanel BorderBrush="OrangeRed" BorderThickness="5" Name="stackPanelCategory2" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RelativePanel.Above="stackPanelCategory3" RelativePanel.Below="stackPanelCategory1">
+            <StackPanel Name="stackPanelCategory2" 
+                        Orientation="Vertical" 
+                        HorizontalAlignment="Stretch" 
+                        RelativePanel.Above="stackPanelCategory3" 
+                        RelativePanel.Below="stackPanelCategory1">
                 <TextBlock Width="250"/>
+                <ScrollViewer>
+                    <!--<ListView x:Name="listView_Category" ItemsSource="{x:Bind Category}"  SelectionChanged="listView_Category_SelectionChanged" IsItemClickEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:CategoryViewModel">
+                                <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind CT_Name}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>-->
+                    
+                    <GridView ItemsSource="{x:Bind Category}" 
+                              IsItemClickEnabled="True" 
+                              ItemClick="GridView_ItemClickCategory">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="data:CategoryViewModel">
+                                <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind CT_Name}"/>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </ScrollViewer>
             </StackPanel>
             <StackPanel Name="stackPanelCategory3" Orientation="Vertical" Background="Gray" Margin="5,5,5,5" RelativePanel.AlignBottomWithPanel="True">
-                <Button Name="btn_NewCategory" Content="New Category" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"  Click="btn_EditCreateFrame_Click"/>
+                <Button Name="btn_NewCategory" Content="New Category" HorizontalAlignment="Center" FontSize="20" Visibility="{x:Bind CANADDCATEGORY}" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"  Click="btn_EditCreateFrame_Click"/>
                 <Button Name="btn_Down" Content="DOWN" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"/>
             </StackPanel>
         </RelativePanel>
 
         <RelativePanel Name="relativePanelProducts" Grid.Column="1" Grid.Row="1">
-            <StackPanel Background="OrangeRed" 
+            <StackPanel Name="StackPanelProducLable" Background="OrangeRed" 
                         BorderBrush="Black" 
                         BorderThickness="5" 
                         HorizontalAlignment="Stretch" 
@@ -58,6 +102,13 @@
                         RelativePanel.AlignRightWithPanel="True">
                 <TextBlock Name="txb_nameProbuct" Text="Name Product" TextAlignment="Center" FontSize="20"/>
             </StackPanel>
+            <GridView ItemsSource="{x:Bind Products}" IsItemClickEnabled="True" ItemClick="GridView_ItemClickProduct" RelativePanel.Below="StackPanelProducLable">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:ProductViewModel">
+                        <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind PR_Name}"/>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
             <StackPanel Background="Gray" 
                         BorderBrush="Black" 
                         BorderThickness="5" 
@@ -69,13 +120,14 @@
                 <RelativePanel>
                     <Button Name="btn_UpProducts" Content="Up" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Width="75" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
                     <Button Name="btn_DownProducts" Content="Down" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Width="75" RelativePanel.RightOf="btn_UpProducts"/>
+                    <Button Name="btn_AddProduct" Content="Add" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Width="75" RelativePanel.RightOf="btn_DownProducts" Click="btn_AddProduct_Click"/>
                 </RelativePanel>
             </StackPanel>
         </RelativePanel>
         <StackPanel Grid.Column="2" Grid.Row="1">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    
+
                 </StackPanel>
             </StackPanel>
             <StackPanel>
