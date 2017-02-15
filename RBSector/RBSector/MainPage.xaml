@@ -49,13 +49,24 @@
                 </GridView.ItemTemplate>
             </GridView>
         </StackPanel>
-        <RelativePanel Name="relativePanelTab"  Grid.Column="2" Background="OrangeRed">
-            <Button Name="btn_editMode" Content="Save" Margin="5,5,5,0" Height="50" Width="100"  Background="Black" Foreground="OrangeRed" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Click="btn_editMode_Click"/>
+        <RelativePanel Name="relativePanelTab"  
+                       Grid.Column="2" 
+                       Background="OrangeRed"
+                       >
+            <Button Name="btn_editMode" 
+                    Content="Save" Margin="5,5,5,0"
+                    Height="50" Width="100"
+                    Background="Black"
+                    Foreground="OrangeRed"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    Click="btn_editMode_Click"
+                   />
         </RelativePanel>
 
         <RelativePanel Name="relativePanelCategory" Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel Name="stackPanelCategory1" Orientation="Vertical" Background="Gray" Margin="5,5,5,5" RelativePanel.AlignTopWithPanel="True" HorizontalAlignment="Center">
-                <TextBlock Name="txb_nameCategory" Text="Name Category" Margin="5,5,5,5" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBlock Name="txb_nameCategory" Text="" Margin="5,5,5,5" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center"/>
                 <Button Name="btn_Up" Content="UP" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"/>
             </StackPanel>
             <StackPanel Name="stackPanelCategory2" 
@@ -100,15 +111,19 @@
                         RelativePanel.AlignTopWithPanel="True" 
                         RelativePanel.AlignLeftWithPanel="True" 
                         RelativePanel.AlignRightWithPanel="True">
-                <TextBlock Name="txb_nameProbuct" Text="Name Product" TextAlignment="Center" FontSize="20"/>
+                <TextBlock Name="txb_nameProbuct" Text="" TextAlignment="Center" FontSize="20"/>
             </StackPanel>
             <GridView ItemsSource="{x:Bind Products}" IsItemClickEnabled="True" ItemClick="GridView_ItemClickProduct" RelativePanel.Below="StackPanelProducLable">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:ProductViewModel">
-                        <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind PR_Name}"/>
+                        <StackPanel>
+                            <Image Source="{Binding Image}" Height="150" Width="150"/>
+                            <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind PR_Name}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
+            <Frame Name="ImageFrame"/>
             <StackPanel Background="Gray" 
                         BorderBrush="Black" 
                         BorderThickness="5" 

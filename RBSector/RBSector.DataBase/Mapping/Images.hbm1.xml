@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="RBSector.DataBase" namespace="RBSector.DataBase.Models" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Images" table="Images" lazy="true" >
+    <id name="Id" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Name">
+      <column name="Name" sql-type="nchar" not-null="true" />
+    </property>
+    <property name="Type">
+      <column name="Type" sql-type="nchar" not-null="true" />
+    </property>
+    <property name="Byte">
+      <column name="Byte" sql-type="nchar" not-null="true" />
+    </property>
+    <bag name="Products">
+      <key column="IDImage" />
+      <one-to-many class="Products" />
+    </bag>
+  </class>
+</hibernate-mapping>

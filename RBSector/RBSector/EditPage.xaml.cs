@@ -29,63 +29,99 @@ namespace RBSector
         private EditPart PartEdit;
         private TabsService tb_srv;
         private CategoryService cat_srv;
+
+        private bool isEdit = false;
+
+        string FirtsChangeName = string.Empty;
+
         public EditPage()
         {
             this.InitializeComponent();
             tb_srv = new TabsService();
             cat_srv = new CategoryService();
             PartEdit = EditPart.NONE;
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
-            bool isUniqueName = false;
-            if (PartEdit == EditPart.TAB) {
-                TabViewModel tab = new TabViewModel();
-                tab.TB_RECID = tb_srv.GenerateNextTabID;
-                tab.TB_Name = EditCreateName.Text;
-                tab.isModify = true;
-                isUniqueName = BindingModel.CheckNameUnique(typeof(TabViewModel),tab.TB_Name);
-                if (isUniqueName)
-                {
-                    tb_srv.SetTabsSingleToBindingModel(tab);
-                    EditCreateName.Text = string.Empty;
-                }
-                else
-                {
-                    EditCreateName.Text = "Faild Name!!!";
-                }
+            bool result = false;
+            if (PartEdit == EditPart.TAB)
+            {
+                if (!isEdit)
+                    result = tb_srv.CreateTab(EditCreateName.Text);
+                else result = tb_srv.Update(FirtsChangeName, EditCreateName.Text);
             }
             else if (PartEdit == EditPart.CATEGORY)
             {
-                if (BindingModel.SelectedTab!=-1)
+                if (BindingModel.SelectedTab != -1)
                 {
-                    CategoryViewModel category = new CategoryViewModel();
-                    category.CT_Name = EditCreateName.Text;
-                    category.CT_RECID = cat_srv.GenerateNextCategoryID;
-                    category.TabParent = BindingModel.GetParentTab();
-                    category.isModify = true;
-                    category.TabParent.Categories.Add(category);
-                    isUniqueName = BindingModel.CheckNameUnique(typeof(TabViewModel), category.CT_Name);
-                    if (isUniqueName)
-                    {
-                        cat_srv.SetCategorySingleToBindingModel(category);
-                        EditCreateName.Text = string.Empty;
-                    }
-                    else
-                    {
-                        EditCreateName.Text = "Faild Name!!!";
-                    }
+                    if (!isEdit)
+                        result = cat_srv.CreateCategory(EditCreateName.Text);
+                    else result = cat_srv.Update(FirtsChangeName, EditCreateName.Text);
                 }
             }
-            else if(PartEdit == EditPart.PRODUCT) { }
-           
+            else if (PartEdit == EditPart.PRODUCT) { }
+
+            if (!result)
+            {
+                EditCreateName.Text = "Faild Save!!!";
+            }
+            else
+            {
+                Clear();
+            }
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            PartEdit = (EditPart)e.Parameter;
+            if (e.Parameter is EditPart)
+            {
+                PartEdit = (EditPart)e.Parameter;
+            }
+            else if (e.Parameter is TabViewModel)
+            {
+                isEdit = true;
+                PartEdit = EditPart.TAB;
+                txbl_NameObjToEditOrCreate.Text = EditCreateName.Text = (e.Parameter as TabViewModel).TB_Name;
+                FirtsChangeName = EditCreateName.Text;
+            }
+            else if (e.Parameter is CategoryViewModel)
+            {
+                isEdit = true;
+                PartEdit = EditPart.CATEGORY;
+                txbl_NameObjToEditOrCreate.Text = EditCreateName.Text = (e.Parameter as CategoryViewModel).CT_Name;
+                FirtsChangeName = EditCreateName.Text;
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Clear();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool result = false;
+            if (PartEdit == EditPart.TAB)
+            {
+                result = tb_srv.Delete(BindingModel.SelectedTab);
+            }
+            else if (PartEdit == EditPart.CATEGORY)
+            {
+                result = cat_srv.Delete(BindingModel.SelectedCategory);
+            }
+            if(result) this.Clear();
+            else EditCreateName.Text = "Faild Delete!!!";
+        }
+        private void Clear()
+        {
+            this.EditCreateName.Text = string.Empty;
+        }
+
+        private void EditCreateName_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+            txbl_NameObjToEditOrCreate.Text = EditCreateName.Text;
         }
     }
 }

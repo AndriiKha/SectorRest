@@ -17,7 +17,55 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             srv = new ServiceClient.TabsServiceClient(ServiceClient.TabsServiceClient.EndpointConfiguration.BasicHttpBinding_ITabsService);
         }
-        public int GenerateNextTabID { get { return BindingModel.Tabs.Select(x => x.TB_RECID) != null ? (BindingModel.Tabs.Select(x => x.TB_RECID).Max() + 1) : default(int); } }
+        public bool CreateTab(string nameTab)
+        {
+            bool isUniqueName = BindingModel.CheckNameUnique(typeof(TabViewModel), nameTab);
+            if (!isUniqueName) return false;
+
+            TabViewModel tab = new TabViewModel();
+            tab.TB_RECID = GenerateNextTabID;
+            tab.TB_Name = nameTab;
+            tab.Status = STATUS.Created.ToString();
+
+            if (isUniqueName)
+            {
+                SetTabsSingleToBindingModel(tab);
+            }
+            return true;
+        }
+        public bool Update(string oldTabName, string newNameTab)
+        {
+            if (!BindingModel.CheckNameUnique(typeof(TabViewModel), newNameTab)) return false;
+            var item = BindingModel.Tabs.FirstOrDefault(x => x.TB_Name == oldTabName);
+            if (item != null)
+            {
+                item.TB_Name = newNameTab;
+                item.Status = STATUS.Edited.ToString();
+            }
+            return true;
+        }
+        public bool Delete(int id)
+        {
+            var item = BindingModel.Tabs.FirstOrDefault(x => x.TB_RECID == id);
+            if (item == null)
+            {
+                BindingModel.DELETED_ITEM = DELETED_PART.TAB_DELETED + ":" + id;
+                item.Status = STATUS.Deleted.ToString();
+                BindingModel.Tabs.Remove(item);
+            }
+            else return false;
+            return true;
+        }
+        public int GenerateNextTabID
+        {
+            get
+            {
+                var list = BindingModel.Tabs;
+                if (list.Count > 0)
+                    return list.Select(x => x.TB_RECID).Max() + 1;
+                return 1;
+            }
+        }
         public static TabViewModel GetTab(int id)
         {
             if (BindingModel.Tabs == null || BindingModel.Tabs.Count < 1) return null;

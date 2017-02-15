@@ -1,4 +1,5 @@
-﻿using RBSector.DataBase.Models;
+﻿using Newtonsoft.Json;
+using RBSector.DataBase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace RBSector.DataBase.Tools
             }
             return result;
         }
-        public static string Componets<T>(this IList<T> list, bool isMain = false)
+        public static string ComponetsList<T>(this IList<T> list, bool isMain = false)
         {
             if (list == null || list.Count <= 0) return string.Empty;
             bool isFirst = true;
@@ -89,13 +90,32 @@ namespace RBSector.DataBase.Tools
                 else if (item is Category)
                 {
                     result += (item as Category).SerializeWithComponents;
-                }else if(item is Products)
+                }
+                else if (item is Products)
                 {
-                    result += (item as Products).Serialize;
+                    result += (item as Products).SerializeWithComponents;
                 }
                 #endregion
             }
             result += "]" + (isMain ? "}" : "");
+            return result;
+        }
+        public static string Componets<T>(this T obj, bool isMain = false)
+        {
+            string result = string.Empty;
+            if (obj == null) return string.Empty;
+            if (obj is Images)
+            {
+                result += "\"Image\":";
+                var newObj = (obj as Images);
+                Images im = new Images();
+                im.ImName = newObj.ImName;
+                im.ImRecid = newObj.ImRecid;
+                im.ImByte = newObj.ImByte;
+                im.ImType = newObj.ImType;
+                result += JsonConvert.SerializeObject(im);
+            }
+
             return result;
         }
     }

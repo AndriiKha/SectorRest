@@ -13,11 +13,11 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             srv= new MainServiceClient.MainServiceClient(MainServiceClient.MainServiceClient.EndpointConfiguration.BasicHttpBinding_IMainService);
         }
-        public bool SaveResult(string json)
+        public bool SaveResult(string json, string deleted)
         {
             try
             {
-                return srv.SaveResultAsync(json).Result;
+                return srv.SaveResultAsync(json, deleted).Result;
             }
             catch(Exception e)
             {

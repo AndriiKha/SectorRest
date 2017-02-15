@@ -17,65 +17,43 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Tabs", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Tabs : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseModel", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Category))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Products))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Images))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Ingredients))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Orders))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Usersdata))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RBSectorUWPBusinessLogic.MainServiceClient.Tabs))]
+    public partial class BaseModel : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Category> Categoryk__BackingFieldField;
+        private int RECIDField;
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingFieldField;
+        private string StatusField;
         
-        private string TbNamek__BackingFieldField;
-        
-        private int TbRecidk__BackingFieldField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Category>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Category> Categoryk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RECID {
             get {
-                return this.Categoryk__BackingFieldField;
+                return this.RECIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.Categoryk__BackingFieldField, value) != true)) {
-                    this.Categoryk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Categoryk__BackingField");
+                if ((this.RECIDField.Equals(value) != true)) {
+                    this.RECIDField = value;
+                    this.RaisePropertyChanged("RECID");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Products>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
             get {
-                return this.Productsk__BackingFieldField;
+                return this.StatusField;
             }
             set {
-                if ((object.ReferenceEquals(this.Productsk__BackingFieldField, value) != true)) {
-                    this.Productsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Productsk__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<TbName>k__BackingField", IsRequired=true)]
-        public string TbNamek__BackingField {
-            get {
-                return this.TbNamek__BackingFieldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TbNamek__BackingFieldField, value) != true)) {
-                    this.TbNamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("TbNamek__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<TbRecid>k__BackingField", IsRequired=true)]
-        public int TbRecidk__BackingField {
-            get {
-                return this.TbRecidk__BackingFieldField;
-            }
-            set {
-                if ((this.TbRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.TbRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("TbRecidk__BackingField");
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
                 }
             }
         }
@@ -93,74 +71,65 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Category", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Category : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Category : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private string CtNamek__BackingFieldField;
+        private string CtNameField;
         
-        private int CtRecidk__BackingFieldField;
+        private int CtRecidField;
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingFieldField;
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> ProductsField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Tabs Tabsk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Tabs TabsField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<CtName>k__BackingField", IsRequired=true)]
-        public string CtNamek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CtName {
             get {
-                return this.CtNamek__BackingFieldField;
+                return this.CtNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.CtNamek__BackingFieldField, value) != true)) {
-                    this.CtNamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("CtNamek__BackingField");
+                if ((object.ReferenceEquals(this.CtNameField, value) != true)) {
+                    this.CtNameField = value;
+                    this.RaisePropertyChanged("CtName");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<CtRecid>k__BackingField", IsRequired=true)]
-        public int CtRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CtRecid {
             get {
-                return this.CtRecidk__BackingFieldField;
+                return this.CtRecidField;
             }
             set {
-                if ((this.CtRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.CtRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("CtRecidk__BackingField");
+                if ((this.CtRecidField.Equals(value) != true)) {
+                    this.CtRecidField = value;
+                    this.RaisePropertyChanged("CtRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Products>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Products {
             get {
-                return this.Productsk__BackingFieldField;
+                return this.ProductsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Productsk__BackingFieldField, value) != true)) {
-                    this.Productsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Productsk__BackingField");
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Tabs>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Tabs Tabsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Tabs Tabs {
             get {
-                return this.Tabsk__BackingFieldField;
+                return this.TabsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Tabsk__BackingFieldField, value) != true)) {
-                    this.Tabsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Tabsk__BackingField");
+                if ((object.ReferenceEquals(this.TabsField, value) != true)) {
+                    this.TabsField = value;
+                    this.RaisePropertyChanged("Tabs");
                 }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -168,134 +137,125 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Products", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Products : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Products : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Category Categoryk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Category CategoryField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Images Imagesk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Images ImagesField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Ingredients Ingredientsk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Ingredients IngredientsField;
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> Ordersproductsk__BackingFieldField;
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> OrdersproductsField;
         
-        private string PrNamek__BackingFieldField;
+        private string PrNameField;
         
-        private decimal PrPricek__BackingFieldField;
+        private decimal PrPriceField;
         
-        private int PrRecidk__BackingFieldField;
+        private int PrRecidField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Tabs Tabsk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Tabs TabsField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Category>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Category Categoryk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Category Category {
             get {
-                return this.Categoryk__BackingFieldField;
+                return this.CategoryField;
             }
             set {
-                if ((object.ReferenceEquals(this.Categoryk__BackingFieldField, value) != true)) {
-                    this.Categoryk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Categoryk__BackingField");
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Images>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Images Imagesk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Images Images {
             get {
-                return this.Imagesk__BackingFieldField;
+                return this.ImagesField;
             }
             set {
-                if ((object.ReferenceEquals(this.Imagesk__BackingFieldField, value) != true)) {
-                    this.Imagesk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Imagesk__BackingField");
+                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
+                    this.ImagesField = value;
+                    this.RaisePropertyChanged("Images");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Ingredients>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Ingredients Ingredientsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Ingredients Ingredients {
             get {
-                return this.Ingredientsk__BackingFieldField;
+                return this.IngredientsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ingredientsk__BackingFieldField, value) != true)) {
-                    this.Ingredientsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Ingredientsk__BackingField");
+                if ((object.ReferenceEquals(this.IngredientsField, value) != true)) {
+                    this.IngredientsField = value;
+                    this.RaisePropertyChanged("Ingredients");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Ordersproducts>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> Ordersproductsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> Ordersproducts {
             get {
-                return this.Ordersproductsk__BackingFieldField;
+                return this.OrdersproductsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ordersproductsk__BackingFieldField, value) != true)) {
-                    this.Ordersproductsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Ordersproductsk__BackingField");
+                if ((object.ReferenceEquals(this.OrdersproductsField, value) != true)) {
+                    this.OrdersproductsField = value;
+                    this.RaisePropertyChanged("Ordersproducts");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<PrName>k__BackingField", IsRequired=true)]
-        public string PrNamek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrName {
             get {
-                return this.PrNamek__BackingFieldField;
+                return this.PrNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.PrNamek__BackingFieldField, value) != true)) {
-                    this.PrNamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("PrNamek__BackingField");
+                if ((object.ReferenceEquals(this.PrNameField, value) != true)) {
+                    this.PrNameField = value;
+                    this.RaisePropertyChanged("PrName");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<PrPrice>k__BackingField", IsRequired=true)]
-        public decimal PrPricek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PrPrice {
             get {
-                return this.PrPricek__BackingFieldField;
+                return this.PrPriceField;
             }
             set {
-                if ((this.PrPricek__BackingFieldField.Equals(value) != true)) {
-                    this.PrPricek__BackingFieldField = value;
-                    this.RaisePropertyChanged("PrPricek__BackingField");
+                if ((this.PrPriceField.Equals(value) != true)) {
+                    this.PrPriceField = value;
+                    this.RaisePropertyChanged("PrPrice");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<PrRecid>k__BackingField", IsRequired=true)]
-        public int PrRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PrRecid {
             get {
-                return this.PrRecidk__BackingFieldField;
+                return this.PrRecidField;
             }
             set {
-                if ((this.PrRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.PrRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("PrRecidk__BackingField");
+                if ((this.PrRecidField.Equals(value) != true)) {
+                    this.PrRecidField = value;
+                    this.RaisePropertyChanged("PrRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Tabs>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Tabs Tabsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Tabs Tabs {
             get {
-                return this.Tabsk__BackingFieldField;
+                return this.TabsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Tabsk__BackingFieldField, value) != true)) {
-                    this.Tabsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Tabsk__BackingField");
+                if ((object.ReferenceEquals(this.TabsField, value) != true)) {
+                    this.TabsField = value;
+                    this.RaisePropertyChanged("Tabs");
                 }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -303,89 +263,80 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Images", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Images : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Images : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private string ImBytek__BackingFieldField;
+        private string ImByteField;
         
-        private string ImNamek__BackingFieldField;
+        private string ImNameField;
         
-        private int ImRecidk__BackingFieldField;
+        private int ImRecidField;
         
-        private string ImTypek__BackingFieldField;
+        private string ImTypeField;
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingFieldField;
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> ProductsField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ImByte>k__BackingField", IsRequired=true)]
-        public string ImBytek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImByte {
             get {
-                return this.ImBytek__BackingFieldField;
+                return this.ImByteField;
             }
             set {
-                if ((object.ReferenceEquals(this.ImBytek__BackingFieldField, value) != true)) {
-                    this.ImBytek__BackingFieldField = value;
-                    this.RaisePropertyChanged("ImBytek__BackingField");
+                if ((object.ReferenceEquals(this.ImByteField, value) != true)) {
+                    this.ImByteField = value;
+                    this.RaisePropertyChanged("ImByte");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ImName>k__BackingField", IsRequired=true)]
-        public string ImNamek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImName {
             get {
-                return this.ImNamek__BackingFieldField;
+                return this.ImNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.ImNamek__BackingFieldField, value) != true)) {
-                    this.ImNamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("ImNamek__BackingField");
+                if ((object.ReferenceEquals(this.ImNameField, value) != true)) {
+                    this.ImNameField = value;
+                    this.RaisePropertyChanged("ImName");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ImRecid>k__BackingField", IsRequired=true)]
-        public int ImRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImRecid {
             get {
-                return this.ImRecidk__BackingFieldField;
+                return this.ImRecidField;
             }
             set {
-                if ((this.ImRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.ImRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("ImRecidk__BackingField");
+                if ((this.ImRecidField.Equals(value) != true)) {
+                    this.ImRecidField = value;
+                    this.RaisePropertyChanged("ImRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ImType>k__BackingField", IsRequired=true)]
-        public string ImTypek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImType {
             get {
-                return this.ImTypek__BackingFieldField;
+                return this.ImTypeField;
             }
             set {
-                if ((object.ReferenceEquals(this.ImTypek__BackingFieldField, value) != true)) {
-                    this.ImTypek__BackingFieldField = value;
-                    this.RaisePropertyChanged("ImTypek__BackingField");
+                if ((object.ReferenceEquals(this.ImTypeField, value) != true)) {
+                    this.ImTypeField = value;
+                    this.RaisePropertyChanged("ImType");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Products>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Products {
             get {
-                return this.Productsk__BackingFieldField;
+                return this.ProductsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Productsk__BackingFieldField, value) != true)) {
-                    this.Productsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Productsk__BackingField");
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
                 }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -393,89 +344,80 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Ingredients", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Ingredients : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Ingredients : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private string IgCountk__BackingFieldField;
+        private string IgCountField;
         
-        private string IgDescriptionk__BackingFieldField;
+        private string IgDescriptionField;
         
-        private string IgNamek__BackingFieldField;
+        private string IgNameField;
         
-        private int IgRecidk__BackingFieldField;
+        private int IgRecidField;
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingFieldField;
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> ProductsField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<IgCount>k__BackingField", IsRequired=true)]
-        public string IgCountk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IgCount {
             get {
-                return this.IgCountk__BackingFieldField;
+                return this.IgCountField;
             }
             set {
-                if ((object.ReferenceEquals(this.IgCountk__BackingFieldField, value) != true)) {
-                    this.IgCountk__BackingFieldField = value;
-                    this.RaisePropertyChanged("IgCountk__BackingField");
+                if ((object.ReferenceEquals(this.IgCountField, value) != true)) {
+                    this.IgCountField = value;
+                    this.RaisePropertyChanged("IgCount");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<IgDescription>k__BackingField", IsRequired=true)]
-        public string IgDescriptionk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IgDescription {
             get {
-                return this.IgDescriptionk__BackingFieldField;
+                return this.IgDescriptionField;
             }
             set {
-                if ((object.ReferenceEquals(this.IgDescriptionk__BackingFieldField, value) != true)) {
-                    this.IgDescriptionk__BackingFieldField = value;
-                    this.RaisePropertyChanged("IgDescriptionk__BackingField");
+                if ((object.ReferenceEquals(this.IgDescriptionField, value) != true)) {
+                    this.IgDescriptionField = value;
+                    this.RaisePropertyChanged("IgDescription");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<IgName>k__BackingField", IsRequired=true)]
-        public string IgNamek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IgName {
             get {
-                return this.IgNamek__BackingFieldField;
+                return this.IgNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.IgNamek__BackingFieldField, value) != true)) {
-                    this.IgNamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("IgNamek__BackingField");
+                if ((object.ReferenceEquals(this.IgNameField, value) != true)) {
+                    this.IgNameField = value;
+                    this.RaisePropertyChanged("IgName");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<IgRecid>k__BackingField", IsRequired=true)]
-        public int IgRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IgRecid {
             get {
-                return this.IgRecidk__BackingFieldField;
+                return this.IgRecidField;
             }
             set {
-                if ((this.IgRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.IgRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("IgRecidk__BackingField");
+                if ((this.IgRecidField.Equals(value) != true)) {
+                    this.IgRecidField = value;
+                    this.RaisePropertyChanged("IgRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Products>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Productsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Products {
             get {
-                return this.Productsk__BackingFieldField;
+                return this.ProductsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Productsk__BackingFieldField, value) != true)) {
-                    this.Productsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Productsk__BackingField");
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
                 }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -483,74 +425,65 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Ordersproducts", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Ordersproducts : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Ordersproducts : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private System.Nullable<int> OrdPrCountk__BackingFieldField;
+        private System.Nullable<int> OrdPrCountField;
         
-        private int OrdPrRecidk__BackingFieldField;
+        private int OrdPrRecidField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Orders Ordersk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Orders OrdersField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Products Productsk__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Products ProductsField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OrdPrCount>k__BackingField", IsRequired=true)]
-        public System.Nullable<int> OrdPrCountk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> OrdPrCount {
             get {
-                return this.OrdPrCountk__BackingFieldField;
+                return this.OrdPrCountField;
             }
             set {
-                if ((this.OrdPrCountk__BackingFieldField.Equals(value) != true)) {
-                    this.OrdPrCountk__BackingFieldField = value;
-                    this.RaisePropertyChanged("OrdPrCountk__BackingField");
+                if ((this.OrdPrCountField.Equals(value) != true)) {
+                    this.OrdPrCountField = value;
+                    this.RaisePropertyChanged("OrdPrCount");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OrdPrRecid>k__BackingField", IsRequired=true)]
-        public int OrdPrRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrdPrRecid {
             get {
-                return this.OrdPrRecidk__BackingFieldField;
+                return this.OrdPrRecidField;
             }
             set {
-                if ((this.OrdPrRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.OrdPrRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("OrdPrRecidk__BackingField");
+                if ((this.OrdPrRecidField.Equals(value) != true)) {
+                    this.OrdPrRecidField = value;
+                    this.RaisePropertyChanged("OrdPrRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Orders>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Orders Ordersk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Orders Orders {
             get {
-                return this.Ordersk__BackingFieldField;
+                return this.OrdersField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ordersk__BackingFieldField, value) != true)) {
-                    this.Ordersk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Ordersk__BackingField");
+                if ((object.ReferenceEquals(this.OrdersField, value) != true)) {
+                    this.OrdersField = value;
+                    this.RaisePropertyChanged("Orders");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Products>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Products Productsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Products Products {
             get {
-                return this.Productsk__BackingFieldField;
+                return this.ProductsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Productsk__BackingFieldField, value) != true)) {
-                    this.Productsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Productsk__BackingField");
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
                 }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -558,104 +491,95 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Orders", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Orders : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Orders : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private decimal OrdGetmoneyk__BackingFieldField;
+        private decimal OrdGetmoneyField;
         
-        private System.DateTime OrdOrderdatek__BackingFieldField;
+        private System.DateTime OrdOrderdateField;
         
-        private decimal OrdPricecostk__BackingFieldField;
+        private decimal OrdPricecostField;
         
-        private int OrdRecidk__BackingFieldField;
+        private int OrdRecidField;
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> Ordersproductsk__BackingFieldField;
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> OrdersproductsField;
         
-        private RBSectorUWPBusinessLogic.MainServiceClient.Usersdata Usersdatak__BackingFieldField;
+        private RBSectorUWPBusinessLogic.MainServiceClient.Usersdata UsersdataField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OrdGetmoney>k__BackingField", IsRequired=true)]
-        public decimal OrdGetmoneyk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal OrdGetmoney {
             get {
-                return this.OrdGetmoneyk__BackingFieldField;
+                return this.OrdGetmoneyField;
             }
             set {
-                if ((this.OrdGetmoneyk__BackingFieldField.Equals(value) != true)) {
-                    this.OrdGetmoneyk__BackingFieldField = value;
-                    this.RaisePropertyChanged("OrdGetmoneyk__BackingField");
+                if ((this.OrdGetmoneyField.Equals(value) != true)) {
+                    this.OrdGetmoneyField = value;
+                    this.RaisePropertyChanged("OrdGetmoney");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OrdOrderdate>k__BackingField", IsRequired=true)]
-        public System.DateTime OrdOrderdatek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime OrdOrderdate {
             get {
-                return this.OrdOrderdatek__BackingFieldField;
+                return this.OrdOrderdateField;
             }
             set {
-                if ((this.OrdOrderdatek__BackingFieldField.Equals(value) != true)) {
-                    this.OrdOrderdatek__BackingFieldField = value;
-                    this.RaisePropertyChanged("OrdOrderdatek__BackingField");
+                if ((this.OrdOrderdateField.Equals(value) != true)) {
+                    this.OrdOrderdateField = value;
+                    this.RaisePropertyChanged("OrdOrderdate");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OrdPricecost>k__BackingField", IsRequired=true)]
-        public decimal OrdPricecostk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal OrdPricecost {
             get {
-                return this.OrdPricecostk__BackingFieldField;
+                return this.OrdPricecostField;
             }
             set {
-                if ((this.OrdPricecostk__BackingFieldField.Equals(value) != true)) {
-                    this.OrdPricecostk__BackingFieldField = value;
-                    this.RaisePropertyChanged("OrdPricecostk__BackingField");
+                if ((this.OrdPricecostField.Equals(value) != true)) {
+                    this.OrdPricecostField = value;
+                    this.RaisePropertyChanged("OrdPricecost");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OrdRecid>k__BackingField", IsRequired=true)]
-        public int OrdRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrdRecid {
             get {
-                return this.OrdRecidk__BackingFieldField;
+                return this.OrdRecidField;
             }
             set {
-                if ((this.OrdRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.OrdRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("OrdRecidk__BackingField");
+                if ((this.OrdRecidField.Equals(value) != true)) {
+                    this.OrdRecidField = value;
+                    this.RaisePropertyChanged("OrdRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Ordersproducts>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> Ordersproductsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Ordersproducts> Ordersproducts {
             get {
-                return this.Ordersproductsk__BackingFieldField;
+                return this.OrdersproductsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ordersproductsk__BackingFieldField, value) != true)) {
-                    this.Ordersproductsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Ordersproductsk__BackingField");
+                if ((object.ReferenceEquals(this.OrdersproductsField, value) != true)) {
+                    this.OrdersproductsField = value;
+                    this.RaisePropertyChanged("Ordersproducts");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Usersdata>k__BackingField", IsRequired=true)]
-        public RBSectorUWPBusinessLogic.MainServiceClient.Usersdata Usersdatak__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RBSectorUWPBusinessLogic.MainServiceClient.Usersdata Usersdata {
             get {
-                return this.Usersdatak__BackingFieldField;
+                return this.UsersdataField;
             }
             set {
-                if ((object.ReferenceEquals(this.Usersdatak__BackingFieldField, value) != true)) {
-                    this.Usersdatak__BackingFieldField = value;
-                    this.RaisePropertyChanged("Usersdatak__BackingField");
+                if ((object.ReferenceEquals(this.UsersdataField, value) != true)) {
+                    this.UsersdataField = value;
+                    this.RaisePropertyChanged("Usersdata");
                 }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -663,134 +587,191 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Usersdata", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
-    public partial class Usersdata : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Usersdata : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
         
-        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Orders> Ordersk__BackingFieldField;
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Orders> OrdersField;
         
-        private string UsrEmailk__BackingFieldField;
+        private string UsrEmailField;
         
-        private string UsrFnamek__BackingFieldField;
+        private string UsrFnameField;
         
-        private string UsrLnamek__BackingFieldField;
+        private string UsrLnameField;
         
-        private string UsrLogink__BackingFieldField;
+        private string UsrLoginField;
         
-        private string UsrPasswordk__BackingFieldField;
+        private string UsrPasswordField;
         
-        private int UsrRecidk__BackingFieldField;
+        private int UsrRecidField;
         
-        private string UsrRolek__BackingFieldField;
+        private string UsrRoleField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Orders>k__BackingField", IsRequired=true)]
-        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Orders> Ordersk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Orders> Orders {
             get {
-                return this.Ordersk__BackingFieldField;
+                return this.OrdersField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ordersk__BackingFieldField, value) != true)) {
-                    this.Ordersk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Ordersk__BackingField");
+                if ((object.ReferenceEquals(this.OrdersField, value) != true)) {
+                    this.OrdersField = value;
+                    this.RaisePropertyChanged("Orders");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrEmail>k__BackingField", IsRequired=true)]
-        public string UsrEmailk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UsrEmail {
             get {
-                return this.UsrEmailk__BackingFieldField;
+                return this.UsrEmailField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsrEmailk__BackingFieldField, value) != true)) {
-                    this.UsrEmailk__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrEmailk__BackingField");
+                if ((object.ReferenceEquals(this.UsrEmailField, value) != true)) {
+                    this.UsrEmailField = value;
+                    this.RaisePropertyChanged("UsrEmail");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrFname>k__BackingField", IsRequired=true)]
-        public string UsrFnamek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UsrFname {
             get {
-                return this.UsrFnamek__BackingFieldField;
+                return this.UsrFnameField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsrFnamek__BackingFieldField, value) != true)) {
-                    this.UsrFnamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrFnamek__BackingField");
+                if ((object.ReferenceEquals(this.UsrFnameField, value) != true)) {
+                    this.UsrFnameField = value;
+                    this.RaisePropertyChanged("UsrFname");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrLname>k__BackingField", IsRequired=true)]
-        public string UsrLnamek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UsrLname {
             get {
-                return this.UsrLnamek__BackingFieldField;
+                return this.UsrLnameField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsrLnamek__BackingFieldField, value) != true)) {
-                    this.UsrLnamek__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrLnamek__BackingField");
+                if ((object.ReferenceEquals(this.UsrLnameField, value) != true)) {
+                    this.UsrLnameField = value;
+                    this.RaisePropertyChanged("UsrLname");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrLogin>k__BackingField", IsRequired=true)]
-        public string UsrLogink__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UsrLogin {
             get {
-                return this.UsrLogink__BackingFieldField;
+                return this.UsrLoginField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsrLogink__BackingFieldField, value) != true)) {
-                    this.UsrLogink__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrLogink__BackingField");
+                if ((object.ReferenceEquals(this.UsrLoginField, value) != true)) {
+                    this.UsrLoginField = value;
+                    this.RaisePropertyChanged("UsrLogin");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrPassword>k__BackingField", IsRequired=true)]
-        public string UsrPasswordk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UsrPassword {
             get {
-                return this.UsrPasswordk__BackingFieldField;
+                return this.UsrPasswordField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsrPasswordk__BackingFieldField, value) != true)) {
-                    this.UsrPasswordk__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrPasswordk__BackingField");
+                if ((object.ReferenceEquals(this.UsrPasswordField, value) != true)) {
+                    this.UsrPasswordField = value;
+                    this.RaisePropertyChanged("UsrPassword");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrRecid>k__BackingField", IsRequired=true)]
-        public int UsrRecidk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UsrRecid {
             get {
-                return this.UsrRecidk__BackingFieldField;
+                return this.UsrRecidField;
             }
             set {
-                if ((this.UsrRecidk__BackingFieldField.Equals(value) != true)) {
-                    this.UsrRecidk__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrRecidk__BackingField");
+                if ((this.UsrRecidField.Equals(value) != true)) {
+                    this.UsrRecidField = value;
+                    this.RaisePropertyChanged("UsrRecid");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<UsrRole>k__BackingField", IsRequired=true)]
-        public string UsrRolek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UsrRole {
             get {
-                return this.UsrRolek__BackingFieldField;
+                return this.UsrRoleField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsrRolek__BackingFieldField, value) != true)) {
-                    this.UsrRolek__BackingFieldField = value;
-                    this.RaisePropertyChanged("UsrRolek__BackingField");
+                if ((object.ReferenceEquals(this.UsrRoleField, value) != true)) {
+                    this.UsrRoleField = value;
+                    this.RaisePropertyChanged("UsrRole");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Tabs", Namespace="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models")]
+    public partial class Tabs : RBSectorUWPBusinessLogic.MainServiceClient.BaseModel {
+        
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Category> CategoryField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> ProductsField;
+        
+        private string TbNameField;
+        
+        private int TbRecidField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Category> Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
                 }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<RBSectorUWPBusinessLogic.MainServiceClient.Products> Products {
+            get {
+                return this.ProductsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
+                }
+            }
+        }
         
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TbName {
+            get {
+                return this.TbNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TbNameField, value) != true)) {
+                    this.TbNameField = value;
+                    this.RaisePropertyChanged("TbName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TbRecid {
+            get {
+                return this.TbRecidField;
+            }
+            set {
+                if ((this.TbRecidField.Equals(value) != true)) {
+                    this.TbRecidField = value;
+                    this.RaisePropertyChanged("TbRecid");
+                }
             }
         }
     }
@@ -917,7 +898,7 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
     public interface IMainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/SaveResult", ReplyAction="http://tempuri.org/IMainService/SaveResultResponse")]
-        System.Threading.Tasks.Task<bool> SaveResultAsync(string json);
+        System.Threading.Tasks.Task<bool> SaveResultAsync(string json, string deleted);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -963,8 +944,8 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<bool> SaveResultAsync(string json) {
-            return base.Channel.SaveResultAsync(json);
+        public System.Threading.Tasks.Task<bool> SaveResultAsync(string json, string deleted) {
+            return base.Channel.SaveResultAsync(json, deleted);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

@@ -11,6 +11,6 @@ namespace RBSector.WCF.IService
     public interface IMainService
     {
         [OperationContract]
-        bool SaveResult(string json);
+        bool SaveResult(string json, string deleted);
     }
 }

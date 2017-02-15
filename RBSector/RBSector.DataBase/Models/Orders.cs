@@ -4,6 +4,7 @@ using System.Linq;
 using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 using RBSector.DataBase.Tools;
+using Newtonsoft.Json;
 
 namespace RBSector.DataBase.Models
 {
@@ -19,6 +20,7 @@ namespace RBSector.DataBase.Models
         public virtual decimal OrdPricecost { get; set; }
         public virtual decimal OrdGetmoney { get; set; }
         public virtual IList<Ordersproducts> Ordersproducts { get; set; }
+        [JsonIgnore]
         public virtual string Serialize
         {
             get
@@ -43,7 +45,7 @@ namespace RBSector.DataBase.Models
                    "\"OrdPricecost\":" + "\"" + OrdPricecost + "\"",
                    "\"OrdGetmoney\":" + "\"" + OrdGetmoney + "\"",
                    "\"Usersdata\":" + "\"" + Usersdata.UsrRecid + "\"",
-                   SendDataType.Componets<Ordersproducts>(Ordersproducts)
+                   SendDataType.ComponetsList<Ordersproducts>(Ordersproducts)
                );
             }
         }

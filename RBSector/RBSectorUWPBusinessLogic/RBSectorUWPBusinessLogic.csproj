@@ -149,11 +149,13 @@
     </Compile>
     <Compile Include="Service\BindingModel.cs" />
     <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\ImageService.cs" />
     <Compile Include="Service\MainSubmitService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\TabsService.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\TabViewModel.cs" />
@@ -190,6 +192,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

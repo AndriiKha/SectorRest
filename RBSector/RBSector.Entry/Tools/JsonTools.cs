@@ -49,6 +49,8 @@ namespace RBSector.Entry.Tools
                     tab.RECID = tab.TbRecid = Convert.ToInt32(item["TB_RECID"].ToString().Trim('\"'));
                 if (item.ContainsKey("TB_Name"))
                     tab.TbName = item["TB_Name"].ToString().Trim('\"');
+                if (item.ContainsKey("Status"))
+                    tab.Status = item["Status"].ToString().Trim('\"');
                 if (item.ContainsKey("Categories"))
                 {
                     string jsonCategory = item["Categories"].ToString().Trim('\"');
@@ -70,6 +72,8 @@ namespace RBSector.Entry.Tools
                     category.RECID = category.CtRecid = Convert.ToInt32(item["CT_RECID"].ToString().Trim('\"'));
                 if (item.ContainsKey("CT_Name"))
                     category.CtName = item["CT_Name"].ToString().Trim('\"');
+                if (item.ContainsKey("Status"))
+                    category.Status = item["Status"].ToString().Trim('\"');
                 if (item.ContainsKey("Products"))
                 {
                     string jsonProducts = item["Products"].ToString().Trim('\"');
@@ -92,16 +96,32 @@ namespace RBSector.Entry.Tools
                     products.RECID = products.PrRecid = Convert.ToInt32(item["PR_RECID"].ToString().Trim('\"'));
                 if (item.ContainsKey("PR_Name"))
                     products.PrName = item["PR_Name"].ToString().Trim('\"');
+                if (item.ContainsKey("Status"))
+                    products.Status = item["Status"].ToString().Trim('\"');
                 if (item.ContainsKey("Price"))
                     products.PrPrice = Convert.ToDecimal(item["Price"].ToString().Trim('\"'));
+                Images image;
+                if (item.ContainsKey("IM_RECID"))
+                {
+                    image = new Images();
+                    image.RECID = image.ImRecid = Convert.ToInt32(item["IM_RECID"].ToString());
+                    if (item.ContainsKey("IM_Name") && item["IM_Name"] != null)
+                        image.ImName = item["IM_Name"].ToString().Trim('"');
+                    if (item.ContainsKey("IM_Type") && item["IM_Type"] != null)
+                        image.ImType = item["IM_Type"].ToString().Trim('"');
+                    if (item.ContainsKey("IM_Byte") && item["IM_Byte"] != null)
+                        image.ImByte = item["IM_Byte"].ToString().Trim('"');//ImageTools.GetBytes(item["IM_Byte"].ToString());
+                    if (item.ContainsKey("Byte_String") && item["Byte_String"] != null)
+                        image.ImByte = item["Byte_String"].ToString().Trim('"');
+
+                    if (!string.IsNullOrEmpty(image.ImName))
+                    {
+                        image.Products.Add(products);
+                        products.Images = image;
+                    }
+                }
                 products.Tabs = parentTab;
                 products.Category = parentCategory;
-
-                /* if (item.ContainsKey("Products"))
-                 {
-                     string jsonProducts = item["Products"].ToString().Trim('\"');
-                     products.Ingredients= DeserelizeProducts(jsonProducts);
-                 }*/
                 if (!string.IsNullOrEmpty(products.PrName))
                     obj.Add(products);
             }

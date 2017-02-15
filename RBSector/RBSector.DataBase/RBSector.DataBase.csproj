@@ -80,12 +80,17 @@
     <Compile Include="Models\Tabs.cs" />
     <Compile Include="Models\Usersdata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\CRUDHelper.cs" />
     <Compile Include="Tools\SendDataType.cs" />
+    <Compile Include="Tools\ToolsDB.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\RbDatabase.mdf" />
+    <EmbeddedResource Include="Data\RbDatabase.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Data\RbDatabase_log.ldf">
       <DependentUpon>RbDatabase.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

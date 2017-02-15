@@ -3,10 +3,12 @@ using System.Linq;
 using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 using RBSector.DataBase.Tools;
+using NHibernate;
+using Newtonsoft.Json;
 
 namespace RBSector.DataBase.Models
 {
-    public class Images: BaseModel
+    public class Images : BaseModel
     {
         public Images()
         {
@@ -17,6 +19,7 @@ namespace RBSector.DataBase.Models
         public virtual string ImType { get; set; }
         public virtual string ImByte { get; set; }
         public virtual IList<Products> Products { get; set; }
+        [JsonIgnore]
         public virtual string Serialize
         {
             get
@@ -25,8 +28,8 @@ namespace RBSector.DataBase.Models
                     "\"ImRecid\": " + ImRecid,
                     "\"ImName\":" + ImName,
                     "\"ImType\":" + ImType,
-                    "\"ImByte\":" + ImByte,
-                    "\"Products\":{" + Products.Select(x => x.PrRecid.ToString()).ToList<string>().JSonRecid() + "}"
+                    "\"ImByte\":" + string.Empty//,
+                    //"\"Products\":{" + Products.Select(x => x.PrRecid.ToString()).ToList<string>().JSonRecid() + "}"
                     );
 
             }
@@ -41,7 +44,8 @@ namespace RBSector.DataBase.Models
             Id(x => x.ImRecid, map => { map.Column("IM_RECID"); map.Generator(Generators.Identity); });
             Property(x => x.ImName, map => { map.Column("IM_Name"); map.NotNullable(true); });
             Property(x => x.ImType, map => { map.Column("IM_Type"); map.NotNullable(true); });
-            Property(x => x.ImByte, map => { map.Column("IM_Byte"); map.NotNullable(true); });
+            Property(x => x.ImByte, map => { map.Column("IM_Byte"); map.Type(NHibernateUtil.StringClob); //map.Length(int.MaxValue / 2 + 1);
+                map.NotNullable(true); });
             Bag(x => x.Products, colmap => { colmap.Key(x => x.Column("PR_IDImage")); colmap.Inverse(true); }, map => { map.OneToMany(); });
         }
     }

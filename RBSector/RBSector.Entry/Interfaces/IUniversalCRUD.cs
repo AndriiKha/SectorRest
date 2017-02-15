@@ -8,8 +8,8 @@ namespace RBSector.Entry.Interfaces
 {
     public interface IUniversalCRUD<T>
     {
-        bool Delete(T obj);
+        bool Delete<T>(int id);
         bool SaveOrUpdate(T obj);
-        string Get(int? id);
+        T GetObj_ID(int id);
     }
 }

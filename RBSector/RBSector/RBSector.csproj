@@ -101,6 +101,9 @@
     <Compile Include="EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImagePages\ImageViewPage.xaml.cs">
+      <DependentUpon>ImageViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,18 @@
     <None Include="RBSector_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\3050613-inline-i-2-googles-new-logo-copy.png" />
+    <Content Include="Assets\Images\6ede9a835035ba5d9d43c510e63cfb5d.jpg" />
+    <Content Include="Assets\Images\83900a5b6d403ddbfd4e843ea70828f4.jpg" />
+    <Content Include="Assets\Images\apple-logo_318-40184.jpg" />
+    <Content Include="Assets\Images\bower-logo.png" />
+    <Content Include="Assets\Images\Example-Logo-6.jpg" />
+    <Content Include="Assets\Images\images.png" />
+    <Content Include="Assets\Images\logo.png" />
+    <Content Include="Assets\Images\Logo_Image_01.png" />
+    <Content Include="Assets\Images\Logo_TV_2015.png" />
+    <Content Include="Assets\Images\Starbucks_Corporation_Logo_2011.svg.png" />
+    <Content Include="Assets\Images\wwf-logo-design.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -133,6 +148,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImagePages\ImageViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,4 @@
 ﻿using RBSector.DataBase.Models;
-using RBSector.Entry.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

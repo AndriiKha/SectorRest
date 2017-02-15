@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RBSectorUWPBusinessLogic.Service;
 using RBSectorUWPBusinessLogic.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
                     {
                         string recid = tab["TbRecid"].ToString().Trim('\"');
                         tbvm.TB_RECID = Convert.ToInt32(recid);
+                        tbvm.Status = STATUS.Nothing.ToString();
                     }
                     if (tab.ContainsKey("TbName"))
                     {
@@ -55,6 +57,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             {
                 string recid = objCategory["CtRecid"].ToString().Trim('\"');
                 category.CT_RECID = Convert.ToInt32(recid);
+                category.Status = STATUS.Nothing.ToString();
             }
             if (objCategory.ContainsKey("CtName"))
                 category.CT_Name = objCategory["CtName"].ToString().Trim('\"');
@@ -70,17 +73,37 @@ namespace RBSectorUWPBusinessLogic.JSonTools
         }
         public static ProductViewModel ProductDeserialize(this string json, CategoryViewModel categoryParent = null, TabViewModel tabParent = null)
         {
+            ImageService im_srv = new ImageService();
             ProductViewModel product = new ProductViewModel();
             JsonObject objProduct = JsonValue.Parse(json).GetObject();
             if (objProduct.ContainsKey("PrRecid"))
             {
                 string recid = objProduct["PrRecid"].ToString().Trim('\"');
                 product.PR_RECID = Convert.ToInt32(recid);
+                product.Status = STATUS.Nothing.ToString();
             }
             if (objProduct.ContainsKey("PrName"))
                 product.PR_Name = objProduct["PrName"].ToString().Trim('\"');
             if (objProduct.ContainsKey("PrPrice"))
                 product.Price = Convert.ToDecimal(objProduct["PrPrice"].ToString().Trim('\"'));
+            if (objProduct.ContainsKey("Image"))
+            {
+                var imageJson = objProduct["Image"].GetObject();
+                if (imageJson.ContainsKey("ImRecid"))
+                    product.IM_RECID = Convert.ToInt32(imageJson["ImRecid"].ToString().Trim('\"'));
+                if (imageJson.ContainsKey("ImName"))
+                    product.IM_Name = imageJson["ImName"].ToString().Trim('\"');
+                if (imageJson.ContainsKey("ImByte"))
+                {
+                    string a = imageJson["ImByte"].ToString().Trim('\"');
+                    if (a.Contains("#"))
+                        product.IM_Byte = ImageService.StringToByteForDB(a);
+                    //product.IM_Byte = im_srv.GetBytes(imageJson["ImByte"].ToString().Trim('\"'));
+                    // product.Image = await im_srv.GetImage(product.IM_Byte);
+                }
+                if (imageJson.ContainsKey("ImType"))
+                    product.IM_Type = imageJson["ImType"].ToString().Trim('\"');
+            }
             product.CategoryParent = categoryParent;
             product.TabParent = tabParent;
             return product;

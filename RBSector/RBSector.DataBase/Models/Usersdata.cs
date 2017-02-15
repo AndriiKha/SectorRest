@@ -4,6 +4,7 @@ using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 using RBSector.DataBase.Interfaces;
 using RBSector.DataBase.Tools;
+using Newtonsoft.Json;
 
 namespace RBSector.DataBase.Models
 {
@@ -21,7 +22,7 @@ namespace RBSector.DataBase.Models
         public virtual string UsrEmail { get; set; }
         public virtual string UsrRole { get; set; }
         public virtual IList<Orders> Orders { get; set; }
-
+        [JsonIgnore]
         public virtual string Serialize
         {
             get
@@ -37,6 +38,7 @@ namespace RBSector.DataBase.Models
                    "\"Orders\":{" + string.Join(",", Orders.Select(x=>x.OrdRecid.ToString()).ToList<string>().JSonRecid())+"}");
             }
         }
+        [JsonIgnore]
         public virtual string SerializeWithComponents
         {
             get
@@ -49,7 +51,7 @@ namespace RBSector.DataBase.Models
                    "\"UsrLname\":" + "\"" + UsrLname + "\"",
                    "\"UsrEmail\":" + "\"" + UsrEmail + "\"",
                    "\"UsrRole\":" + "\"" + UsrRole + "\"",
-                  SendDataType.Componets<Orders>(Orders)
+                  SendDataType.ComponetsList<Orders>(Orders)
                   );
             }
         }

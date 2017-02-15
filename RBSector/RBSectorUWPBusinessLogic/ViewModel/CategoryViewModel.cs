@@ -19,8 +19,6 @@ namespace RBSectorUWPBusinessLogic.ViewModel
         public int CT_RECID { get; set; }
         [JsonProperty("CT_Name")]
         public string CT_Name { get; set; }
-        [JsonProperty("isModify")]
-        public bool isModify { get; set; }
         [JsonIgnore]
         public TabViewModel TabParent { get; set; }
         [JsonProperty("Products")]

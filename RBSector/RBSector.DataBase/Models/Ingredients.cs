@@ -2,6 +2,7 @@
 using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 using RBSector.DataBase.Tools;
+using Newtonsoft.Json;
 
 namespace RBSector.DataBase.Models
 {
@@ -16,6 +17,7 @@ namespace RBSector.DataBase.Models
         public virtual string IgName { get; set; }
         public virtual string IgDescription { get; set; }
         public virtual IList<Products> Products { get; set; }
+        [JsonIgnore]
         public virtual string Serialize
         {
             get

@@ -18,8 +18,6 @@ namespace RBSectorUWPBusinessLogic.ViewModel
         public int TB_RECID { get; set; }
         [JsonProperty("TB_Name")]
         public string TB_Name { get; set; }
-        [JsonProperty("isModify")]
-        public bool isModify { get; set; }
         [JsonProperty("Categories")]
         public ObservableCollection<CategoryViewModel> Categories { get; set; }
     }

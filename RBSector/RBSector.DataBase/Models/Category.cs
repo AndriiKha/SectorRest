@@ -3,6 +3,7 @@ using System.Linq;
 using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 using RBSector.DataBase.Tools;
+using Newtonsoft.Json;
 
 namespace RBSector.DataBase.Models
 {
@@ -16,7 +17,7 @@ namespace RBSector.DataBase.Models
         public virtual string CtName { get; set; }
         public virtual Tabs Tabs { get; set; }
         public virtual IList<Products> Products { get; set; }
-
+        [JsonIgnore]
         public virtual string Serialize
         {
             get
@@ -30,6 +31,7 @@ namespace RBSector.DataBase.Models
 
             }
         }
+        [JsonIgnore]
         public virtual string SerializeWithComponents
         {
             get
@@ -37,7 +39,7 @@ namespace RBSector.DataBase.Models
                 return SendDataType.ConvertToString(
                "\"CtRecid\":" + "\"" + this.CtRecid + "\"",
                "\"CtName\":" + "\"" + this.CtName + "\"",
-               SendDataType.Componets<Products>(Products)
+               SendDataType.ComponetsList<Products>(Products)
                );
             }
         }

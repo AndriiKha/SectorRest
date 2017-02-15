@@ -4,10 +4,11 @@ using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
 using RBSector.DataBase.Interfaces;
 using RBSector.DataBase.Tools;
+using Newtonsoft.Json;
 
 namespace RBSector.DataBase.Models
 {
-    public class Products: BaseModel
+    public class Products : BaseModel
     {
         public Products()
         {
@@ -21,7 +22,7 @@ namespace RBSector.DataBase.Models
         public virtual Ingredients Ingredients { get; set; }
         public virtual decimal PrPrice { get; set; }
         public virtual IList<Ordersproducts> Ordersproducts { get; set; }
-
+        [JsonIgnore]
         public virtual string Serialize
         {
             get
@@ -33,11 +34,12 @@ namespace RBSector.DataBase.Models
                     "\"Images\":" + "\"" + (Images != null ? Images.ImRecid : default(int)) + "\"",
                     "\"Category\":" + "\"" + Category.CtRecid + "\"",
                     "\"Tabs\":" + "\"" + Tabs.TbRecid + "\"",
-                    "\"Ingredients\":" + "\"" + (Ingredients != null? Ingredients.IgRecid : -1)+ "\"",
+                    "\"Ingredients\":" + "\"" + (Ingredients != null ? Ingredients.IgRecid : -1) + "\"",
                     "\"Ordersproducts\":{" + Ordersproducts.Select(x => x.OrdPrRecid.ToString()).ToList<string>().JSonRecid() + "}"
                     );
             }
         }
+        [JsonIgnore]
         public virtual string SerializeWithComponents
         {
             get
@@ -46,11 +48,13 @@ namespace RBSector.DataBase.Models
                     "\"PrRecid\":" + "\"" + PrRecid + "\"",
                     "\"PrName\":" + "\"" + PrName + "\"",
                     "\"PrPrice\":" + "\"" + PrPrice + "\"",
-                    "\"Images\":" + "\"" + Images.ImRecid + "\"",
+                    SendDataType.Componets<Images>(Images),
+                    //"\"Images\":" + "\"" + (Images != null ? Images.Serialize : string.Empty) + "\"",
                     "\"Category\":" + "\"" + Category.CtRecid + "\"",
                     "\"Tabs\":" + "\"" + Tabs.TbRecid + "\"",
-                    "\"Ingredients\":" + "\"" + (Ingredients != null ? Ingredients.IgRecid : -1) + "\"",
-                    SendDataType.Componets<Ordersproducts>(Ordersproducts)
+                    "\"Ingredients\":" + "\"" + (Ingredients != null ? Ingredients.IgRecid : -1) + "\""
+                    //,
+                    //SendDataType.Componets<Ordersproducts>(Ordersproducts)
                     );
             }
         }
@@ -66,24 +70,24 @@ namespace RBSector.DataBase.Models
             ManyToOne(x => x.Images, map =>
             {
                 map.Column("PR_IDImage");
-               // map.NotNullable(false);
+                // map.NotNullable(false);
             });
 
             ManyToOne(x => x.Category, map =>
             {
                 map.Column("PR_IDCategory");
-               // map.PropertyRef("CtRecid");
+                // map.PropertyRef("CtRecid");
             });
 
-            ManyToOne(x => x.Tabs, map => { map.Column("PR_IDTab");});
+            ManyToOne(x => x.Tabs, map => { map.Column("PR_IDTab"); });
 
             ManyToOne(x => x.Ingredients, map =>
             {
                 map.Column("PR_IDIngredients");
-               // map.NotNullable(true);
+                // map.NotNullable(true);
             });
 
-            Bag<Ordersproducts>(x => x.Ordersproducts, colmap => { colmap.Key(x => x.Column("ORD_PR_IDProduct")); colmap.Inverse(true);}, map => { map.OneToMany(); });
+            Bag<Ordersproducts>(x => x.Ordersproducts, colmap => { colmap.Key(x => x.Column("ORD_PR_IDProduct")); colmap.Inverse(true); }, map => { map.OneToMany(); });
             //Bag<Ordersproducts>(x => x.Ordersproducts,cp=> { },cr=>cr.OneToMany(y=>y.Class(typeof(Ordersproducts))));
         }
     }

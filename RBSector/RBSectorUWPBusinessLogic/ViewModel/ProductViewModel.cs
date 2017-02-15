@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using RBSectorUWPBusinessLogic.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RBSectorUWPBusinessLogic.ViewModel
 {
@@ -19,13 +21,18 @@ namespace RBSectorUWPBusinessLogic.ViewModel
         [JsonProperty("PR_Name")]
         public string PR_Name { get; set; }
         [JsonProperty("IM_RECID")]
-        public string IM_RECID { get; set; }
+        public int IM_RECID { get; set; }
         [JsonProperty("IM_Name")]
         public string IM_Name { get; set; }
         [JsonProperty("IM_Type")]
         public string IM_Type { get; set; }
         [JsonProperty("IM_Byte")]
-        public Byte[] IM_Byte { get; set; }
+        [JsonIgnore]
+        public byte[] IM_Byte { get; set; }
+        [JsonProperty("Byte_String")]
+        public string ByteString { get; set; }
+        [JsonIgnore]
+        public BitmapImage Image { get; set; }
         [JsonProperty("Price")]
         public decimal Price { get; set; }
         [JsonProperty("IG_RECID")]
@@ -36,8 +43,6 @@ namespace RBSectorUWPBusinessLogic.ViewModel
         public string IG_Name { get; set; }
         [JsonProperty("IG_Description")]
         public string IG_Description { get; set; }
-        [JsonProperty("isModify")]
-        public bool isModify { get; set; }
         [JsonProperty("TabParent")]
         [JsonIgnore]
         public TabViewModel TabParent { get; set; }

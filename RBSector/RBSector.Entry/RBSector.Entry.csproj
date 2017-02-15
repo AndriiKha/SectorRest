@@ -68,10 +68,6 @@
     <Compile Include="Tools\JsonTools.cs" />
     <Compile Include="Tools\ToolsDB.cs" />
     <Compile Include="Tools\XMLTools.cs" />
-    <Compile Include="ViewModel\CategoryViewModel.cs" />
-    <Compile Include="ViewModel\IngredientViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModel.cs" />
-    <Compile Include="ViewModel\TabViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="hibernate.cfg.xml">
