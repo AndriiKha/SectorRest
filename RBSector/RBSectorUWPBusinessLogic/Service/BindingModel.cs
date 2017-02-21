@@ -28,7 +28,7 @@ namespace RBSectorUWPBusinessLogic.Service
             }
             set
             {
-                if (string.IsNullOrEmpty(DELETED_ITEM))
+                if (string.IsNullOrEmpty(deleted_item))
                 {
                     deleted_item = string.Empty;
                     deleted_item += value;

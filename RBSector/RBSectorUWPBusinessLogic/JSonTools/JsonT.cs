@@ -18,6 +18,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             if (type == typeof(TabViewModel))
             {
                 ObservableCollection<TabViewModel> tabViewModel = new ObservableCollection<TabViewModel>();
+                if (string.IsNullOrEmpty(json)) return tabViewModel;
                 JsonObject objTabs = JsonValue.Parse(json).GetObject();
                 foreach (var itemTab in objTabs["Tabs"].GetArray())
                 {
@@ -99,7 +100,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
                     if (a.Contains("#"))
                         product.IM_Byte = ImageService.StringToByteForDB(a);
                     //product.IM_Byte = im_srv.GetBytes(imageJson["ImByte"].ToString().Trim('\"'));
-                    // product.Image = await im_srv.GetImage(product.IM_Byte);
+                    // product.Image = im_srv.GetImage(product.IM_Byte).Result;
                 }
                 if (imageJson.ContainsKey("ImType"))
                     product.IM_Type = imageJson["ImType"].ToString().Trim('\"');
@@ -139,6 +140,53 @@ namespace RBSectorUWPBusinessLogic.JSonTools
                 return obj;
             }
             return obj;
+        }
+
+        public static string SerealizeObject(object obj)
+        {
+            string json = string.Empty;
+            if (obj == null) return json;
+            try
+            {
+                json = JsonConvert.SerializeObject(obj);
+            }
+            catch(Exception exc)
+            {
+                string exception = exc.Message;
+                return json;
+            }
+            return json;
+        }
+        public static DateTime ConvertStringToDate(this string date)
+        {
+            DateTime time;
+            if (DateTime.TryParse(date, out time))
+            {
+                return time;
+            }
+            return DateTime.MinValue;
+        }
+        public static decimal ConvertStringToDecimal(this string numer)
+        {
+            if (string.IsNullOrEmpty(numer)) return -1;
+
+            decimal result;
+            if (decimal.TryParse(numer, out result))
+            {
+                return result;
+            }
+            return -1;
+        }
+        public static int ConvertStringToInteger(this string numer)
+        {
+            if (string.IsNullOrEmpty(numer)) return -1;
+
+            Int32 result;
+            if (Int32.TryParse(numer, out result))
+            {
+                return result;
+            }
+            return -1;
         }
     }
 }

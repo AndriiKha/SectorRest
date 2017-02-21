@@ -31,6 +31,8 @@ namespace RBSectorUWPBusinessLogic.ViewModel
         public byte[] IM_Byte { get; set; }
         [JsonProperty("Byte_String")]
         public string ByteString { get; set; }
+        [JsonProperty("ORD_Count")]
+        public int ORD_Count { get; set; }
         [JsonIgnore]
         public BitmapImage Image { get; set; }
         [JsonProperty("Price")]

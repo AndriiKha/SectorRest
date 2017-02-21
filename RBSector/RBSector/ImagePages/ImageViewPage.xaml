@@ -16,7 +16,7 @@
             ItemClick="GridView_ItemClickOnImage"
             >
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="data:ImageViewModel">
+                <DataTemplate x:DataType="data:ImageViewModel" ScrollViewer.HorizontalScrollMode="Enabled">
                     <Image Source="{Binding bitmapImage}" Height="200" Width="200"/>
                 </DataTemplate>
             </GridView.ItemTemplate>

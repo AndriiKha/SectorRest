@@ -12,5 +12,7 @@ namespace RBSector.WCF.IService
     {
         [OperationContract]
         bool SaveResult(string json, string deleted);
+        [OperationContract]
+        bool SaveOrder(string json);
     }
 }

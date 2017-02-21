@@ -98,7 +98,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditPage.xaml.cs">
+    <Compile Include="CategoryPages\CategoryViewPage.xaml.cs">
+      <DependentUpon>CategoryViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control_RightPanel\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultPage.xaml.cs">
+      <DependentUpon>DefaultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditModePages\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImagePages\ImageViewPage.xaml.cs">
@@ -107,10 +116,31 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProductPages\ProductPage.xaml.cs">
-      <DependentUpon>ProductPage.xaml</DependentUpon>
+    <Compile Include="OthersPages\BillDocPage.xaml.cs">
+      <DependentUpon>BillDocPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OthersPages\BillingPage.xaml.cs">
+      <DependentUpon>BillingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OthersPages\CalculatorPage.xaml.cs">
+      <DependentUpon>CalculatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OthersPages\IngredientsPage.xaml.cs">
+      <DependentUpon>IngredientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OthersPages\PayPage.xaml.cs">
+      <DependentUpon>PayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPages\ProductPageEditMode.xaml.cs">
+      <DependentUpon>ProductPageEditMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPages\ProductViewPage.xaml.cs">
+      <DependentUpon>ProductViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabsPages\TabsViewPage.xaml.cs">
+      <DependentUpon>TabsViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Tools.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,18 +151,39 @@
     <None Include="RBSector_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Images\3050613-inline-i-2-googles-new-logo-copy.png" />
-    <Content Include="Assets\Images\6ede9a835035ba5d9d43c510e63cfb5d.jpg" />
-    <Content Include="Assets\Images\83900a5b6d403ddbfd4e843ea70828f4.jpg" />
-    <Content Include="Assets\Images\apple-logo_318-40184.jpg" />
-    <Content Include="Assets\Images\bower-logo.png" />
-    <Content Include="Assets\Images\Example-Logo-6.jpg" />
+    <Content Include="Assets\Images\3105b498589a458129d62a7f00a1ae2d.jpg" />
+    <Content Include="Assets\Images\49bc9189e09185a918e93852582c9e7f.jpg" />
+    <Content Include="Assets\Images\5900226005658-sobieski-700ml-estate-tuba-wodka.jpg" />
+    <Content Include="Assets\Images\7up_1995.png" />
+    <Content Include="Assets\Images\a45c9daf8ce782de57d88fb5aea49fbf.png" />
+    <Content Include="Assets\Images\always-coca-cola-logo-vector-400x400.png" />
+    <Content Include="Assets\Images\c9c2f35762605274f8c037234d080e00.jpg" />
+    <Content Include="Assets\Images\camel-logo-vector-01.png" />
+    <Content Include="Assets\Images\coca-cola-black-logo-vector-400x400.png" />
+    <Content Include="Assets\Images\coca-cola-logo-vector.png" />
+    <Content Include="Assets\Images\coca-cola-zero-logo-vector-400x400.png" />
+    <Content Include="Assets\Images\fanta-drink-vector-logo-400x400.png" />
+    <Content Include="Assets\Images\Finlandia_Vodka_Classic.jpg" />
+    <Content Include="Assets\Images\images.jpg" />
     <Content Include="Assets\Images\images.png" />
-    <Content Include="Assets\Images\logo.png" />
-    <Content Include="Assets\Images\Logo_Image_01.png" />
-    <Content Include="Assets\Images\Logo_TV_2015.png" />
-    <Content Include="Assets\Images\Starbucks_Corporation_Logo_2011.svg.png" />
-    <Content Include="Assets\Images\wwf-logo-design.jpg" />
+    <Content Include="Assets\Images\Jagermeister-logo-AD19F1FDBB-seeklogo.com.png" />
+    <Content Include="Assets\Images\Logo-Redbull_Energy_Drink.png" />
+    <Content Include="Assets\Images\logo_camel-001.jpg" />
+    <Content Include="Assets\Images\Logo_mirinda.png" />
+    <Content Include="Assets\Images\Lovejoy_group.jpg" />
+    <Content Include="Assets\Images\Martini_Logo.svg.png" />
+    <Content Include="Assets\Images\Mirinda_Citrus_Logo.gif" />
+    <Content Include="Assets\Images\Parliament-logo.png" />
+    <Content Include="Assets\Images\pepsi-coca-cola-vector-logo-400x400.png" />
+    <Content Include="Assets\Images\pitbull-energy-drink-vector-logo.png" />
+    <Content Include="Assets\Images\Pizza-3D-logo-250x150.jpg" />
+    <Content Include="Assets\Images\Poker_Cigarettes-logo-DB0143B962-seeklogo.com.gif" />
+    <Content Include="Assets\Images\Projekt-butelki-wódki-White-Crow2.jpg" />
+    <Content Include="Assets\Images\shark-energy-drink-vector-logo-400x400.png" />
+    <Content Include="Assets\Images\sunkist-logo.png" />
+    <Content Include="Assets\Images\thumb.jpg" />
+    <Content Include="Assets\Images\west3.gif" />
+    <Content Include="Assets\Images\wodka-stumbras-goly-789-1024x768-resize.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -147,7 +198,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="EditPage.xaml">
+    <Page Include="CategoryPages\CategoryViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control_RightPanel\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefaultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditModePages\EditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,7 +222,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ProductPages\ProductPage.xaml">
+    <Page Include="OthersPages\BillDocPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\BillingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\CalculatorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\IngredientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\PayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductPages\ProductPageEditMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductPages\ProductViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabsPages\TabsViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,9 +259,7 @@
       <Name>RBSectorUWPBusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EditModePages\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

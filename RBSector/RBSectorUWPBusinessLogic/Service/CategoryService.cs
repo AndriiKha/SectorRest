@@ -11,18 +11,20 @@ namespace RBSectorUWPBusinessLogic.Service
     public class CategoryService
     {
         private ServiceClient.TabsServiceClient srv;
+        private Presenter _presenter;
         public CategoryService()
         {
+            _presenter = Presenter.Instance();
             srv = new ServiceClient.TabsServiceClient(ServiceClient.TabsServiceClient.EndpointConfiguration.BasicHttpBinding_ITabsService);
         }
         public bool CreateCategory(string nameCategory)
         {
-            bool isUniqueName = BindingModel.CheckNameUnique(typeof(TabViewModel), nameCategory);
+            bool isUniqueName = _presenter.CheckNameUnique<TabViewModel>(nameCategory);
             if (!isUniqueName) return false;
             CategoryViewModel category = new CategoryViewModel();
             category.CT_Name = nameCategory;
             category.CT_RECID = GenerateNextCategoryID;
-            category.TabParent = BindingModel.GetParentTab();
+            category.TabParent = _presenter.GetSelectedTab();
             category.Status = STATUS.Created.ToString();
             category.TabParent.Categories.Add(category);
 
@@ -34,8 +36,8 @@ namespace RBSectorUWPBusinessLogic.Service
         }
         public bool Update(string oldCategoryName, string newNameTab)
         {
-            if (!BindingModel.CheckNameUnique(typeof(CategoryViewModel), newNameTab)) return false;
-            var item = BindingModel.Category.FirstOrDefault(x => x.CT_Name == oldCategoryName);
+            if (!_presenter.CheckNameUnique<CategoryViewModel>(newNameTab)) return false;
+            var item = _presenter.Category.FirstOrDefault(x => x.CT_Name == oldCategoryName);
             if (item != null)
             {
                 item.CT_Name = newNameTab;
@@ -45,20 +47,21 @@ namespace RBSectorUWPBusinessLogic.Service
         }
         public bool Delete(int id)
         {
-            var item = BindingModel.Category.FirstOrDefault(x => x.CT_RECID == id);
-            if (item == null)
+            var item = _presenter.Category.FirstOrDefault(x => x.CT_RECID == id);
+            if (item != null)
             {
-                BindingModel.DELETED_ITEM = DELETED_PART.CATEGORY_DELETED + ":" + id;
+                if (!STATUS.Created.Equals(item.Status))
+                    _presenter.DELETED_ITEM = DELETED_PART.CATEGORY_DELETED + ":" + id;
                 item.Status = STATUS.Deleted.ToString();
-                BindingModel.Category.Remove(item);
+                _presenter.Category.Remove(item);
             }
             else return false;
             return true;
         }
         public CategoryViewModel GetCategory(int id)
         {
-            if (BindingModel.Category == null || BindingModel.Category.Count < 1) return null;
-            return BindingModel.Category.Where(x => x.CT_RECID == id).FirstOrDefault();
+            if (_presenter.Category == null || _presenter.Category.Count < 1) return null;
+            return _presenter.Category.Where(x => x.CT_RECID == id).FirstOrDefault();
         }
         public int GenerateNextCategoryID
         {
@@ -73,25 +76,25 @@ namespace RBSectorUWPBusinessLogic.Service
 
         public void SetCategoryToBindingModel(ObservableCollection<CategoryViewModel> category)
         {
-            if (BindingModel.Category.Count > 0)
-                BindingModel.Category.Clear();
+            if (_presenter.Category.Count > 0)
+                _presenter.Category.Clear();
             foreach (var item in category)
             {
-                if (BindingModel.Category.Where(x => x.CT_RECID == item.CT_RECID).FirstOrDefault() == null)
-                    BindingModel.Category.Add(item);
+                if (_presenter.Category.Where(x => x.CT_RECID == item.CT_RECID).FirstOrDefault() == null)
+                    _presenter.Category.Add(item);
             }
         }
         public void SetCategorySingleToBindingModel(CategoryViewModel category)
         {
-            if (BindingModel.Category.Where(x => x.CT_RECID == category.CT_RECID).FirstOrDefault() == null)
-                BindingModel.Category.Add(category);
+            if (_presenter.Category.Where(x => x.CT_RECID == category.CT_RECID).FirstOrDefault() == null)
+                _presenter.Category.Add(category);
         }
         public ObservableCollection<CategoryViewModel> GetAllCategory()
         {
             ObservableCollection<CategoryViewModel> category = new ObservableCollection<CategoryViewModel>();
-            foreach (var tab in BindingModel.Tabs)
+            foreach (var tab in _presenter.Tabs)
             {
-                category.AddRange(tab.Categories);
+                _presenter.AddRange(category, tab.Categories);
             }
             return category;
         }

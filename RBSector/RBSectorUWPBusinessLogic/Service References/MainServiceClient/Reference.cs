@@ -899,6 +899,9 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/SaveResult", ReplyAction="http://tempuri.org/IMainService/SaveResultResponse")]
         System.Threading.Tasks.Task<bool> SaveResultAsync(string json, string deleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainService/SaveOrder", ReplyAction="http://tempuri.org/IMainService/SaveOrderResponse")]
+        System.Threading.Tasks.Task<bool> SaveOrderAsync(string json);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -946,6 +949,10 @@ namespace RBSectorUWPBusinessLogic.MainServiceClient {
         
         public System.Threading.Tasks.Task<bool> SaveResultAsync(string json, string deleted) {
             return base.Channel.SaveResultAsync(json, deleted);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SaveOrderAsync(string json) {
+            return base.Channel.SaveOrderAsync(json);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

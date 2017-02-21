@@ -1,6 +1,11 @@
-﻿using RBSector.ImagePages;
+﻿using RBSector.CategoryPages;
+using RBSector.Control_RightPanel;
+using RBSector.EditModePages;
+using RBSector.ImagePages;
 using RBSector.ProductPages;
+using RBSector.TabsPages;
 using RBSector.Tools;
+using RBSectorUWPBusinessLogic.Interface;
 using RBSectorUWPBusinessLogic.JSonTools;
 using RBSectorUWPBusinessLogic.Options;
 using RBSectorUWPBusinessLogic.Service;
@@ -31,15 +36,13 @@ namespace RBSector
     public sealed partial class MainPage : Page
     {
         #region[Options]
-        private bool is_editMode = OptionsAvailability.IS_EDITMODE;
-        private bool can_addCategory = OptionsAvailability.IS_EDITMODE && OptionsAvailability.CAN_ADDCATEGORY;
-        private bool can_addProduct = OptionsAvailability.IS_EDITMODE && OptionsAvailability.CAN_ADDPRODUCTS;
-        private Visibility EDITMODE;
-        private Visibility CANADDCATEGORY;
-        private Visibility CANADDPRODUCT;
+
         #endregion
 
         #region[Initi Service]
+
+        private Presenter _presenter;
+
         private TabsService tb_srv;
         private CategoryService cat_srv;
         private ProductService prod_srv;
@@ -48,37 +51,67 @@ namespace RBSector
         #endregion
 
         #region[Binding Model]
-        private ObservableCollection<TabViewModel> Tabs;
-        private ObservableCollection<CategoryViewModel> Category;
-        private ObservableCollection<ProductViewModel> Products;
+
         #endregion
 
         #region[Events]
         public event EventHandler Loading;
+        public event EventHandler Saving;
         private async void LoadImageForProducts_Page_Loading(object sender, EventArgs e)
         {
-            int countTabs = BindingModel.Tabs.Count;
-            for(int i = 0; i < countTabs; i++)
+            int countTabs = _presenter.Tabs.Count;
+            for (int i = 0; i < countTabs; i++)
             {
-                int countCategory = BindingModel.Tabs[i].Categories.Count;
-                for(int j = 0; j < countCategory; j++)
-                { 
-                    for(int l = 0; l < BindingModel.Tabs[i].Categories[j].Products.Count; l++)
+                int countCategory = _presenter.Tabs[i].Categories.Count;
+                for (int j = 0; j < countCategory; j++)
+                {
+                    for (int l = 0; l < _presenter.Tabs[i].Categories[j].Products.Count; l++)
                     {
-                        BindingModel.Tabs[i].Categories[j].Products[l].Image = await im_srv.GetImage(BindingModel.Tabs[i].Categories[j].Products[l].IM_Byte);
+                        _presenter.Tabs[i].Categories[j].Products[l].Image = await im_srv.GetImage(_presenter.Tabs[i].Categories[j].Products[l].IM_Byte);
                     }
                 }
             }
 
         }
+
+        private async void ClickOnProduct_Event(object product, EventArgs e)
+        {
+            this.FrameEditCreate.Navigate(typeof(ProductPageEditMode), product);
+        }
+        private async void ClickOnTabOrCategory_Event(object obj, EventArgs e)
+        {
+            this.FrameEditCreate.Navigate(typeof(EditPage), obj);
+        }
+
+        private async void ClickEditMode_Event(object obj, EventArgs e)
+        {
+            _presenter.isEditMode = true;
+            btn_editMode.Content = "Save";
+        }
+        private async void ClickReadMode_Event(object obj, EventArgs e)
+        {
+            _presenter.isEditMode = false;
+            btn_editMode.Content = "Edit";
+            FrameEditCreate.Navigate(typeof(OrderPage));
+        }
+        private async void Save_Event(object product, EventArgs e)
+        {
+            string json = JsonT.SerealizeObjWithComponent(_presenter.Tabs);
+            _presenter.SatusSaving = await mn_srv.SaveResult(json, _presenter.DELETED_ITEM);
+
+        }
+        private void InitiEvents()
+        {
+            Loading += LoadImageForProducts_Page_Loading;
+            Saving += Save_Event;
+            _presenter.ClickOnProduct += ClickOnProduct_Event;
+            _presenter.ClickOnTabOrCategory += ClickOnTabOrCategory_Event;
+        }
         #endregion
         public MainPage()
         {
             this.InitializeComponent();
-            is_editMode = true;
-            EDITMODE = Visibility.Visible;
-            CANADDCATEGORY = Visibility.Visible;
-            CANADDPRODUCT = Visibility.Visible;
+
 
             tb_srv = new TabsService();
             mn_srv = new MainSubmitService();
@@ -86,102 +119,44 @@ namespace RBSector
             prod_srv = new ProductService();
             im_srv = new ImageService();
 
-            BindingModel.Initi();
-            tb_srv.SetTabsToBindingModel(tb_srv.GetAllTabs());
-            Tabs = BindingModel.Tabs;
-            Category = BindingModel.Category;
-            Products = BindingModel.Products;
+            _presenter = Presenter.Instance();
 
-            Loading += LoadImageForProducts_Page_Loading;
+            tb_srv.SetTabsToBindingModel(tb_srv.GetAllTabs());
+
+            this.ProductPageView.Navigate(typeof(ProductViewPage));
+            this.CategoryViewPage.Navigate(typeof(CategoryViewPage));
+            this.TabsViewPage.Navigate(typeof(TabsViewPage));
+
+            _presenter.ClickReadMode += ClickReadMode_Event;
+            _presenter.ClickEditMode += ClickEditMode_Event;
+            _presenter.Initi_ClickReadMode();
+
+            InitiEvents();
             Loading(null, null);
-        }
-        
-        private void btn_EditCreateFrame_Click(object sender, RoutedEventArgs e)
-        {
-            //switch()
-            EditPart selectedPartobj = Tools.Tools.EditObj(sender);
-            this.FrameEditCreate.Navigate(typeof(EditPage), selectedPartobj);
         }
 
         private void btn_editMode_Click(object sender, RoutedEventArgs e)
         {
-            string json = JsonT.SerealizeObjWithComponent(Tabs);
-            string i = ImageService.ByteToStringForDB(Tabs.FirstOrDefault().Categories.FirstOrDefault().Products.LastOrDefault().IM_Byte);
-
-            if (mn_srv.SaveResult(json, BindingModel.DELETED_ITEM))
+            if (_presenter.isEditMode)
             {
-                btn_editMode.Content = "Edit";
-                is_editMode = false;
-                EDITMODE = Visibility.Collapsed;
-            }
-        }
-
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void GridView_ItemClickTabs(object sender, ItemClickEventArgs e)
-        {
-            TabViewModel tab = (TabViewModel)e.ClickedItem;
-            can_addCategory = true;
-            CANADDCATEGORY = Visibility.Visible;
-            if (tab != null)
-            {
-                BindingModel.SelectedProduct = -1;
-                cat_srv.SetCategoryToBindingModel(tab.CategoryForSelectedTab());
-                BindingModel.SelectedTab = tab.TB_RECID;
-                this.FrameEditCreate.Navigate(typeof(EditPage), tab);
-            }
-        }
-
-        private void GridView_ItemClickCategory(object sender, ItemClickEventArgs e)
-        {
-            CategoryViewModel category = (CategoryViewModel)e.ClickedItem;
-            can_addProduct = true;
-            CANADDPRODUCT = Visibility.Visible;
-            if (category != null)
-            {
-                BindingModel.SelectedProduct = -1;
-                txb_nameCategory.Text = category.CT_Name;
-                prod_srv.SetProductsToBindingModel(category.ProductsForSelectedCategory());
-                BindingModel.SelectedCategory = category.CT_RECID;
-
-                this.FrameEditCreate.Navigate(typeof(EditPage), category);
-            }
-        }
-
-        private void GridView_ItemClickProduct(object sender, ItemClickEventArgs e)
-        {
-            ProductViewModel product = (ProductViewModel)e.ClickedItem;
-            if (product != null)
-            {
-                BindingModel.SelectedProduct = product.PR_RECID;
-                txb_nameProbuct.Text = product.PR_Name;
-                this.FrameEditCreate.Navigate(typeof(ProductPage), product);
-            }
-        }
-
-        private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
-        {
-            BindingModel.SelectedProduct = -1;
-            EditPart selectedPartobj = Tools.Tools.EditObj(sender);
-            this.FrameEditCreate.Navigate(typeof(ProductPage), selectedPartobj);
-        }
-
-        private void listView_Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /*CategoryViewModel category = (CategoryViewModel)e.ClickedItem;
-            can_addProduct = true;
-            CANADDPRODUCT = Visibility.Visible;
-            if (category != null)
-            {
-                if (BindingModel.SelectedCategory != category.CT_RECID)
+                Saving(null, null);
+                if (_presenter.SatusSaving)
                 {
-                    prod_srv.SetProductsToBindingModel(category.ProductsForSelectedCategory());
-                    BindingModel.SelectedCategory = category.CT_RECID;
+                    _presenter.Initi_ClickReadMode();
+                    Reload_TCP();
                 }
-            }*/
+            }
+            else {
+                _presenter.Initi_ClickEditMode();
+            }
         }
+        #region[METHODS]
+        private void Reload_TCP()
+        {
+            _presenter.ClearCollectionForBinding();
+            tb_srv.SetTabsToBindingModel(tb_srv.GetAllTabs());
+            Loading(null, null);
+        }
+        #endregion
     }
 }

@@ -75,6 +75,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Logic\packages.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

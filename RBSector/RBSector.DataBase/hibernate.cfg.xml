@@ -11,7 +11,7 @@
       300
     </property>
     <property name="connection.connection_string">
-      Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\DYPLOM\GitHub\trunk\RBSector\RBSector.DataBase\Data\RbDatabase.mdf;Integrated Security=True
+      Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\DYPLOM\GitHub\trunk\RBSector\RBSector.DataBase\Data\RbSectorDatabase.mdf;Integrated Security=True
     </property>
     <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
     <property name="show_sql">false</property>

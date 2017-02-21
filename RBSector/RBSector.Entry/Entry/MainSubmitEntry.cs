@@ -38,6 +38,7 @@ namespace RBSector.Entry.Entry
             {
                 recids = deleted.Split(',').ToList<string>();
             }
+            else return true;
 
             foreach (var item in recids)
             {
@@ -76,6 +77,10 @@ namespace RBSector.Entry.Entry
             bool result = true;
             try
             {
+                if (string.IsNullOrEmpty(json))
+                {
+                    return DeletedRecid(deleted);
+                }
                 List<Tabs> obj = JsonTools.Deserelize(json);
                 foreach (Tabs tab in obj)
                 {
@@ -106,8 +111,8 @@ namespace RBSector.Entry.Entry
                             }
                         }
                     }
-                    result = DeletedRecid(deleted);
                 }
+                result = DeletedRecid(deleted);
             }
             catch (Exception ex)
             {
@@ -115,6 +120,20 @@ namespace RBSector.Entry.Entry
                 return false;
             }
             return result;
+        }
+
+        public bool SaveOrder(string json)
+        {
+            try
+            {
+                Orders order = JsonTools.DeserelizeOrder(json);
+                if (order == null) return false;
+               return orders_crud.SaveOrUpdate(order);
+            }
+            catch(Exception exc)
+            {
+                return false;
+            }
         }
     }
     public enum DELETED_PART { TAB_DELETED, CATEGORY_DELETED, PRODUCT_DELETED }

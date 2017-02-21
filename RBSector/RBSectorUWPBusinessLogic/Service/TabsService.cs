@@ -13,13 +13,15 @@ namespace RBSectorUWPBusinessLogic.Service
     public class TabsService
     {
         private ServiceClient.TabsServiceClient srv;
+        private Presenter _presenter;
         public TabsService()
         {
             srv = new ServiceClient.TabsServiceClient(ServiceClient.TabsServiceClient.EndpointConfiguration.BasicHttpBinding_ITabsService);
+            _presenter = Presenter.Instance();
         }
         public bool CreateTab(string nameTab)
         {
-            bool isUniqueName = BindingModel.CheckNameUnique(typeof(TabViewModel), nameTab);
+            bool isUniqueName = _presenter.CheckNameUnique<TabViewModel>(nameTab);
             if (!isUniqueName) return false;
 
             TabViewModel tab = new TabViewModel();
@@ -35,8 +37,8 @@ namespace RBSectorUWPBusinessLogic.Service
         }
         public bool Update(string oldTabName, string newNameTab)
         {
-            if (!BindingModel.CheckNameUnique(typeof(TabViewModel), newNameTab)) return false;
-            var item = BindingModel.Tabs.FirstOrDefault(x => x.TB_Name == oldTabName);
+            if (!_presenter.CheckNameUnique<TabViewModel>(newNameTab)) return false;
+            var item = _presenter.Tabs.FirstOrDefault(x => x.TB_Name == oldTabName);
             if (item != null)
             {
                 item.TB_Name = newNameTab;
@@ -46,12 +48,13 @@ namespace RBSectorUWPBusinessLogic.Service
         }
         public bool Delete(int id)
         {
-            var item = BindingModel.Tabs.FirstOrDefault(x => x.TB_RECID == id);
-            if (item == null)
+            var item = _presenter.Tabs.FirstOrDefault(x => x.TB_RECID == id);
+            if (item != null)
             {
-                BindingModel.DELETED_ITEM = DELETED_PART.TAB_DELETED + ":" + id;
+                if (!STATUS.Created.Equals(item.Status))
+                    _presenter.DELETED_ITEM = DELETED_PART.TAB_DELETED + ":" + id;
                 item.Status = STATUS.Deleted.ToString();
-                BindingModel.Tabs.Remove(item);
+                _presenter.Tabs.Remove(item);
             }
             else return false;
             return true;
@@ -60,16 +63,16 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             get
             {
-                var list = BindingModel.Tabs;
+                var list = _presenter.Tabs;
                 if (list.Count > 0)
                     return list.Select(x => x.TB_RECID).Max() + 1;
                 return 1;
             }
         }
-        public static TabViewModel GetTab(int id)
+        public TabViewModel GetTab(int id)
         {
-            if (BindingModel.Tabs == null || BindingModel.Tabs.Count < 1) return null;
-            return BindingModel.Tabs.Where(x => x.TB_RECID == id).FirstOrDefault();
+            if (_presenter.Tabs == null || _presenter.Tabs.Count < 1) return null;
+            return _presenter.Tabs.Where(x => x.TB_RECID == id).FirstOrDefault();
         }
         public ObservableCollection<TabViewModel> GetAllTabs()
         {
@@ -79,18 +82,18 @@ namespace RBSectorUWPBusinessLogic.Service
         }
         public void SetTabsToBindingModel(ObservableCollection<TabViewModel> tabs)
         {
-            if (BindingModel.Tabs.Count > 0)
-                BindingModel.Tabs.Clear();
+            if (_presenter.Tabs.Count > 0)
+                _presenter.Tabs.Clear();
             foreach (var item in tabs)
             {
-                if (BindingModel.Tabs.Where(x => x.TB_RECID == item.TB_RECID).FirstOrDefault() == null)
-                    BindingModel.Tabs.Add(item);
+                if (_presenter.Tabs.Where(x => x.TB_RECID == item.TB_RECID).FirstOrDefault() == null)
+                    _presenter.Tabs.Add(item);
             }
         }
         public void SetTabsSingleToBindingModel(TabViewModel tab)
         {
-            if (BindingModel.Tabs.Where(x => x.TB_RECID == tab.TB_RECID).FirstOrDefault() == null)
-                BindingModel.Tabs.Add(tab);
+            if (_presenter.Tabs.Where(x => x.TB_RECID == tab.TB_RECID).FirstOrDefault() == null)
+                _presenter.Tabs.Add(tab);
         }
     }
 }

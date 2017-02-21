@@ -49,5 +49,10 @@ namespace RBSector.WCF
         {
             return main_entry.SaveResult(json, deleted);
         }
+
+        public bool SaveOrder(string json)
+        {
+            return main_entry.SaveOrder(json);
+        }
     }
 }

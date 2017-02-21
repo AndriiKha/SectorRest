@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RBSectorUWPBusinessLogic.ViewModel
 {
-    class UserViewModel : BaseModel
+    public class UserViewModel : BaseModel
     {
     }
 }

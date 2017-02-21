@@ -134,6 +134,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IEditOrReadMode.cs" />
     <Compile Include="JSonTools\JsonT.cs" />
     <Compile Include="Options\OptionsAvailability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,15 +149,20 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service\BindingModel.cs" />
+    <Compile Include="Service\CalculatorService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\ImageService.cs" />
     <Compile Include="Service\MainSubmitService.cs" />
+    <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\Presenter.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\TabsService.cs" />
+    <Compile Include="Service\СalculationService.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\TabViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />

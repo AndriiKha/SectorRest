@@ -1,4 +1,5 @@
 ﻿using RBSector.DataBase.Models;
+using RBSector.Entry.Entry;
 using System;
 using System.Collections.Generic;
 using System.Json;
@@ -126,6 +127,96 @@ namespace RBSector.Entry.Tools
                     obj.Add(products);
             }
             return obj;
+        }
+
+        public static Orders DeserelizeOrder(string json)
+        {
+            if (string.IsNullOrEmpty(json)) return null;
+            Orders obj = new Orders();
+            var jsonOBJ = (JsonArray)JsonValue.Parse(json);
+            if (jsonOBJ.ContainsKey("Ord_OrderDate") && jsonOBJ["Ord_OrderDate"] != null)
+            {
+                obj.OrdOrderdate = ConvertStringToDate(jsonOBJ["Ord_OrderDate"].ToString());
+            }
+            if (jsonOBJ.ContainsKey("Ord_PriceCost") && jsonOBJ["Ord_PriceCost"] != null)
+            {
+                obj.OrdPricecost = ConvertStringToDecimal(jsonOBJ["Ord_PriceCost"].ToString());
+            }
+            if (jsonOBJ.ContainsKey("PR_NaOrd_GotMoneyme") && jsonOBJ["PR_NaOrd_GotMoneyme"] != null)
+            {
+                obj.OrdGetmoney = ConvertStringToDecimal(jsonOBJ["PR_NaOrd_GotMoneyme"].ToString());
+            }
+            if (jsonOBJ.ContainsKey("User") && jsonOBJ["User"] != null)
+            {
+                int recid = ConvertStringToInteger(jsonOBJ["User"].ToString());
+                if (recid >= 0)
+                {
+                    UserEntry user_entry = new UserEntry();
+                    Usersdata user = user_entry.GetUser(recid);
+                    if (user != null)
+                    {
+                        obj.Usersdata = user;
+                    }
+                }
+            }
+            if (jsonOBJ.ContainsKey("Product_ORD") && jsonOBJ["Product_ORD"] != null)
+            {
+                if (obj.Ordersproducts == null) obj.Ordersproducts = new List<Ordersproducts>();
+                ProductEntry prod_entry = new ProductEntry();
+                foreach (var item in jsonOBJ)
+                {
+                    if (item != null && item.ToString().Contains(":"))
+                    {
+                        int RecidProduct = ConvertStringToInteger(item.ToString().Split(':')[0]);
+                        int CountProduct = ConvertStringToInteger(item.ToString().Split(':')[1]);
+                        Products product = prod_entry.GetProduct(RecidProduct);
+                        if (product != null)
+                        {
+                            obj.Ordersproducts.Add(new Ordersproducts()
+                            {
+                                Orders = obj,
+                                OrdPrCount = CountProduct,
+                                OrdPrRecid = RecidProduct,
+                                Products = product
+                            });
+                        }
+                    }
+                }
+
+            }
+            return obj;
+        }
+
+        public static DateTime ConvertStringToDate(string date)
+        {
+            DateTime time;
+            if (DateTime.TryParse(date, out time))
+            {
+                return time;
+            }
+            return DateTime.MinValue;
+        }
+        public static decimal ConvertStringToDecimal(string numer)
+        {
+            if (string.IsNullOrEmpty(numer)) return -1;
+
+            decimal result;
+            if (decimal.TryParse(numer, out result))
+            {
+                return result;
+            }
+            return -1;
+        }
+        public static int ConvertStringToInteger(string numer)
+        {
+            if (string.IsNullOrEmpty(numer)) return -1;
+
+            Int32 result;
+            if (Int32.TryParse(numer, out result))
+            {
+                return result;
+            }
+            return -1;
         }
     }
 }

@@ -12,22 +12,25 @@ namespace RBSectorUWPBusinessLogic.Service
 {
     public class ProductService
     {
+        private Presenter _presenter;
         public ProductViewModel product { get; private set; }
         public static ImageViewModel SelectedImageForProduct { get; set; }
         private ImageService im_srv;
         public ProductService()
         {
+            _presenter = Presenter.Instance();
             product = new ProductViewModel();
             im_srv = new ImageService();
         }
         public bool CreateProduct(string name, string price)
         {
-            if (!BindingModel.CheckNameUnique(typeof(ProductViewModel), name)) return false;
+            if (!_presenter.CheckNameUnique<ProductViewModel>(name)) return false;
+            if (product == null) product = new ProductViewModel();
             product.PR_RECID = GenerateNextProductID;
             product.PR_Name = name;
             product.Price = Convert.ToDecimal(price);
-            product.TabParent = BindingModel.GetParentTab();
-            product.CategoryParent = BindingModel.GetParentCategory();
+            product.TabParent = _presenter.GetSelectedTab();
+            product.CategoryParent = _presenter.GetSelectedCategory();
             if (SelectedImageForProduct != null)
             {
                 product.Image = SelectedImageForProduct.bitmapImage;
@@ -46,26 +49,27 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             if (FindProduct(id))
             {
-                BindingModel.DELETED_ITEM = DELETED_PART.PRODUCT_DELETED + ":" + id;
-                BindingModel.Products.Remove(product);
+                if (!STATUS.Created.Equals(product.Status))
+                    _presenter.DELETED_ITEM = DELETED_PART.PRODUCT_DELETED + ":" + id;
+                _presenter.Products.Remove(product);
             }
         }
         public bool FindProduct(int id)
         {
-            product = BindingModel.Products.Where(x => x.PR_RECID == id).FirstOrDefault();
+            product = _presenter.Products.Where(x => x.PR_RECID == id).FirstOrDefault();
             if (product != null) return true;
             return false;
         }
         public ProductViewModel GetProduct(int Recid)
         {
-            ProductViewModel product = BindingModel.Products.Where(x => x.PR_RECID == Recid).FirstOrDefault();
+            ProductViewModel product = _presenter.Products.Where(x => x.PR_RECID == Recid).FirstOrDefault();
             return product;
         }
         public bool Update(ProductViewModel editProduct)
         {
             try
             {
-                var item = BindingModel.Products.FirstOrDefault(x => x.PR_RECID == editProduct.PR_RECID);
+                var item = _presenter.Products.FirstOrDefault(x => x.PR_RECID == editProduct.PR_RECID);
                 if (item != null)
                 {
                     if (SelectedImageForProduct != null)
@@ -118,26 +122,26 @@ namespace RBSectorUWPBusinessLogic.Service
         }
         public void SetProductsToBindingModel(ObservableCollection<ProductViewModel> products)
         {
-            if (BindingModel.Products.Count > 0)
-                BindingModel.Products.Clear();
+            if (_presenter.Products.Count > 0)
+                _presenter.Products.Clear();
             foreach (var item in products)
             {
-                if (BindingModel.Products.Where(x => x.PR_RECID == item.PR_RECID).FirstOrDefault() == null)
-                    BindingModel.Products.Add(item);
+                if (_presenter.Products.Where(x => x.PR_RECID == item.PR_RECID).FirstOrDefault() == null)
+                    _presenter.Products.Add(item);
             }
         }
         public void SetProductsSingleToBindingModel(ProductViewModel product)
         {
-            if (BindingModel.Products.Where(x => x.PR_RECID == product.PR_RECID).FirstOrDefault() == null)
-                BindingModel.Products.Add(product);
+            if (_presenter.Products.Where(x => x.PR_RECID == product.PR_RECID).FirstOrDefault() == null)
+                _presenter.Products.Add(product);
         }
         public ObservableCollection<ProductViewModel> GetAllProducts()
         {
             ObservableCollection<ProductViewModel> products = new ObservableCollection<ProductViewModel>();
-            foreach (var tab in BindingModel.Tabs)
+            foreach (var tab in _presenter.Tabs)
                 foreach (var cat in tab.Categories)
                 {
-                    products.AddRange(cat.Products);
+                    _presenter.AddRange(products, cat.Products);
                 }
             return products;
         }

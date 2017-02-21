@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="RBSector.ProductPages.ProductViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RBSector.ProductPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:RBSectorUWPBusinessLogic.ViewModel"
+    mc:Ignorable="d">
+
+    <Grid>
+        <RelativePanel Name="relativePanelProducts" Grid.Column="1" Grid.Row="1">
+            <StackPanel Name="StackPanelProducLable" Background="OrangeRed" 
+                        BorderBrush="Black" 
+                        BorderThickness="5" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Center" 
+                        RelativePanel.AlignTopWithPanel="True" 
+                        RelativePanel.AlignLeftWithPanel="True" 
+                        RelativePanel.AlignRightWithPanel="True">
+                <TextBlock Name="txb_nameProbuct" Text="" TextAlignment="Center" FontSize="20"/>
+            </StackPanel>
+            <GridView Name="ProductClickItem" ItemsSource="{x:Bind Products}" IsItemClickEnabled="True" ItemClick="GridView_ItemClickProduct" RelativePanel.Below="StackPanelProducLable">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:ProductViewModel">
+                        <StackPanel>
+                            <Image Source="{Binding Image}" Height="150" Width="150"/>
+                            <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind PR_Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+            <Frame Name="ImageFrame"/>
+            <StackPanel Background="Gray" 
+                        BorderBrush="Black" 
+                        BorderThickness="5" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Center" 
+                        RelativePanel.AlignBottomWithPanel="True" 
+                        RelativePanel.AlignLeftWithPanel="True" 
+                        RelativePanel.AlignRightWithPanel="True" Orientation="Horizontal">
+                <RelativePanel>
+                    <Button Name="btn_UpProducts" Content="Up" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Width="75" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                    <Button Name="btn_DownProducts" Content="Down" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Width="75" RelativePanel.RightOf="btn_UpProducts"/>
+                    <Button Name="btn_AddProduct" Content="Add" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Width="75" RelativePanel.RightOf="btn_DownProducts" Click="btn_AddProduct_Click"/>
+                </RelativePanel>
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>

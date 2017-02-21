@@ -14,10 +14,12 @@ namespace RBSector.Entry.Entry
     public class UserEntry
     {
         private ISession session;
+        private UniversalCRUD<Usersdata> user_crud;
 
         public UserEntry()
         {
             session = NHibernateConf.Session;
+            user_crud = new UniversalCRUD<Usersdata>();
         }
         public bool AddUser(string login, string password, string lname, string fname, string email, string role)
         {
@@ -63,6 +65,24 @@ namespace RBSector.Entry.Entry
                                 select p.UsrLogin).FirstOrDefault();
             }
             return string.IsNullOrEmpty(checkedLogin);
+        }
+        public Usersdata GetUser(int recid)
+        {
+            Usersdata user = null;
+            try
+            {
+                using (session.BeginTransaction())
+                {
+                    user = (from p in session.Query<Usersdata>()
+                               where p.RECID == recid
+                               select p).FirstOrDefault();
+                }
+            }
+            catch (Exception exc)
+            {
+                return user;
+            }
+            return user;
         }
     }
 }

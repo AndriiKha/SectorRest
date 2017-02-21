@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="RBSector.CategoryPages.CategoryViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RBSector.CategoryPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:RBSectorUWPBusinessLogic.ViewModel"
+    mc:Ignorable="d">
+
+    <Grid>
+        <RelativePanel Name="relativePanelCategory" Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Name="stackPanelCategory1" Orientation="Vertical" Background="Gray" Margin="5,5,5,5" RelativePanel.AlignTopWithPanel="True" HorizontalAlignment="Center">
+                <TextBlock Name="txb_nameCategory" Text="" Margin="5,5,5,5" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center"/>
+                <Button Name="btn_Up" Content="UP" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"/>
+            </StackPanel>
+            <StackPanel Name="stackPanelCategory2" 
+                        Orientation="Vertical" 
+                        HorizontalAlignment="Stretch" 
+                        RelativePanel.Above="stackPanelCategory3" 
+                        RelativePanel.Below="stackPanelCategory1">
+                <TextBlock Width="250"/>
+                <ScrollViewer>
+                    <ListView 
+                              Name="CategoryClickItem"
+                              ItemsSource="{x:Bind Category}" 
+                              IsItemClickEnabled="True" 
+                              ItemClick="GridView_ItemClickCategory">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:CategoryViewModel">
+                                <TextBlock Foreground="OrangeRed" FontSize="35" Text="{x:Bind CT_Name}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </StackPanel>
+            <StackPanel Name="stackPanelCategory3" Orientation="Vertical" Background="Gray" Margin="5,5,5,5" RelativePanel.AlignBottomWithPanel="True">
+                <Button Name="btn_NewCategory" Content="New Category" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"  Click="btn_EditCreateFrame_Click"/>
+                <Button Name="btn_Down" Content="DOWN" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="50" BorderBrush="Black" BorderThickness="5"/>
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>

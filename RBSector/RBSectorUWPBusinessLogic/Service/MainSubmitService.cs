@@ -11,17 +11,31 @@ namespace RBSectorUWPBusinessLogic.Service
         private MainServiceClient.MainServiceClient srv;
         public MainSubmitService()
         {
-            srv= new MainServiceClient.MainServiceClient(MainServiceClient.MainServiceClient.EndpointConfiguration.BasicHttpBinding_IMainService);
+            srv = new MainServiceClient.MainServiceClient(MainServiceClient.MainServiceClient.EndpointConfiguration.BasicHttpBinding_IMainService);
         }
-        public bool SaveResult(string json, string deleted)
+        public async Task<bool> SaveResult(string json, string deleted)
         {
+            if (string.IsNullOrEmpty(json)) return false;
             try
             {
-                return srv.SaveResultAsync(json, deleted).Result;
+                return await srv.SaveResultAsync(json, deleted);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 string exception = e.Message;
+                return false;
+            }
+        }
+        public async Task<bool> SaveOrder(string json)
+        {
+            if (string.IsNullOrEmpty(json)) return false;
+            try
+            {
+                return await srv.SaveOrderAsync(json);
+            }
+            catch (Exception ex)
+            {
+                string exception = ex.Message;
                 return false;
             }
         }
