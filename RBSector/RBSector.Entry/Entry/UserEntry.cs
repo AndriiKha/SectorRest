@@ -71,12 +71,7 @@ namespace RBSector.Entry.Entry
             Usersdata user = null;
             try
             {
-                using (session.BeginTransaction())
-                {
-                    user = (from p in session.Query<Usersdata>()
-                               where p.RECID == recid
-                               select p).FirstOrDefault();
-                }
+                user = user_crud.GetObj_ID(recid);
             }
             catch (Exception exc)
             {

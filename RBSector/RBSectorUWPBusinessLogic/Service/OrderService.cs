@@ -17,6 +17,7 @@ namespace RBSectorUWPBusinessLogic.Service
         public event EventHandler ChangingNumberCalculator;
         public event EventHandler ChangingTotalMoney;
         public event EventHandler ChangingFrameBilling;
+        public event EventHandler Saving;
 
         public void Initi_ChangingNumberCalculator(string item)
         {
@@ -30,12 +31,19 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             ChangingFrameBilling(null, null);
         }
+        public void Initi_Saving()
+        {
+            Saving(null, null);
+        }
         #endregion
-        private OrderService() { Products_ORD = new OrderViewModel(); }
+        private OrderService() { Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = 1; }
 
         public static OrderService Instance()
         {
-            if (_srv_order == null) _srv_order = new OrderService();
+            if (_srv_order == null)
+            {
+                _srv_order = new OrderService();
+            }
             return _srv_order;
         }
         private ProductViewModel Get(ProductViewModel product)

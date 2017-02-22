@@ -1,7 +1,9 @@
-﻿using RBSector.DataBase.Models;
+﻿using Newtonsoft.Json;
+using RBSector.DataBase.Models;
 using RBSector.Entry.Entry;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Json;
 using System.Linq;
 using System.Text;
@@ -133,10 +135,10 @@ namespace RBSector.Entry.Tools
         {
             if (string.IsNullOrEmpty(json)) return null;
             Orders obj = new Orders();
-            var jsonOBJ = (JsonArray)JsonValue.Parse(json);
+            var jsonOBJ = JsonValue.Parse(json);
             if (jsonOBJ.ContainsKey("Ord_OrderDate") && jsonOBJ["Ord_OrderDate"] != null)
             {
-                obj.OrdOrderdate = ConvertStringToDate(jsonOBJ["Ord_OrderDate"].ToString());
+                obj.OrdOrderdate = ConvertStringToDate(jsonOBJ["Ord_OrderDate"].ToString().Trim('\"'));
             }
             if (jsonOBJ.ContainsKey("Ord_PriceCost") && jsonOBJ["Ord_PriceCost"] != null)
             {
@@ -163,12 +165,12 @@ namespace RBSector.Entry.Tools
             {
                 if (obj.Ordersproducts == null) obj.Ordersproducts = new List<Ordersproducts>();
                 ProductEntry prod_entry = new ProductEntry();
-                foreach (var item in jsonOBJ)
+                foreach (var item in (JsonArray)JsonValue.Parse(jsonOBJ["Product_ORD"].ToString()))
                 {
                     if (item != null && item.ToString().Contains(":"))
                     {
-                        int RecidProduct = ConvertStringToInteger(item.ToString().Split(':')[0]);
-                        int CountProduct = ConvertStringToInteger(item.ToString().Split(':')[1]);
+                        int RecidProduct = ConvertStringToInteger(item.ToString().Split(':')[0].Trim('\"'));
+                        int CountProduct = ConvertStringToInteger(item.ToString().Split(':')[1].Trim('\"'));
                         Products product = prod_entry.GetProduct(RecidProduct);
                         if (product != null)
                         {
@@ -190,11 +192,20 @@ namespace RBSector.Entry.Tools
         public static DateTime ConvertStringToDate(string date)
         {
             DateTime time;
-            if (DateTime.TryParse(date, out time))
+            if (DateTime.TryParseExact(date, (new JsonSerializer()).DateFormatString, new CultureInfo("en-US"), DateTimeStyles.NoCurrentDateDefault, out time))
             {
                 return time;
             }
+            time = ConvertToDate(date);
             return DateTime.MinValue;
+        }
+        public static DateTime ConvertToDate(string date)
+        {
+
+            DateTime val = new DateTime();
+           
+
+            return val;
         }
         public static decimal ConvertStringToDecimal(string numer)
         {

@@ -25,11 +25,13 @@ namespace RBSectorUWPBusinessLogic.Service
             sb.AppendLine(StartHtml());
             string element = "<hr>";
             sb.AppendLine(element);
-            string dateNow = DateTime.Now.Day.ToString() + "." +
-                             DateTime.Now.Month.ToString() + "." +
-                             DateTime.Now.Year.ToString() + " " +
-                             DateTime.Now.Hour.ToString() + ":" +
-                             DateTime.Now.Minute.ToString();
+            /* string dateNow = DateTime.Now.Day.ToString() + "." +
+                              DateTime.Now.Month.ToString() + "." +
+                              DateTime.Now.Year.ToString() + " " +
+                              DateTime.Now.Hour.ToString() + ":" +
+                              DateTime.Now.Minute.ToString();*/
+            order.Ord_OrderDate = DateTime.Now;
+            string dateNow = order.Ord_OrderDate.ToString();
             element = Align(dateNow, AlignEnum.right);
             element = HtmlFormatParagraph("Bill : " + order.Ord_RECID.ToString() + element);
             sb.AppendLine(element);

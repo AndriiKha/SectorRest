@@ -126,9 +126,15 @@ namespace RBSector.Entry.Entry
         {
             try
             {
+                bool result = false;
                 Orders order = JsonTools.DeserelizeOrder(json);
                 if (order == null) return false;
-               return orders_crud.SaveOrUpdate(order);
+                result= orders_crud.SaveOrUpdate(order);
+                foreach(var item in order.Ordersproducts)
+                {
+                    result = result && orderproduct_crud.SaveOrUpdate(item);
+                }
+                return result;
             }
             catch(Exception exc)
             {

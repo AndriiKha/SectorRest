@@ -29,7 +29,7 @@ namespace RBSector.Control_RightPanel
     {
         private MainSubmitService mn_srv;
 
-        public event EventHandler Saving;
+
 
         ObservableCollection<ProductViewModel> List;
         ProductService _product_srv;
@@ -40,9 +40,9 @@ namespace RBSector.Control_RightPanel
         {
             this.InitializeComponent();
             mn_srv = new MainSubmitService();
-            Saving += Save_Event;
             _presenter = Presenter.Instance();
             _order_srv = OrderService.Instance();
+            _order_srv.Saving += Save_Event;
             _product_srv = new ProductService();
             orderViewModel = _order_srv.Products_ORD;
             List = _order_srv.Products_ORD.Product_ORD;
@@ -88,7 +88,7 @@ namespace RBSector.Control_RightPanel
                                 _order_srv.SetOrd_PriceCost(productName, num, false);
                                 if (num < 1)
                                 {
-                                    num = 1;                                    
+                                    num = 1;
                                 }
                             }
 
@@ -118,7 +118,7 @@ namespace RBSector.Control_RightPanel
             // await payPage.ShowAsync();
             await (new BillingPage()).ShowAsync();
             if (orderViewModel != null && orderViewModel.Product_ORD != null && orderViewModel.Product_ORD.Count > 0)
-                Saving(null, null);
+                _order_srv.Initi_Saving();
         }
         private async void Save_Event(object product, EventArgs e)
         {

@@ -12,11 +12,9 @@ namespace RBSector.Entry.Entry
 {
     public class ProductEntry
     {
-        private ISession session;
         private UniversalCRUD<Products> prod_crud;
         public ProductEntry()
         {
-            session = NHibernateConf.Session;
             prod_crud = new UniversalCRUD<Products>();
         }
         public Products GetProduct(int recid)
@@ -24,12 +22,7 @@ namespace RBSector.Entry.Entry
             Products product = null;
             try
             {
-                using (session.BeginTransaction())
-                {
-                    product = (from p in session.Query<Products>()
-                               where p.RECID == recid
-                               select p).FirstOrDefault();
-                }
+                product = prod_crud.GetObj_ID(recid);
             }
             catch (Exception exc)
             {

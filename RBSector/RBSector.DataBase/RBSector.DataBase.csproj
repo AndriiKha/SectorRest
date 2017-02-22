@@ -129,11 +129,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\RbSectorDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Data\RbSectorDatabase.mdf" />
     <Content Include="Data\RbSectorDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>RbSectorDatabase.mdf</DependentUpon>
     </Content>
   </ItemGroup>
