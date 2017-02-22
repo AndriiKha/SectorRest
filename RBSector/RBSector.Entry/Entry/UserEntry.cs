@@ -1,13 +1,10 @@
 ﻿using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Linq;
 using RBSector.DataBase.Models;
 using RBSector.Entry.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RBSector.Entry.Entry
 {
@@ -78,6 +75,43 @@ namespace RBSector.Entry.Entry
                 return user;
             }
             return user;
+        }
+
+        public bool UpdateUser(Usersdata user)
+        {
+            try
+            {
+                user_crud.SaveOrUpdate(user);
+            }
+            catch (Exception e)
+            {
+                //todo log it
+                return false;
+            }
+            return true;
+        }
+
+        public List<Usersdata> GetAllUsers()
+        {
+            var resData = new List<Usersdata>();
+            try
+            {
+                using (session.BeginTransaction())
+                {
+                    resData.AddRange((List<Usersdata>)session.CreateQuery("FROM Usersdata").List<Usersdata>());
+                }
+            }
+            catch (Exception e)
+            {
+                //todo log it
+                return new List<Usersdata>();
+            }
+            return resData;
+        }
+
+        public bool DeleteUser(int recId)
+        {
+            return user_crud.Delete<Usersdata>(recId);
         }
     }
 }

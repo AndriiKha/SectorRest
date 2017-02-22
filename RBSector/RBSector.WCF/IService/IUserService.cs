@@ -1,9 +1,6 @@
-﻿using System;
+﻿using RBSector.DataBase.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RBSector.WCF.IService
 {
@@ -12,5 +9,20 @@ namespace RBSector.WCF.IService
     {
         [OperationContract]
         bool isLogIn(string login, string password);
+
+        [OperationContract]
+        bool UpdateUser(Usersdata user);
+
+        [OperationContract]
+        Usersdata GetUser(int recId);
+
+        [OperationContract]
+        bool AddUser(string login, string password, string lname, string fname, string email, string role);
+
+        [OperationContract]
+        bool DeleteUser(int recId);
+
+        [OperationContract]
+        List<Usersdata> GetAllUsers();
     }
 }
