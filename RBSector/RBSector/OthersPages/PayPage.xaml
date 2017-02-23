@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="#FF000D30">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="auto"/>
@@ -18,13 +18,13 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Text="Recieved money :" FontSize="15" Foreground="Gray" Grid.Row="1"/>
+
+        <TextBlock Text="Recieved money :" FontSize="15" Foreground="#FFAE3304" Grid.Row="1"/>
         <Frame Name="CalculatorFrame" Grid.Row="2"/>
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock Name="txb_total" Text="Total : " FontSize="25" Foreground="DarkGray"/>
+            <TextBlock Name="txb_total" Text="Total : " FontSize="25" Foreground="#FFAE3304"/>
             <TextBlock Name="txb_Rest" Text="Rest : " FontSize="25" Foreground="DarkGreen"/>
-            <Button Name="btn_Pay" Content="Pay" Foreground="White" Background="DarkGreen" Width="100" Height="50" FontSize="25"  Click="btn_Pay_Click"/>
+            <Button Name="btn_Pay" Content="Pay" Foreground="#FF000D30" Background="#FFAE3304" Width="100" Height="50" FontSize="25"  Click="btn_Pay_Click"/>
         </StackPanel>
     </Grid>
 </Page>

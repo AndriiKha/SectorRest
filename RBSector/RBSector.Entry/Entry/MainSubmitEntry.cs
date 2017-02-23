@@ -20,6 +20,7 @@ namespace RBSector.Entry.Entry
         private UniversalCRUD<Ordersproducts> orderproduct_crud;
         private UniversalCRUD<Images> image_crud;
         private UniversalCRUD<Ingredients> ingredient_crud;
+        private TabsEntry tb_entry;
 
         public MainSubmitEntry()
         {
@@ -30,6 +31,7 @@ namespace RBSector.Entry.Entry
             orderproduct_crud = new UniversalCRUD<Ordersproducts>();
             image_crud = new UniversalCRUD<Images>();
             ingredient_crud = new UniversalCRUD<Ingredients>();
+            tb_entry = new TabsEntry();
         }
         public bool DeletedRecid(string deleted)
         {
@@ -72,54 +74,57 @@ namespace RBSector.Entry.Entry
             }
             return true;
         }
-        public bool SaveResult(string json, string deleted)
+        public string SaveResult(string json, string deleted)
         {
             bool result = true;
             try
             {
                 if (string.IsNullOrEmpty(json))
                 {
-                    return DeletedRecid(deleted);
+                    result = DeletedRecid(deleted);
                 }
-                List<Tabs> obj = JsonTools.Deserelize(json);
-                foreach (Tabs tab in obj)
-                {
-                    List<Category> category = (List<Category>)tab.Category;
-                    if (tab.Status != STATUS.Nothing.ToString())
-                        tab_crud.SaveOrUpdate(tab);
-                    if (category != null && category.Count > 0)
+                else {
+                    List<Tabs> obj = JsonTools.Deserelize(json);
+                    foreach (Tabs tab in obj)
                     {
-                        foreach (Category cat in category)
+                        List<Category> category = (List<Category>)tab.Category;
+                        if (tab.Status != STATUS.Nothing.ToString())
+                            tab_crud.SaveOrUpdate(tab);
+                        if (category != null && category.Count > 0)
                         {
-                            List<Products> products = (List<Products>)cat.Products;
-                            cat.Tabs = tab;
-                            if (cat.Status != STATUS.Nothing.ToString())
-                                category_crud.SaveOrUpdate(cat);
-                            if (products != null && products.Count > 0)
+                            foreach (Category cat in category)
                             {
-                                foreach (Products product in products)
+                                List<Products> products = (List<Products>)cat.Products;
+                                cat.Tabs = tab;
+                                if (cat.Status != STATUS.Nothing.ToString())
+                                    category_crud.SaveOrUpdate(cat);
+                                if (products != null && products.Count > 0)
                                 {
-                                    if (product.Status != STATUS.Nothing.ToString())
+                                    foreach (Products product in products)
                                     {
-                                        product.Category = cat;
-                                        product.Tabs = tab;
-                                        if (product.Images != null)
-                                            image_crud.SaveOrUpdate(product.Images);
-                                        product_crud.SaveOrUpdate(product);
+                                        if (product.Status != STATUS.Nothing.ToString())
+                                        {
+                                            product.Category = cat;
+                                            product.Tabs = tab;
+                                            if (product.Images != null)
+                                                image_crud.SaveOrUpdate(product.Images);
+                                            product_crud.SaveOrUpdate(product);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    result = DeletedRecid(deleted);
                 }
-                result = DeletedRecid(deleted);
             }
             catch (Exception ex)
             {
                 string exception = ex.Message;
-                return false;
+                return string.Empty;
             }
-            return result;
+            if (!result) return string.Empty;
+            return tb_entry.GetAllTabs();
         }
 
         public bool SaveOrder(string json)
@@ -129,14 +134,14 @@ namespace RBSector.Entry.Entry
                 bool result = false;
                 Orders order = JsonTools.DeserelizeOrder(json);
                 if (order == null) return false;
-                result= orders_crud.SaveOrUpdate(order);
-                foreach(var item in order.Ordersproducts)
+                result = orders_crud.SaveOrUpdate(order);
+                foreach (var item in order.Ordersproducts)
                 {
                     result = result && orderproduct_crud.SaveOrUpdate(item);
                 }
                 return result;
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 return false;
             }

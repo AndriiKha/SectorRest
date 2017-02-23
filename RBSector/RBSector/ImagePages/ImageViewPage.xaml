@@ -6,24 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:RBSectorUWPBusinessLogic.ViewModel"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="#FF186A72" Width="462" Height="442">
 
-    <Grid Background="Gray">
+    <Grid Background="#FF186A72">
+        <ScrollViewer Height="442">
         <GridView 
-            ScrollViewer.HorizontalScrollBarVisibility="Visible" 
             ItemsSource="{x:Bind ImagesByte}" 
             IsItemClickEnabled="True"
             ItemClick="GridView_ItemClickOnImage"
             >
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="data:ImageViewModel" ScrollViewer.HorizontalScrollMode="Enabled">
+                <DataTemplate x:DataType="data:ImageViewModel">
                     <Image Source="{Binding bitmapImage}" Height="200" Width="200"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+            </ScrollViewer>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Button Name="btn_Choose" Height="50" Width="100" Margin="10,10,10,10" Content="Choose" FontSize="20" Background="OrangeRed" Click="btn_Choose_Click"/>
-            <Button Name="btn_Close" Height="50" Width="100" Margin="10,10,10,10" Content="Close" FontSize="20" Background="OrangeRed" Click="btn_Close_Click"/>
+            <Button Name="btn_Choose" Height="50" Width="100" Margin="10,10,10,10"  Content="&#xE710;" FontSize="20" Foreground="#FFAE3304" Click="btn_Choose_Click" FontFamily="Segoe MDl2 Assets"/>
+            <Button Name="btn_Close" Height="50" Width="100" Margin="10,10,10,10" Content="&#xE10A;" FontSize="20" Foreground="#FFAE3304" Click="btn_Close_Click" FontFamily="Segoe MDl2 Assets"/>
         </StackPanel>
     </Grid>
 </ContentDialog>

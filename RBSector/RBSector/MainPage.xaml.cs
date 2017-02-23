@@ -78,6 +78,12 @@ namespace RBSector
         {
             this.FrameEditCreate.Navigate(typeof(ProductPageEditMode), product);
         }
+        private async void LoadingTab_Event(object obj, EventArgs e)
+        {
+            _presenter.ClearCollectionForBinding();
+            tb_srv.SetTabsToBindingModel(await tb_srv.GetAllTabsAsync());
+            Loading(null, null);
+        }
         private async void ClickOnTabOrCategory_Event(object obj, EventArgs e)
         {
             this.FrameEditCreate.Navigate(typeof(EditPage), obj);
@@ -86,18 +92,28 @@ namespace RBSector
         private async void ClickEditMode_Event(object obj, EventArgs e)
         {
             _presenter.isEditMode = true;
-            btn_editMode.Content = "Save";
+            btn_editMode.FontFamily = new FontFamily("Segoe MDl2 Assets");
+            btn_editMode.Content = ""; //save
+            FrameEditCreate.Navigate(typeof(DefaultPage));
         }
         private async void ClickReadMode_Event(object obj, EventArgs e)
         {
             _presenter.isEditMode = false;
-            btn_editMode.Content = "Edit";
+            btn_editMode.FontFamily = new FontFamily("Segoe MDl2 Assets");
+            //btn_editMode.Content = ""; //edit
             FrameEditCreate.Navigate(typeof(OrderPage));
         }
         private async void Save_Event(object product, EventArgs e)
         {
             string json = JsonT.SerealizeObjWithComponent(_presenter.Tabs);
-            _presenter.SatusSaving = await mn_srv.SaveResult(json, _presenter.DELETED_ITEM);
+            string result = await mn_srv.SaveResult(json, _presenter.DELETED_ITEM);
+            if (!string.IsNullOrEmpty(result))
+            {
+                _presenter.ClearCollectionForBinding();
+                tb_srv.SetTabsToBindingModel(result.TabsDeserialize(typeof(TabViewModel)));
+                Loading(null, null);
+                Reload_TCP();
+            }
 
         }
         private void InitiEvents()
@@ -106,6 +122,7 @@ namespace RBSector
             Saving += Save_Event;
             _presenter.ClickOnProduct += ClickOnProduct_Event;
             _presenter.ClickOnTabOrCategory += ClickOnTabOrCategory_Event;
+            tb_srv.Loading += LoadingTab_Event;
         }
         #endregion
         public MainPage()
@@ -140,11 +157,11 @@ namespace RBSector
             if (_presenter.isEditMode)
             {
                 Saving(null, null);
-                if (_presenter.SatusSaving)
+                /*if (_presenter.SatusSaving)
                 {
                     _presenter.Initi_ClickReadMode();
                     Reload_TCP();
-                }
+                }*/
             }
             else {
                 _presenter.Initi_ClickEditMode();
@@ -153,10 +170,17 @@ namespace RBSector
         #region[METHODS]
         private void Reload_TCP()
         {
-            _presenter.ClearCollectionForBinding();
-            tb_srv.SetTabsToBindingModel(tb_srv.GetAllTabs());
-            Loading(null, null);
+            _presenter.Initi_ClickReadMode();
+            //tb_srv.Initi_Loading();
+            //_presenter.ClearCollectionForBinding();
+            //tb_srv.SetTabsToBindingModel(tb_srv.GetAllTabs());
+            //Loading(null, null);
         }
         #endregion
+
+        private void btn_OrdersList_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

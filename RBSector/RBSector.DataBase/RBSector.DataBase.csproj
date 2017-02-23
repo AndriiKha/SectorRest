@@ -129,7 +129,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\RbSectorDatabase.mdf" />
+    <Content Include="Data\RbSectorDatabase.mdf" />
     <Content Include="Data\RbSectorDatabase_log.ldf">
       <DependentUpon>RbSectorDatabase.mdf</DependentUpon>
     </Content>

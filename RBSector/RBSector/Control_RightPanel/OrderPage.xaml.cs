@@ -47,16 +47,35 @@ namespace RBSector.Control_RightPanel
             orderViewModel = _order_srv.Products_ORD;
             List = _order_srv.Products_ORD.Product_ORD;
             _order_srv.ChangingTotalMoney += ChangingTotalMoney_Event;
+            _order_srv.EnableEvent += EnableEvent_Event;
+            EnableEvent_Event(null, null);
         }
         private async void ChangingTotalMoney_Event(object obj, EventArgs e)
         {
             txbl_totalMoney.Text = orderViewModel.Ord_PriceCost.ToString();
+        }
+        private void EnableEvent_Event(object obj, EventArgs e)
+        {
+            if (_order_srv.Products_ORD.Product_ORD.Count > 0)
+            {
+                btn_Order.Visibility = Visibility.Visible;
+                btn_Table.Visibility = Visibility.Visible;
+                txbl_totalMoney.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn_Order.Visibility = Visibility.Collapsed;
+                btn_Table.Visibility = Visibility.Collapsed;
+                txbl_totalMoney.Visibility = Visibility.Collapsed;
+            }
+            
         }
         private void ListOrderProducts_ItemClick(object sender, ItemClickEventArgs e)
         {
             ProductViewModel product = (ProductViewModel)e.ClickedItem;
             if (product != null)
                 _order_srv.Delete(product);
+            EnableEvent_Event(null, null);
         }
 
         private void UPorDOWN_btn_Click(object sender, RoutedEventArgs e)

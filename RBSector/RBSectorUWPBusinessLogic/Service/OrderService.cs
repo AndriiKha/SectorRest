@@ -18,6 +18,7 @@ namespace RBSectorUWPBusinessLogic.Service
         public event EventHandler ChangingTotalMoney;
         public event EventHandler ChangingFrameBilling;
         public event EventHandler Saving;
+        public event EventHandler EnableEvent;
 
         public void Initi_ChangingNumberCalculator(string item)
         {
@@ -34,6 +35,10 @@ namespace RBSectorUWPBusinessLogic.Service
         public void Initi_Saving()
         {
             Saving(null, null);
+        }
+        public void Initi_EnableEvent()
+        {
+            EnableEvent(null, null);
         }
         #endregion
         private OrderService() { Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = 1; }

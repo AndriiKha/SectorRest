@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:RBSectorUWPBusinessLogic.ViewModel"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Width="Auto">
 
     <Grid>
-        <StackPanel Name="stackPanelTab" Orientation="Horizontal" Grid.ColumnSpan="2" Background="OrangeRed"  BorderBrush="Black" Margin="0,0,0,-10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel Name="stackPanelTab" Orientation="Horizontal" Grid.ColumnSpan="2" Background="#FF186A72"  BorderBrush="Black" Margin="0,0,0,-10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
             <Button x:Name="btn_AddNewTab" 
         		FontFamily="Segoe MDl2 Assets" 
@@ -17,8 +17,7 @@
         		Margin="15,0,15,0" 
         		Height="50" 
         		Width="100" 
-        		Background="Black" 
-        		Foreground="OrangeRed" 
+        		Foreground="#FF6A441D" 
                 
         		Click="btn_EditCreateFrame_Click"/>
 
@@ -28,8 +27,8 @@
         		ItemsSource="{x:Bind Tabs}" 
         		IsItemClickEnabled="True" 
         		ItemClick="GridView_ItemClickTabs"
-        		HorizontalAlignment="Center"
-        		VerticalAlignment="Center"
+        		HorizontalAlignment="Stretch"
+        		VerticalAlignment="Stretch" Background="#FF186A72" Foreground="#FF0B266C"
                 >
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:TabViewModel" 

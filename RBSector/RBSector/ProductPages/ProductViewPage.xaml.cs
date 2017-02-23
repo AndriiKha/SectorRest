@@ -48,7 +48,10 @@ namespace RBSector.ProductPages
                 txb_nameProbuct.Text = product.PR_Name;
                 if (_presenter.isEditMode)
                     _presenter.Initi_ClickOnProduct(product);
-                else _order_srv.Add(product);
+                else {
+                    _order_srv.Add(product);
+                    _order_srv.Initi_EnableEvent();
+                }
             }
         }
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)

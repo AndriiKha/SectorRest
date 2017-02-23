@@ -14,22 +14,16 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
-            <TextBlock Name="txbl_NameObjToEditOrCreate" Text=""  FontSize="30" Margin="5,5,5,5" Foreground="White"/>
-            <TextBlock Name="txbl_TextBlockEditCreate" Text="Name : "  FontSize="20" Margin="5,5,5,5" Foreground="White"/>
+            <TextBlock Name="txbl_NameObjToEditOrCreate" Text=""  FontSize="30" Margin="5,5,5,5" Foreground="#FFAE3304"/>
+            <TextBlock Name="txbl_TextBlockEditCreate" Text="Name : "  FontSize="20" Margin="5,5,5,5" Foreground="#FFAE3304"/>
             <TextBox x:Name="EditCreateName" Margin="5,5,5,5"  TextChanging="EditCreateName_TextChanging"/>
         </StackPanel>
         <StackPanel Orientation="Vertical"  Margin="10,10,10,10" HorizontalAlignment="Center" Grid.Row="1">
             <TextBlock Text="Change the order " FontSize="20" Margin="5,5,5,5" Foreground="White"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Height="50" Width="100" Margin="10,10,10,10" Content="&#xE72B;" Background="OrangeRed" FontFamily="Segoe MDl2 Assets" FontSize="40"/>
-                <Button Height="50" Width="100" Margin="10,10,10,10" Content="&#xE72A;" Background="OrangeRed" FontFamily="Segoe MDl2 Assets" FontSize="40"/>
-            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2"  HorizontalAlignment="Center"  Margin="10,10,10,10">
-            <Button Name="SaveButton" Height="50" Width="100" Margin="10,10,10,10" Content="Save" FontSize="20" Background="OrangeRed" Click="SaveButton_Click"/>
-            <Button Name="DeleteButton" Height="50" Width="100" Margin="10,10,10,10" Content="Delete" FontSize="20" Background="OrangeRed" Click="DeleteButton_Click"/>
-            <Button Name="CancelButton" Height="50" Width="100" Margin="10,10,10,10" Content="Cancel" FontSize="20" Background="OrangeRed"
-                    Click="CancelButton_Click"/>
+            <Button Name="SaveButton" Height="50" Width="100" Margin="10,10,10,10" FontFamily="Segoe MDl2 Assets"  Content="&#xE081;" FontSize="30" Foreground="#FFAE3304" Click="SaveButton_Click"/>
+            <Button Name="DeleteButton" Height="50" Width="100" Margin="10,10,10,10" FontFamily="Segoe MDl2 Assets"  Content="&#xE107;" FontSize="30" Foreground="#FFAE3304"  Click="DeleteButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -35,94 +35,117 @@
                  Grid.Row="1"
                  Grid.Column="1"
                  Grid.ColumnSpan="3"
-                 Foreground="Black"
+                 Foreground="#FF000D30"
                  Background="White"
                  FontSize="50" 
                  TextAlignment="Right"
-                 TextChanging="txb_Space_TextChanging"/>
+                 TextChanging="txb_Space_TextChanging" Width="300" Height="100"/>
         <Button Name="btn_seven" 
                 Content="7" 
                 Grid.Row="2" 
                 Grid.Column="1"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_eight" 
                 Content="8" 
                 Grid.Row="2" 
                 Grid.Column="2"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_nine" 
                 Content="9" 
                 Grid.Row="2" 
                 Grid.Column="3"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_four" 
                 Content="4" 
                 Grid.Row="3" 
                 Grid.Column="1"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_five" 
                 Content="5" 
                 Grid.Row="3" 
                 Grid.Column="2"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_six" 
                 Content="6" 
                 Grid.Row="3" 
                 Grid.Column="3"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_one" 
                 Content="1" 
                 Grid.Row="4" 
                 Grid.Column="1"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_two" 
                 Content="2" 
                 Grid.Row="4" 
                 Grid.Column="2"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_three" 
                 Content="3" 
                 Grid.Row="4" 
                 Grid.Column="3"
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_koma" 
                 Content="," 
                 Grid.Row="5" 
                 Grid.Column="1"
                 Background="Black"
                 Style="{StaticResource mButton}"
-                Click="btn_Koma_Click"/>
+                Click="btn_Koma_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_zero" 
                 Content="0" 
                 Grid.Row="5" 
                 Grid.Column="2" 
-                Background="OrangeRed"
+                Background="#FFAE3304"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Number_Click"/>
+                Click="btn_Number_Click"
+                Width="100" Height="100"/>
         <Button Name="btn_delete" 
                 Content="C" 
                 Grid.Row="5" 
                 Grid.Column="3"
                 Background="DarkRed"
+                Foreground="#FF000D30"
                 Style="{StaticResource mButton}"
-                Click="btn_Delete_Click"/>
+                Click="btn_Delete_Click"
+                Width="100" Height="100"/>
     </Grid>
 </Page>

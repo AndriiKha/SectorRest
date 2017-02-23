@@ -41,7 +41,7 @@ namespace RBSector.WCF
             return cat_entry.AddCategory(name);
         }
 
-        public bool SaveResult(string json, string deleted)
+        public string SaveResult(string json, string deleted)
         {
             return main_entry.SaveResult(json, deleted);
         }

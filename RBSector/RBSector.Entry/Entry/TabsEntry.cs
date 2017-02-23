@@ -57,6 +57,7 @@ namespace RBSector.Entry.Entry
         }
         public string GetAllTabs()
         {
+            session = NHibernateConf.CreateNewSession;
             List<Tabs> tabs = new List<Tabs>();
             using (session.BeginTransaction())
             {

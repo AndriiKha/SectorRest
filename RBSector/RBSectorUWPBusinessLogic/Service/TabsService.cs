@@ -14,6 +14,12 @@ namespace RBSectorUWPBusinessLogic.Service
     {
         private ServiceClient.TabsServiceClient srv;
         private Presenter _presenter;
+
+        public event EventHandler Loading;
+        public void Initi_Loading()
+        {
+            Loading(null, null);
+        }
         public TabsService()
         {
             srv = new ServiceClient.TabsServiceClient(ServiceClient.TabsServiceClient.EndpointConfiguration.BasicHttpBinding_ITabsService);
@@ -79,6 +85,10 @@ namespace RBSectorUWPBusinessLogic.Service
             string tabJson = srv.GetAllTabsAsync().Result;
             var tabs = tabJson.TabsDeserialize(typeof(TabViewModel));
             return tabs;
+        }
+        public async Task<ObservableCollection<TabViewModel>> GetAllTabsAsync()
+        {
+           return (await srv.GetAllTabsAsync()).TabsDeserialize(typeof(TabViewModel));
         }
         public void SetTabsToBindingModel(ObservableCollection<TabViewModel> tabs)
         {

@@ -13,9 +13,9 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             srv = new MainServiceClient.MainServiceClient(MainServiceClient.MainServiceClient.EndpointConfiguration.BasicHttpBinding_IMainService);
         }
-        public async Task<bool> SaveResult(string json, string deleted)
+        public async Task<string> SaveResult(string json, string deleted)
         {
-            if (string.IsNullOrEmpty(json)) return false;
+            if (string.IsNullOrEmpty(json)) return string.Empty;
             try
             {
                 return await srv.SaveResultAsync(json, deleted);
@@ -23,7 +23,7 @@ namespace RBSectorUWPBusinessLogic.Service
             catch (Exception e)
             {
                 string exception = e.Message;
-                return false;
+                return string.Empty;
             }
         }
         public async Task<bool> SaveOrder(string json)

@@ -21,20 +21,20 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.ColumnSpan="3" Name="txbl_NameObjToEditOrCtreat" Text="{x:Bind EditCreateName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Name="NameTextBlockEditCreate" Text="Name : "  FontSize="20" Margin="5,5,5,5" Foreground="White"/>
-        <TextBlock Grid.Row="2" Name="PriceTextBlockEditCreate" Text="Price : "  FontSize="20" Margin="5,5,5,5" Foreground="White"/>
+        <TextBlock Grid.Row="1" Name="NameTextBlockEditCreate" Text="Name : "  FontSize="20" Margin="5,5,5,5" Foreground="#FFAE3304"/>
+        <TextBlock Grid.Row="2" Name="PriceTextBlockEditCreate" Text="Price : "  FontSize="20" Margin="5,5,5,5" Foreground="#FFAE3304"/>
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="EditCreateName"  Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="EditCreatePrice"  Margin="5,5,5,5"/>
 
 
 
         <Image Grid.Row="3" Name="SelectedImage" Width="100" Height="100"/>
-        <Button Grid.Row="3" Grid.Column="1" Name="btn_Image" Height="50" Width="75" Margin="10,10,10,10" Content="Image" FontSize="20" Background="OrangeRed" Click="btn_Image_Click" HorizontalAlignment="Center"/>
-        <Button Grid.Row="3" Grid.Column="2" Name="btn_Ingredient" Height="50" Width="auto" Margin="10,10,10,10" Content="Ingredients" FontSize="20" Background="OrangeRed" Click="btn_Ingredients_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Name="btn_Image" Height="50" Width="75" Margin="10,10,10,10" Content="&#xEE71;" FontFamily="Segoe MDl2 Assets"  FontSize="30" Click="btn_Image_Click" HorizontalAlignment="Center" Foreground="#FFAE3304"/>
+        <Button Grid.Row="3" Grid.Column="2" Name="btn_Ingredient" Height="50" Width="auto" Margin="10,10,10,10" Content="&#xEE56;" FontFamily="Segoe MDl2 Assets" FontSize="30" Foreground="#FFAE3304" Click="btn_Ingredients_Click"/>
 
 
-        <Button Grid.Row="4" Name="btn_Save" Height="50" Width="100" Margin="10,10,10,10" Content="Save" FontSize="20" Background="OrangeRed" Click="SaveButton_Click"/>
-        <Button Grid.Row="4" Grid.Column="1" Name="btn_Delete" Height="50" Width="100" Margin="10,10,10,10" Content="Delete" FontSize="20" Background="OrangeRed" Click="btn_Delete_Click"/>
+        <Button Grid.Row="4" Name="btn_Save" Height="50" Width="100" Margin="10,10,10,10" FontFamily="Segoe MDl2 Assets"  Content="&#xE081;" FontSize="30" Foreground="#FFAE3304"  Click="SaveButton_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Name="btn_Delete" Height="50" Width="100" Margin="10,10,10,10" FontFamily="Segoe MDl2 Assets"  Content="&#xE107;" FontSize="30" Foreground="#FFAE3304" Click="btn_Delete_Click"/>
 
     </Grid>
 </Page>

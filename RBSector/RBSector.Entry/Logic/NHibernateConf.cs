@@ -38,6 +38,14 @@ namespace RBSector.Entry.Logic
                 return mySession;
             }
         }
+        public static ISession CreateNewSession
+        {
+            get
+            {
+                new NHibernateConf();
+                return mySession;
+            }
+        }
 
         public static HbmMapping GetMappings()
         {

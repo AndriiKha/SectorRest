@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:RBSectorUWPBusinessLogic.ViewModel"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="Black">
 
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
@@ -19,27 +19,34 @@
             <RowDefinition Height="16*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
+
         <RelativePanel Name="relativePanelTab"  
-                       Grid.Column="2" 
-                       Background="OrangeRed"
+                       Grid.Column="2" Background="#FF186A72"
                        >
+            <StackPanel Orientation="Horizontal" RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True">
             <Button Name="btn_editMode" 
-                    Content="Edit" Margin="5,5,5,0"
-                    Height="50" Width="100"
-                    Background="Black"
-                    Foreground="OrangeRed"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    Click="btn_editMode_Click"
+                    Margin="5,-12.333,-0.333,0.333"
+                    Height="67" Width="80"
+                    Click="btn_editMode_Click" Foreground="#FFAE3304" Background="#FF186A72"
+                    FontFamily="Segoe MDl2 Assets" 
+        		    FontSize="40" Content="&#xE104;"
                    />
+            <Button Name="btn_OrdersList" 
+                    Margin="5,-12.333,-0.333,0.333"
+                    Height="67" Width="80"
+                    Click="btn_OrdersList_Click" Foreground="#FFAE3304" Background="#FF186A72"
+                    FontFamily="Segoe MDl2 Assets" 
+        		    FontSize="40" Content="&#xEA37;"
+                   />
+            </StackPanel>
         </RelativePanel>
 
-        <Frame Name="TabsViewPage" Grid.Column="0" Grid.ColumnSpan="2"/>
-        <Frame Name="CategoryViewPage" Grid.Column="0" Grid.Row="1"/>
-        <Frame Name="ProductPageView" Grid.Column="1" Grid.Row="1"/>
+        <Frame Name="TabsViewPage" Grid.Column="0" Grid.ColumnSpan="2" Background="#FF186A72"/>
+        <Frame Name="CategoryViewPage" Grid.Column="0" Grid.Row="1" Background="#FF000D30"/>
+        <Frame Name="ProductPageView" Grid.Column="1" Grid.Row="1" Background="#FF000D30"/>
 
-        <StackPanel Grid.Column="2" Grid.Row="1">
+        <StackPanel Grid.Column="2" Grid.Row="1" Background="#FF000D30">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
 

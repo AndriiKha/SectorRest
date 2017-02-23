@@ -56,29 +56,73 @@ namespace RBSector.Entry.Entry
             }
             return result;
         }
+        public bool isExist<T>(T _obj)
+        {
+            bool res = false;
+            try
+            {
+                using (session.BeginTransaction())
+                {
+                    if (typeof(T) == typeof(Tabs))
+                    {
+                        var obj = (from p in session.Query<Tabs>()
+                                   where p.TbName.Equals((_obj as Tabs).TbName)
+                                   select p).FirstOrDefault();
+                        res = obj != null;
+                    }
+                    else if (typeof(T) == typeof(Category))
+                    {
+                        var obj = (from p in session.Query<Category>()
+                                   where p.CtName.Equals((_obj as Category).CtName)
+                                   select p).FirstOrDefault();
+                        res = obj != null;
+                    }
+                    else if (typeof(T) == typeof(Products))
+                    {
+                        var obj = (from p in session.Query<Products>()
+                                   where p.PrName.Equals((_obj as Products).PrName)
+                                   select p).FirstOrDefault();
+                        res = obj != null;
+                    }
+
+
+                }
+
+            }
+            catch (Exception exc)
+            {
+                return res;
+            }
+            return res;
+        }
 
         public bool SaveOrUpdate(T obj)
         {
             if (obj == null) return false;
             try
             {
+                session = NHibernateConf.CreateNewSession;
                 using (session.BeginTransaction())
                 {
                     int RECID = (obj as BaseModel).RECID;
-
                     T item = session.Get<T>(RECID);
                     if (item == null)
                     {
                         item = obj;
-                        session.Save(item);
+                        //if (!isExist(item))
+                            session.Save(item);
                     }
                     else {
                         if (obj is Products)
                         {
                             Products product = session.Get<Products>(RECID);
-                            CRUDHelper.CopyProduct(ref product, obj as Products);
-                            session.SaveOrUpdate(product);
-                        }else if (obj is Images)
+                            if (product.PrName != (obj as Products).PrName )//&& !isExist(obj))
+                            {
+                                CRUDHelper.CopyProduct(ref product, obj as Products);
+                                session.SaveOrUpdate(product);
+                            }
+                        }
+                        else if (obj is Images)
                         {
                             Images image = session.Get<Images>(RECID);
                             CRUDHelper.CopyImages(ref image, obj as Images);
@@ -90,7 +134,7 @@ namespace RBSector.Entry.Entry
                             //session.Update(obj);
                         }
                     }
-                    session.Transaction.Commit();
+                   // session.Transaction.Commit();
                 }
             }
             catch (Exception ex)

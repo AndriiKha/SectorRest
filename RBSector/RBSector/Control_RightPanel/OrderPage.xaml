@@ -34,13 +34,13 @@
                                         Click="UPorDOWN_btn_Click" 
                                         Content="&#xE892;"
                                         FontFamily="Segoe MDl2 Assets" 
-        		                        FontSize="20" Foreground="OrangeRed"/>
+        		                        FontSize="20" Foreground="#FFAE3304"/>
                                 <Button x:Name="UP_btn" 
                                         HorizontalAlignment="Right"  
                                         Click="UPorDOWN_btn_Click" 
                                         Content="&#xE893;"
                                         FontFamily="Segoe MDl2 Assets" 
-        		                        FontSize="20"  Foreground="OrangeRed"/>
+        		                        FontSize="20"  Foreground="#FFAE3304"/>
                             </StackPanel>
                             <TextBox Name="Numeric_txb" 
                                      Width="Auto" 
@@ -51,24 +51,24 @@
                                      VerticalContentAlignment="Center"
                                      TextAlignment="Center"
                                      FontSize="20"
-                                     Foreground="OrangeRed"
+                                     Foreground="#FFAE3304"
                                      TextChanging="Numeric_txb_TextChanging"
                                      Text="{x:Bind ORD_Count}"/>
                         </StackPanel>
                         <TextBlock Name="Product_Name" Width="auto" Text="{x:Bind PR_Name}" 
-                                     FontSize="20"
-                                     Foreground="OrangeRed"/>
+                                    FontSize="20"
+                                    Foreground="#FFAE3304"/>
                         <TextBlock  Width="auto" Text="{x:Bind Price}" 
                                     FontSize="20"
-                                    Foreground="OrangeRed"/>
+                                    Foreground="#FFAE3304"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         <StackPanel  Grid.Row="1" Orientation="Horizontal">
-            <Button Name="btn_Order" Height="50" Width="100" Margin="10,10,10,10" Content="Pay" FontSize="20" Background="OrangeRed" Click="btn_Order_Click"/>
-        <Button Name="btn_Table" Height="50" Width="100" Margin="10,10,10,10" Content="Table" FontSize="20" Background="OrangeRed" Click="btn_Table_Click"/>
+            <Button Name="btn_Order" Height="50" Width="100" Margin="10,10,10,10" Content="Pay" FontSize="20" Foreground="#FFAE3304" Click="btn_Order_Click"/>
+            <Button Name="btn_Table" Height="50" Width="100" Margin="10,10,10,10" Content="Table" FontSize="20" Foreground="#FFAE3304" Click="btn_Table_Click"/>
         </StackPanel>
         <TextBlock
             Name="txbl_totalMoney"
