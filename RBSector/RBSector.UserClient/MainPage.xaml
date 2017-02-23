@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="RBSector.UserClient.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RBSector.UserClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="MenuPanel" Grid.Column="0">
+            
+        </StackPanel>
+        <Frame x:Name="CenterFrame" Content="Main Frame" Grid.Column="1"   HorizontalAlignment="Stretch" Margin="10,10,8,10" VerticalAlignment="Stretch"/>
+
+    </Grid>
+</Page>
