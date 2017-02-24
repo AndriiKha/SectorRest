@@ -22,6 +22,10 @@ namespace RBSector.Entry.Tools
             {
                 result += "\"Tabs\":[";
             }
+            if (list.FirstOrDefault() is Orders)
+            {
+                result += "\"Orders\":[";
+            }
             foreach (var item in list)
             {
                 if (!isFirst)
@@ -35,6 +39,10 @@ namespace RBSector.Entry.Tools
                 if (item is Tabs)
                 {
                     result += (item as Tabs).SerializeWithComponents;
+                }
+                else if (item is Orders)
+                {
+                    result += (item as Orders).Serialize;
                 }
             }
             result += "]" + (isMain ? "}" : "");

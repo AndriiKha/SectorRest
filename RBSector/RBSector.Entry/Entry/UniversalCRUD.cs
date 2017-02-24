@@ -110,13 +110,14 @@ namespace RBSector.Entry.Entry
                     {
                         item = obj;
                         //if (!isExist(item))
-                            session.Save(item);
+                        session.Save(item);
+                        session.Transaction.Commit();
                     }
                     else {
                         if (obj is Products)
                         {
                             Products product = session.Get<Products>(RECID);
-                            if (product.PrName != (obj as Products).PrName )//&& !isExist(obj))
+                            if (product.PrName != (obj as Products).PrName)//&& !isExist(obj))
                             {
                                 CRUDHelper.CopyProduct(ref product, obj as Products);
                                 session.SaveOrUpdate(product);
@@ -134,7 +135,6 @@ namespace RBSector.Entry.Entry
                             //session.Update(obj);
                         }
                     }
-                   // session.Transaction.Commit();
                 }
             }
             catch (Exception ex)

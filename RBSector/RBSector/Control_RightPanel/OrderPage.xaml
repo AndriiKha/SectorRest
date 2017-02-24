@@ -34,13 +34,13 @@
                                         Click="UPorDOWN_btn_Click" 
                                         Content="&#xE892;"
                                         FontFamily="Segoe MDl2 Assets" 
-        		                        FontSize="20" Foreground="#FFAE3304"/>
+        		                        FontSize="20" Foreground="Red"/>
                                 <Button x:Name="UP_btn" 
                                         HorizontalAlignment="Right"  
                                         Click="UPorDOWN_btn_Click" 
                                         Content="&#xE893;"
                                         FontFamily="Segoe MDl2 Assets" 
-        		                        FontSize="20"  Foreground="#FFAE3304"/>
+        		                        FontSize="20"  Foreground="Green"/>
                             </StackPanel>
                             <TextBox Name="Numeric_txb" 
                                      Width="Auto" 
@@ -57,10 +57,10 @@
                         </StackPanel>
                         <TextBlock Name="Product_Name" Width="auto" Text="{x:Bind PR_Name}" 
                                     FontSize="20"
-                                    Foreground="#FFAE3304"/>
+                                    Foreground="Red" Padding="10"/>
                         <TextBlock  Width="auto" Text="{x:Bind Price}" 
                                     FontSize="20"
-                                    Foreground="#FFAE3304"/>
+                                    Foreground="Goldenrod" Padding="10"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

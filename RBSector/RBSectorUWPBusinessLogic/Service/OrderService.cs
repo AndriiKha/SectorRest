@@ -1,4 +1,5 @@
-﻿using RBSectorUWPBusinessLogic.ViewModel;
+﻿using RBSectorUWPBusinessLogic.JSonTools;
+using RBSectorUWPBusinessLogic.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,8 +11,13 @@ namespace RBSectorUWPBusinessLogic.Service
 {
     public class OrderService
     {
+        #region[Service]
+        private OrdersServiceClient.OrdersServiceClient orders_srv;
+        #endregion
+
         private static OrderService _srv_order;
         public OrderViewModel Products_ORD { get; private set; }
+        private Presenter _presenter;
 
         #region[Events]
         public event EventHandler ChangingNumberCalculator;
@@ -19,6 +25,7 @@ namespace RBSectorUWPBusinessLogic.Service
         public event EventHandler ChangingFrameBilling;
         public event EventHandler Saving;
         public event EventHandler EnableEvent;
+        public event EventHandler LoadingOrders;
 
         public void Initi_ChangingNumberCalculator(string item)
         {
@@ -40,8 +47,23 @@ namespace RBSectorUWPBusinessLogic.Service
         {
             EnableEvent(null, null);
         }
+        public void Initi_LoadingOrders()
+        {
+            LoadingOrders(null, null);
+        }
+        private async void ClickLoadingOrders_Event(object product, EventArgs e)
+        {
+            string json = await orders_srv.GetOrdersAsync();
+             _presenter.Orders = JsonT.DeserealizeOrders(json);
+        }
         #endregion
-        private OrderService() { Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = 1; }
+        private OrderService()
+        {
+            Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = 1;
+            orders_srv = new OrdersServiceClient.OrdersServiceClient(OrdersServiceClient.OrdersServiceClient.EndpointConfiguration.BasicHttpBinding_IOrdersService);
+            _presenter = Presenter.Instance();
+            LoadingOrders += ClickLoadingOrders_Event;
+        }
 
         public static OrderService Instance()
         {
@@ -50,6 +72,11 @@ namespace RBSectorUWPBusinessLogic.Service
                 _srv_order = new OrderService();
             }
             return _srv_order;
+        }
+        public void Clear()
+        {
+            Products_ORD.Product_ORD.Clear();
+            Initi_EnableEvent();
         }
         private ProductViewModel Get(ProductViewModel product)
         {
@@ -78,8 +105,8 @@ namespace RBSectorUWPBusinessLogic.Service
             }
             else
             {
-                Products_ORD.Product_ORD.Where(y => y.PR_RECID == product.PR_RECID).FirstOrDefault().ORD_Count++;
-                Products_ORD.Ord_PriceCost += product.Price;
+                //Products_ORD.Product_ORD.Where(y => y.PR_RECID == product.PR_RECID).FirstOrDefault().ORD_Count++;
+                //Products_ORD.Ord_PriceCost += product.Price;
             }
             _srv_order.Initi_ChangingTotalMoney(null);
         }

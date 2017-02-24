@@ -119,6 +119,22 @@
     <None Include="Service References\MainServiceClient\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\OrdersServiceClient\RBSectorUWPBusinessLogic.OrdersServiceClient.Tabs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrdersServiceClient\RBSectorUWPBusinessLogic.OrdersServiceClient.Usersdata.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrdersServiceClient\Service1.wsdl" />
+    <None Include="Service References\OrdersServiceClient\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrdersServiceClient\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrdersServiceClient\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceClient\RBSectorUWPBusinessLogic.ServiceClient.Tabs.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -139,6 +155,11 @@
     <Compile Include="Options\OptionsAvailability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\MainServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\OrdersServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -173,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MainServiceClient\" />
+    <WCFMetadataStorage Include="Service References\OrdersServiceClient\" />
     <WCFMetadataStorage Include="Service References\ServiceClient\" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +223,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OrdersServiceClient\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OrdersServiceClient\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OrdersServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

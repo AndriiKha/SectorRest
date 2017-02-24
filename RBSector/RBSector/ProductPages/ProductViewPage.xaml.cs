@@ -62,7 +62,7 @@ namespace RBSector.ProductPages
         private async void ClickEditMode_Event(object obj, EventArgs e)
         {
             btn_AddProduct.Visibility = Visibility.Visible;
-            //  ProductClickItem.ItemClick += GridView_ItemClickProduct;
+            // ProductClickItem.ItemClick += GridView_ItemClickProduct;
         }
         private async void ClickReadMode_Event(object obj, EventArgs e)
         {

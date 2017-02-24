@@ -31,7 +31,7 @@ namespace RBSector.DataBase.Models
                     "\"OrdPricecost\":" + "\"" + OrdPricecost + "\"",
                     "\"OrdGetmoney\":" + "\"" + OrdGetmoney + "\"",
                     "\"Usersdata\":" + "\"" + Usersdata.UsrRecid + "\"",
-                    "\"Ordersproducts\":{" + Ordersproducts.Select(x => x.OrdPrRecid.ToString()).ToList<string>().JSonRecid() + "}"
+                    "\"Ordersproducts\":" + "\"" + Ordersproducts.Select(x => x.Products.PrRecid.ToString() + ":"+ x.OrdPrCount.ToString()).ToList<string>().JSonRecid() + "\""
                     );
             }
         }

@@ -48,7 +48,7 @@ namespace RBSector.DataBase.Tools
             string result = string.Empty;
             for (int i = 0; i < recids.Count; i++)
             {
-                string format = "\"Recid[" + i.ToString() + "]\"" + ":" + "\"" + recids[i] + "\"";
+                string format = recids[i];
                 if (!string.IsNullOrEmpty(result)) result += ",";
                 result += format;
             }

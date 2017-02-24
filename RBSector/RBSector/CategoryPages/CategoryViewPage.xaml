@@ -18,13 +18,13 @@
                         HorizontalAlignment="Stretch" 
                         RelativePanel.Above="stackPanelCategory3" 
                         RelativePanel.Below="stackPanelCategory1">
-
                 <ListView 
                               Name="CategoryClickItem"
                               ItemsSource="{x:Bind Category}" 
                               IsItemClickEnabled="True" 
                     HorizontalAlignment="Left"
-                              ItemClick="GridView_ItemClickCategory" Foreground="#FFAE3304">
+                              ItemClick="GridView_ItemClickCategory" Foreground="#FFAE3304"
+                    Height="auto">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="data:CategoryViewModel">
                             <TextBlock Foreground="#FFAE3304" FontSize="35" Text="{x:Bind CT_Name}"/>

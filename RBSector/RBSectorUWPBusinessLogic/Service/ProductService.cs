@@ -145,5 +145,19 @@ namespace RBSectorUWPBusinessLogic.Service
                 }
             return products;
         }
+        public ProductViewModel Copy(ProductViewModel product)
+        {
+            ProductViewModel newProduct = new ProductViewModel();
+            newProduct.PR_Name = product.PR_Name;
+            newProduct.PR_RECID = product.PR_RECID;
+            newProduct.Products = product.Products;
+            newProduct.Price = product.Price;
+            newProduct.Image = product.Image;
+            newProduct.IM_Byte = product.IM_Byte;
+            newProduct.IM_Name = product.IM_Name;
+            newProduct.IM_RECID = product.IM_RECID;
+            newProduct.IM_Type = product.IM_Type;
+            return newProduct;
+        }
     }
 }

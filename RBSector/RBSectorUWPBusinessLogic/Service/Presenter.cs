@@ -29,6 +29,7 @@ namespace RBSectorUWPBusinessLogic.Service
         public ObservableCollection<TabViewModel> Tabs { get; set; }
         public ObservableCollection<CategoryViewModel> Category { get; set; }
         public ObservableCollection<ProductViewModel> Products { get; set; }
+        public ObservableCollection<OrderViewModel> Orders { get; set; }
 
         private string deleted_item = string.Empty;
         public string DELETED_ITEM

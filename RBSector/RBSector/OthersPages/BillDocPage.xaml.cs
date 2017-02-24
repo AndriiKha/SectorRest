@@ -1,4 +1,5 @@
 ﻿using RBSectorUWPBusinessLogic.Service;
+using RBSectorUWPBusinessLogic.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,14 +26,31 @@ namespace RBSector.OthersPages
     {
         private OrderService ord_srv;
         private СalculationService calc_srv;
+        private OrderViewModel ordersViewModel;
         public BillDocPage()
         {
             this.InitializeComponent();
-            ord_srv = OrderService.Instance();
-            calc_srv = new СalculationService();
-            string result = calc_srv.CreatePdf(ord_srv.Products_ORD).ToString();
-            this.BillDocView.NavigateToString(result);
-            //this.BillDocView.NavigateToLocalStreamUri(new Uri(@"C:\Users\w4713\Desktop\Universal Windows Platform for Absolute Beginners.pdf"),)
+            if (ordersViewModel == null)
+            {
+                ord_srv = OrderService.Instance();
+                calc_srv = new СalculationService();
+                string result = calc_srv.CreatePdf(ord_srv.Products_ORD).ToString();
+                this.BillDocView.NavigateToString(result);
+            }
+            else
+            {
+                string result = calc_srv.CreatePdf(ordersViewModel).ToString();
+                this.BillDocView.NavigateToString(result);
+            }
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is OrderViewModel)
+            {
+                ordersViewModel = e.Parameter as OrderViewModel;
+                string result = calc_srv.CreatePdf(ordersViewModel).ToString();
+                this.BillDocView.NavigateToString(result);
+            }
         }
     }
 }

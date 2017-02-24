@@ -2,6 +2,7 @@
 using RBSector.Control_RightPanel;
 using RBSector.EditModePages;
 using RBSector.ImagePages;
+using RBSector.OthersPages;
 using RBSector.ProductPages;
 using RBSector.TabsPages;
 using RBSector.Tools;
@@ -35,9 +36,6 @@ namespace RBSector
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        #region[Options]
-
-        #endregion
 
         #region[Initi Service]
 
@@ -48,6 +46,7 @@ namespace RBSector
         private ProductService prod_srv;
         private MainSubmitService mn_srv;
         private ImageService im_srv;
+        private OrderService order_srv;
         #endregion
 
         #region[Binding Model]
@@ -137,6 +136,7 @@ namespace RBSector
             im_srv = new ImageService();
 
             _presenter = Presenter.Instance();
+            order_srv = OrderService.Instance();
 
             tb_srv.SetTabsToBindingModel(tb_srv.GetAllTabs());
 
@@ -150,6 +150,7 @@ namespace RBSector
 
             InitiEvents();
             Loading(null, null);
+            order_srv.Initi_LoadingOrders();
         }
 
         private void btn_editMode_Click(object sender, RoutedEventArgs e)
@@ -178,9 +179,10 @@ namespace RBSector
         }
         #endregion
 
-        private void btn_OrdersList_Click(object sender, RoutedEventArgs e)
+        private async void btn_OrdersList_Click(object sender, RoutedEventArgs e)
         {
-
+            OrderViewPage ord = new OrderViewPage();
+           await ord.ShowAsync();        
         }
     }
 }

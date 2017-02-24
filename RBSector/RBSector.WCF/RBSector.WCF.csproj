@@ -116,6 +116,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IService\IOrdersService.cs" />
     <Compile Include="IService\IProductService.cs" />
     <Compile Include="IService\ITabsService.cs" />
     <Compile Include="IService\IUserService.cs" />

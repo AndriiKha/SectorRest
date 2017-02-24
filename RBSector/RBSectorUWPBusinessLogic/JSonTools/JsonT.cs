@@ -4,6 +4,7 @@ using RBSectorUWPBusinessLogic.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -142,6 +143,59 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             return obj;
         }
 
+        public static ObservableCollection<OrderViewModel> DeserealizeOrders(string json)
+        {
+            ObservableCollection<OrderViewModel> orders = new ObservableCollection<OrderViewModel>();
+
+            if (string.IsNullOrEmpty(json)) return orders;
+            JsonObject objOrders = JsonValue.Parse(json).GetObject();
+            foreach (var itemOrder in objOrders["Orders"].GetArray())
+            {
+                OrderViewModel order_vm = new OrderViewModel();
+                JsonObject order_json = itemOrder.GetObject();
+                if (order_json.ContainsKey("OrdRecid"))
+                {
+                    order_vm.Ord_RECID = ConvertStringToInteger(order_json["OrdRecid"].ToString().Trim('\"'));
+                }
+                if (order_json.ContainsKey("OrdOrderdate"))
+                {
+                    order_vm.Ord_OrderDate = ConvertStringToDate(order_json["OrdOrderdate"].ToString().Trim('\"'));
+                }
+                if (order_json.ContainsKey("OrdPricecost"))
+                {
+                    order_vm.Ord_PriceCost = ConvertStringToDecimal(order_json["OrdPricecost"].ToString().Trim('\"'));
+                }
+                if (order_json.ContainsKey("OrdGetmoney"))
+                {
+                    order_vm.Ord_GotMoney = ConvertStringToDecimal(order_json["OrdGetmoney"].ToString().Trim('\"'));
+                }
+                if (order_json.ContainsKey("Usersdata"))
+                {
+                    order_vm.UserRecid = ConvertStringToInteger(order_json["Usersdata"].ToString().Trim('\"'));
+                }
+                if (order_json.ContainsKey("Ordersproducts"))
+                {
+                    List<string> recids = order_json["Ordersproducts"].ToString().Split(',').ToList<string>().Select(x => x.Trim('\"')).ToList<string>();
+                    ProductService pr_srv = new ProductService();
+                    foreach (ProductViewModel prod in pr_srv.GetAllProducts())
+                    {
+                        foreach (string id in recids)
+                        {
+                            if (id.Split(':')[0].Equals(prod.PR_RECID.ToString()))
+                            {
+                                ProductViewModel product = new ProductViewModel();
+                                product = ((ProductViewModel)prod) as ProductViewModel;
+                                product.ORD_Count = ConvertStringToInteger(id.Split(':')[1]);
+                                order_vm.Product_ORD.Add(product);
+                            }
+                        }
+                    }
+                }
+                orders.Add(order_vm);
+            }
+            return orders;
+        }
+
         public static string SerealizeObject(object obj)
         {
             string json = string.Empty;
@@ -150,7 +204,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             {
                 json = JsonConvert.SerializeObject(obj);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 string exception = exc.Message;
                 return json;
@@ -159,12 +213,17 @@ namespace RBSectorUWPBusinessLogic.JSonTools
         }
         public static DateTime ConvertStringToDate(this string date)
         {
-            DateTime time;
-            if (DateTime.TryParse(date, out time))
+            DateTime time = DateTime.MinValue;
+            var timeFormat = "dd.MM.yyyy HH:mm:ss";
+            try
             {
-                return time;
+                time = DateTime.ParseExact(date, timeFormat, CultureInfo.CurrentCulture);
             }
-            return DateTime.MinValue;
+            catch (Exception exc)
+            {
+                return DateTime.MinValue;
+            }
+            return time;
         }
         public static decimal ConvertStringToDecimal(this string numer)
         {

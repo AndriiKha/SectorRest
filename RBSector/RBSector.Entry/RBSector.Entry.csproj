@@ -56,6 +56,7 @@
     <Compile Include="Entry\CategoryEntry.cs" />
     <Compile Include="Entry\IngredientEntry.cs" />
     <Compile Include="Entry\MainSubmitEntry.cs" />
+    <Compile Include="Entry\OrdersEntry.cs" />
     <Compile Include="Entry\ProductEntry.cs" />
     <Compile Include="Entry\TabsEntry.cs" />
     <Compile Include="Entry\UniversalCRUD.cs" />

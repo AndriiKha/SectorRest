@@ -128,6 +128,9 @@
     <Compile Include="OthersPages\IngredientsPage.xaml.cs">
       <DependentUpon>IngredientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OthersPages\OrderViewPage.xaml.cs">
+      <DependentUpon>OrderViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OthersPages\PayPage.xaml.cs">
       <DependentUpon>PayPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,7 @@
     <None Include="RBSector_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\folder.png" />
     <Content Include="Assets\Images\3105b498589a458129d62a7f00a1ae2d.jpg" />
     <Content Include="Assets\Images\49bc9189e09185a918e93852582c9e7f.jpg" />
     <Content Include="Assets\Images\5900226005658-sobieski-700ml-estate-tuba-wodka.jpg" />
@@ -235,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OthersPages\IngredientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\OrderViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

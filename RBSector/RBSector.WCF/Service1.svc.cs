@@ -2,23 +2,26 @@
 using RBSector.Entry.Entry;
 using RBSector.WCF.IService;
 using System.Collections.Generic;
+using System;
 
 namespace RBSector.WCF
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class Service1 : ITabsService, IMainService, IUserService
+    public class Service1 : ITabsService, IMainService, IUserService, IOrdersService
     {
         TabsEntry tb_entry;
         CategoryEntry cat_entry;
         MainSubmitEntry main_entry;
         UserEntry user_entry;
+        OrdersEntry orders_entry;
         public Service1()
         {
             tb_entry = new TabsEntry();
             cat_entry = new CategoryEntry();
             main_entry = new MainSubmitEntry();
             user_entry = new UserEntry();
+            orders_entry = new OrdersEntry();
         }
         public bool AddTabs(string name)
         {
@@ -79,6 +82,11 @@ namespace RBSector.WCF
         public List<Usersdata> GetAllUsers()
         {
             return user_entry.GetAllUsers();
+        }
+
+        public string GetOrders()
+        {
+            return orders_entry.GetOrders();
         }
     }
 }

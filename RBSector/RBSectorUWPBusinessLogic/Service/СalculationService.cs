@@ -30,7 +30,8 @@ namespace RBSectorUWPBusinessLogic.Service
                               DateTime.Now.Year.ToString() + " " +
                               DateTime.Now.Hour.ToString() + ":" +
                               DateTime.Now.Minute.ToString();*/
-            order.Ord_OrderDate = DateTime.Now;
+            if (order.Ord_OrderDate == null || order.Ord_OrderDate == DateTime.MinValue)
+                order.Ord_OrderDate = DateTime.Now;
             string dateNow = order.Ord_OrderDate.ToString();
             element = Align(dateNow, AlignEnum.right);
             element = HtmlFormatParagraph("Bill : " + order.Ord_RECID.ToString() + element);
@@ -50,8 +51,9 @@ namespace RBSectorUWPBusinessLogic.Service
             sb.AppendLine("<hr>");
             sb.AppendLine(HtmlFormatParagraph(Align("Total" + (new string(' ', 10)) + order.Ord_PriceCost.ToString(), AlignEnum.left)));
             sb.AppendLine("<hr>");
-            order.Ord_GotMoney = JSonTools.JsonT.ConvertStringToDecimal(calculator_srv.Text);
-            sb.AppendLine(HtmlFormatParagraph(Align(("Received" + (new string(' ', 10)) + order.Ord_GotMoney),AlignEnum.right)));
+            if (order.Ord_GotMoney == default(decimal))
+                order.Ord_GotMoney = JSonTools.JsonT.ConvertStringToDecimal(calculator_srv.Text);
+            sb.AppendLine(HtmlFormatParagraph(Align(("Received" + (new string(' ', 10)) + order.Ord_GotMoney), AlignEnum.right)));
             sb.AppendLine(HtmlFormatParagraph("Rest" + (new string(' ', 10)) + (order.Ord_GotMoney - order.Ord_PriceCost)));
             return sb;
         }

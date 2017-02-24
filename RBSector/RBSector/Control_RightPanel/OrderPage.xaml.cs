@@ -144,7 +144,12 @@ namespace RBSector.Control_RightPanel
             if (orderViewModel != null)
             {
                 string json = JsonT.SerealizeObject(orderViewModel);
-                _presenter.SatusSaving = await mn_srv.SaveOrder(json);
+                if(await mn_srv.SaveOrder(json))
+                {
+                    _presenter.SatusSaving = true;
+                    _order_srv.Initi_LoadingOrders();
+                }
+                _order_srv.Clear();
             }
 
         }

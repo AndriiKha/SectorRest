@@ -20,7 +20,7 @@ namespace RBSectorUWPBusinessLogic.ViewModel
         [JsonProperty("PR_NaOrd_GotMoneyme")]
         public decimal Ord_GotMoney { get; set; }
         [JsonProperty("Product_ORD")]
-        public List<string> ProductsRecid { get { return ((Product_ORD != null) ? Product_ORD.Select(x => x.PR_RECID.ToString()+":"+x.ORD_Count.ToString()).ToList<string>() : null); } }
+        public List<string> ProductsRecid { get { return ((Product_ORD != null) ? Product_ORD.Select(x => x.PR_RECID.ToString() + ":" + x.ORD_Count.ToString()).ToList<string>() : null); }}
         [JsonProperty("User")]
         public int UserRecid { get; set; }
 
