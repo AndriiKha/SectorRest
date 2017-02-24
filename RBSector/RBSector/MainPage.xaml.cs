@@ -47,6 +47,7 @@ namespace RBSector
         private MainSubmitService mn_srv;
         private ImageService im_srv;
         private OrderService order_srv;
+        private UserService user_srv;
         #endregion
 
         #region[Binding Model]
@@ -122,6 +123,11 @@ namespace RBSector
             _presenter.ClickOnProduct += ClickOnProduct_Event;
             _presenter.ClickOnTabOrCategory += ClickOnTabOrCategory_Event;
             tb_srv.Loading += LoadingTab_Event;
+            user_srv.LoadingLogin += LoadingLogin_Event;
+        }
+        private async void LoadingLogin_Event(object product, EventArgs e)
+        {
+            UserFrame.Navigate(typeof(UserVIewPage));
         }
         #endregion
         public MainPage()
@@ -135,6 +141,7 @@ namespace RBSector
             prod_srv = new ProductService();
             im_srv = new ImageService();
 
+            user_srv = UserService.Instance();
             _presenter = Presenter.Instance();
             order_srv = OrderService.Instance();
 
@@ -151,6 +158,8 @@ namespace RBSector
             InitiEvents();
             Loading(null, null);
             order_srv.Initi_LoadingOrders();
+
+            (new UserLoginPage()).ShowAsync().GetResults();
         }
 
         private void btn_editMode_Click(object sender, RoutedEventArgs e)

@@ -8,7 +8,7 @@ namespace RBSector.WCF.IService
     public interface IUserService
     {
         [OperationContract]
-        bool isLogIn(string login, string password);
+        string isLogIn(string pin);
 
         [OperationContract]
         bool UpdateUser(Usersdata user);

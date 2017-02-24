@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using Newtonsoft.Json;
+using NHibernate;
 using NHibernate.Linq;
 using RBSector.DataBase.Models;
 using RBSector.Entry.Logic;
@@ -51,6 +52,20 @@ namespace RBSector.Entry.Entry
                         select p).FirstOrDefault();
             }
             return user != null;
+        }
+        public string isLogInPin(string pin)
+        {
+            session = NHibernateConf.CreateNewSession;
+            Usersdata user = null;
+            using (session.BeginTransaction())
+            {
+                user = (from p in session.Query<Usersdata>()
+                        where p.UsrPassword.Equals(pin)
+                        select p).FirstOrDefault();
+            }
+            if (user == null) return string.Empty;
+            string json = JsonConvert.SerializeObject(user);
+            return json;
         }
         public bool isNotExistLogin(string login)
         {

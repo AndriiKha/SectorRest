@@ -11,6 +11,7 @@ namespace RBSectorUWPBusinessLogic.Service
         private static CalculatorService Calculator;
         private string text;
         public string Text { get { return this.text == null ? string.Empty : this.text; } set { text = value; } }
+        public bool isLogin { get; set; }
         private CalculatorService() { }
         public static CalculatorService Instance()
         {

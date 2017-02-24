@@ -195,6 +195,39 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             }
             return orders;
         }
+        public static UserViewModel DeserealizeUser(string json)
+        {
+            if (string.IsNullOrEmpty(json)) return null;
+            UserViewModel user = new UserViewModel();
+
+            JsonObject objUser = JsonValue.Parse(json).GetObject();
+            if (objUser.ContainsKey("UsrRecid"))
+            {
+                user.USR_RECID = ConvertStringToInteger(objUser["UsrRecid"].ToString().Trim('\"'));
+            }
+            if (objUser.ContainsKey("UsrLogin"))
+            {
+                user.USR_Login = objUser["UsrLogin"].ToString().Trim('\"');
+            }
+            if (objUser.ContainsKey("UsrFname"))
+            {
+                user.USR_FName = objUser["UsrFname"].ToString().Trim('\"');
+            }
+            if (objUser.ContainsKey("UsrLname"))
+            {
+                user.USR_LName = objUser["UsrLname"].ToString().Trim('\"');
+            }
+            if (objUser.ContainsKey("UsrEmail"))
+            {
+                user.USR_Email = objUser["UsrEmail"].ToString().Trim('\"');
+            }
+            if (objUser.ContainsKey("UsrRole"))
+            {
+                user.USR_Role = objUser["UsrRole"].ToString().Trim('\"');
+            }
+
+            return user;
+        }
 
         public static string SerealizeObject(object obj)
         {

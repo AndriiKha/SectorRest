@@ -54,9 +54,9 @@ namespace RBSector.WCF
             return main_entry.SaveOrder(json);
         }
 
-        public bool isLogIn(string login, string password)
+        public string isLogIn(string pin)
         {
-            throw new System.NotImplementedException();
+           return user_entry.isLogInPin(pin);
         }
 
         public bool UpdateUser(Usersdata user)

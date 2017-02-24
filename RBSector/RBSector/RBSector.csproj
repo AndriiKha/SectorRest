@@ -134,6 +134,12 @@
     <Compile Include="OthersPages\PayPage.xaml.cs">
       <DependentUpon>PayPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OthersPages\UserLoginPage.xaml.cs">
+      <DependentUpon>UserLoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OthersPages\UserVIewPage.xaml.cs">
+      <DependentUpon>UserVIewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductPages\ProductPageEditMode.xaml.cs">
       <DependentUpon>ProductPageEditMode.xaml</DependentUpon>
     </Compile>
@@ -247,6 +253,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OthersPages\PayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\UserLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OthersPages\UserVIewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

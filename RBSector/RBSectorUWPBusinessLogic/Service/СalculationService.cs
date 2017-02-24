@@ -15,8 +15,10 @@ namespace RBSectorUWPBusinessLogic.Service
         private PdfPage page;
         private string FontFamily = "Geneva";
         private CalculatorService calculator_srv;
+        private UserService user_srv;
         public СalculationService()
         {
+            user_srv = UserService.Instance();
             calculator_srv = CalculatorService.Instance();
         }
         public StringBuilder CreatePdf(OrderViewModel order)

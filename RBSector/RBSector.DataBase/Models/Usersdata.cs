@@ -21,6 +21,7 @@ namespace RBSector.DataBase.Models
         public virtual string UsrLname { get; set; }
         public virtual string UsrEmail { get; set; }
         public virtual string UsrRole { get; set; }
+        [JsonIgnore]
         public virtual IList<Orders> Orders { get; set; }
         [JsonIgnore]
         public virtual string Serialize

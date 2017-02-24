@@ -40,6 +40,14 @@
                  FontSize="50" 
                  TextAlignment="Right"
                  TextChanging="txb_Space_TextChanging" Width="300" Height="100"/>
+        <PasswordBox Name="txb_Space_password"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="3"
+                 Foreground="#FF000D30"
+                 Background="White"
+                 FontSize="50" 
+                 Width="300" Height="100"/>
         <Button Name="btn_seven" 
                 Content="7" 
                 Grid.Row="2" 

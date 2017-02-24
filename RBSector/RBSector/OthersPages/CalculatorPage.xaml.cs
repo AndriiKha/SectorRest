@@ -25,24 +25,39 @@ namespace RBSector.OthersPages
     {
         private CalculatorService cal_srv;
         private OrderService ord_srv;
+        private UserService user_srv;
         public CalculatorPage()
         {
             this.InitializeComponent();
             cal_srv = CalculatorService.Instance();
             ord_srv = OrderService.Instance();
+            user_srv = UserService.Instance();
+            if (cal_srv.isLogin)
+                this.txb_Space.Visibility = Visibility.Collapsed;
+            else this.txb_Space_password.Visibility = Visibility.Collapsed;
+
         }
 
         private void txb_Space_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
         {
             cal_srv.Text = this.txb_Space.Text;
-            ord_srv.Initi_ChangingNumberCalculator(this.txb_Space.Text);
+            if (!cal_srv.isLogin)
+                ord_srv.Initi_ChangingNumberCalculator(this.txb_Space.Text);
         }
         private void btn_Number_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button)
             {
                 Button button = sender as Button;
-                this.txb_Space.Text += button.Content;
+                if (cal_srv.isLogin)
+                {
+                    this.txb_Space_password.Password += button.Content;
+                    user_srv.WrittenPass = this.txb_Space_password.Password;
+                }
+                else
+                {
+                    this.txb_Space.Text += button.Content;
+                }
             }
         }
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
@@ -50,12 +65,12 @@ namespace RBSector.OthersPages
             if (this.txb_Space.Text.Length > 0)
             {
                 int length = this.txb_Space.Text.Length;
-                this.txb_Space.Text = this.txb_Space.Text.Substring(0,length - 1);
+                this.txb_Space.Text = this.txb_Space.Text.Substring(0, length - 1);
             }
         }
         private void btn_Koma_Click(object sender, RoutedEventArgs e)
-        { 
-            if (!this.txb_Space.Text.Contains(",") && this.txb_Space.Text.Length>0)
+        {
+            if (!this.txb_Space.Text.Contains(",") && this.txb_Space.Text.Length > 0)
             {
                 this.txb_Space.Text += ",";
             }

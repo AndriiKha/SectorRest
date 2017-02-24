@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="16*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <RelativePanel Name="relativePanelTab"  
@@ -56,6 +56,6 @@
                 <Frame Name="FrameEditCreate"/>
             </StackPanel>
         </StackPanel>
-
+        <Frame Name="UserFrame" Grid.Row="2"/>
     </Grid>
 </Page>

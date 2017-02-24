@@ -138,6 +138,9 @@
     <None Include="Service References\ServiceClient\RBSectorUWPBusinessLogic.ServiceClient.Tabs.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceClient\RBSectorUWPBusinessLogic.ServiceClient.Usersdata.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceClient\Service1.wsdl" />
     <None Include="Service References\ServiceClient\Service1.xsd">
       <SubType>Designer</SubType>
@@ -178,6 +181,7 @@
     <Compile Include="Service\Presenter.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\TabsService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\СalculationService.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />

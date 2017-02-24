@@ -59,7 +59,7 @@ namespace RBSectorUWPBusinessLogic.Service
         #endregion
         private OrderService()
         {
-            Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = 1;
+            Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = UserService.Instance().user.USR_RECID;
             orders_srv = new OrdersServiceClient.OrdersServiceClient(OrdersServiceClient.OrdersServiceClient.EndpointConfiguration.BasicHttpBinding_IOrdersService);
             _presenter = Presenter.Instance();
             LoadingOrders += ClickLoadingOrders_Event;
