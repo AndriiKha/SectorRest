@@ -1,8 +1,8 @@
-﻿using RBSector.UserClient.Models;
+﻿using RBSector.UserClient.Extentions;
+using RBSector.UserClient.Models;
 using RBSector.UserClient.Mvvm;
 using System;
 using System.Windows.Input;
-using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Media;
 
@@ -69,7 +69,6 @@ namespace RBSector.UserClient.ViewModel
                 }
             }
         }
-
 
         public string Password
         {
@@ -196,41 +195,38 @@ namespace RBSector.UserClient.ViewModel
             {
                 if (_model != null && picture == null)
                 {
-                    picture = _model.Picture.AsBitmapImage();
+                    picture = _model.Photo.AsBitmapImage();
                 }
 
                 return picture;
             }
         }
 
-        public byte[] Picture
+        public byte[] Photo
         {
             set
             {
                 picture = null;
-                _model.Picture = value;
+                _model.Photo = value;
                 OnPropertyChanged("ImageSource");
             }
         }
 
-        public ICommand UploadImageCommand
-        {
-            get { return uploadImageCommand; }
-        }
+        public ICommand UploadImageCommand => uploadImageCommand;
 
         private async void UploadImage_Executed()
         {
-            FileOpenPicker openPicker = new FileOpenPicker();
+            var openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
             openPicker.FileTypeFilter.Add(".jpg");
             openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".bmp");
             openPicker.FileTypeFilter.Add(".png");
-            StorageFile imgFile = await openPicker.PickSingleFileAsync();
+            var imgFile = await openPicker.PickSingleFileAsync();
             if (imgFile != null)
             {
-                Picture = await imgFile.AsByteArray();
+                Photo = await imgFile.AsByteArray();
             }
         }
     }

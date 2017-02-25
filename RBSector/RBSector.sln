@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBSector", "RBSector\RBSector.csproj", "{F56DDF23-56F5-42FB-B495-DE154F202C00}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBSectorUWPBusinessLogic", 
 	ProjectSection(ProjectDependencies) = postProject
 		{4A3017A2-38C6-4D86-A103-536C6FA1229C} = {4A3017A2-38C6-4D86-A103-536C6FA1229C}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBSector.UserClient", "RBSector.UserClient\RBSector.UserClient.csproj", "{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,6 +140,26 @@ Global
 		{DDF4FC46-F789-4D0E-B473-476B1310848D}.Release|x64.Build.0 = Release|x64
 		{DDF4FC46-F789-4D0E-B473-476B1310848D}.Release|x86.ActiveCfg = Release|x86
 		{DDF4FC46-F789-4D0E-B473-476B1310848D}.Release|x86.Build.0 = Release|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|ARM.Build.0 = Debug|ARM
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|ARM.Deploy.0 = Debug|ARM
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|x64.ActiveCfg = Debug|x64
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|x64.Build.0 = Debug|x64
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|x64.Deploy.0 = Debug|x64
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|x86.ActiveCfg = Debug|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|x86.Build.0 = Debug|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Debug|x86.Deploy.0 = Debug|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|Any CPU.ActiveCfg = Release|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|ARM.ActiveCfg = Release|ARM
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|ARM.Build.0 = Release|ARM
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|ARM.Deploy.0 = Release|ARM
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|x64.ActiveCfg = Release|x64
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|x64.Build.0 = Release|x64
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|x64.Deploy.0 = Release|x64
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|x86.ActiveCfg = Release|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|x86.Build.0 = Release|x86
+		{5C70C1B3-FE79-4679-8F83-7474B74B1F5A}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

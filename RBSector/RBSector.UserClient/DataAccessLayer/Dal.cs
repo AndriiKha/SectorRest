@@ -1,7 +1,6 @@
 ﻿using RBSector.UserClient.Models;
 using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -57,7 +56,7 @@ namespace RBSector.UserClient.DataAccessLayer
             }
         }
 
-        public static List<Model> GetAllRoles(string tableName)
+        public static List<Model> GetAll(string tableName)
         {
             var roles = new List<Model>();
             // Create a new connection

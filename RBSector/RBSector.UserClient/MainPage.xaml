@@ -5,15 +5,31 @@
     xmlns:local="using:RBSector.UserClient"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="using:RBSector.UserClient.Mvvm"
+    xmlns:viewModel="using:RBSector.UserClient.ViewModel"
     mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <mvvm:BooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"
+                                           IsReversed="True" />
+    </Page.Resources>
+    <Page.DataContext>
+        <viewModel:MainPageViewModel />
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="8">
          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="MenuPanel" Grid.Column="0">
-            
+        <StackPanel x:Name="MenuPanel" Grid.Column="0" 
+                    Visibility="{Binding IsInEditMode, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                    Orientation="Vertical">
+                <AppBarButton Icon="Setting"
+                          Label="Create"
+                          Command="{Binding CreateCommand}" />
+                <AppBarButton Icon="View"
+                          Label="View all"
+                          Command="{Binding SelectCommand}" />
         </StackPanel>
         <Frame x:Name="CenterFrame" Content="Main Frame" Grid.Column="1"   HorizontalAlignment="Stretch" Margin="10,10,8,10" VerticalAlignment="Stretch"/>
 

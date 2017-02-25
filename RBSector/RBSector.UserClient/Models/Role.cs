@@ -1,4 +1,5 @@
 ﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System.Collections.Generic;
 
 namespace RBSector.UserClient.Models
@@ -15,6 +16,7 @@ namespace RBSector.UserClient.Models
 
         public string FullName { get; set; }
 
+        [OneToMany]
         public List<User> Users { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace RBSector.UserClient.Mvvm
         {
             if (execute == null)
             {
-                throw new ArgumentNullException("execute");
+                throw new ArgumentNullException("Execute");
             }
 
             _execute = execute;
@@ -51,11 +51,7 @@ namespace RBSector.UserClient.Mvvm
             Justification = "This cannot be an event")]
         public void RaiseCanExecuteChanged()
         {
-            var handler = CanExecuteChanged;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -66,7 +62,7 @@ namespace RBSector.UserClient.Mvvm
         [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return _canExecute?.Invoke() ?? true;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,7 +7,7 @@ namespace RBSector.UserClient.Models
 {
     internal class User : Model
     {
-        [Unique, Indexed]
+        [Unique]
         public string Login { get; set; }
 
         [NotNull, SQLite.Net.Attributes.MaxLength(32)]
@@ -15,7 +16,7 @@ namespace RBSector.UserClient.Models
         [NotNull, EmailAddress, SQLite.Net.Attributes.MaxLength(128)]
         public string Email { get; set; }
 
-        [NotNull]
+        [NotNull, ManyToOne]
         public Role UserRole { get; set; }
 
         public byte[] Photo { get; set; }
