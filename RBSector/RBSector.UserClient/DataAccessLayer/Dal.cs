@@ -41,6 +41,17 @@ namespace RBSector.UserClient.DataAccessLayer
 
                 db.CreateTable<Role>();
                 db.GetMapping(typeof(Role));
+
+                if (db.Table<Role>().Select(r => r).ToList().Count == 0)
+                {
+                    var adminRole = new Role()
+                    {
+                        FullName = "Admin",
+                        Name = "Admin",
+                        Value = 0
+                    };
+                    db.Insert(adminRole);
+                }
             }
         }
 

@@ -19,8 +19,12 @@ namespace RBSector.UserClient
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //this is a bad way, we shouldn't do that
             var vm = (MainPageViewModel)DataContext;
             vm.CreateCommand.Execute(null);
+
+
+
             vm.SelectCommand.Execute(null);
             //Frame.Navigate(typeof());
         }

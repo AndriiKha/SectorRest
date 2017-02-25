@@ -141,6 +141,8 @@ namespace RBSector.UserClient.ViewModel
 
         private void Save_Executed()
         {
+            if (_selectedUser.Model.UserRole == null)
+                _selectedUser.Model.UserRole = Dal.GetAll(nameof(Role)).FirstOrDefault() as Role;
             // Store new one in db
             Dal.InsertOrUpdate(_selectedUser.Model);
 

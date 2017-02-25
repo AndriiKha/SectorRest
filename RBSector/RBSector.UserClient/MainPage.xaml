@@ -17,21 +17,90 @@
         <viewModel:MainPageViewModel />
     </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="8">
-         <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="MenuPanel" Grid.Column="0" 
-                    Visibility="{Binding IsInEditMode, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
                     Orientation="Vertical">
-                <AppBarButton Icon="Setting"
+            <AppBarButton Icon="Setting"
                           Label="Create"
                           Command="{Binding CreateCommand}" />
-                <AppBarButton Icon="View"
+            <AppBarButton Icon="View"
                           Label="View all"
                           Command="{Binding SelectCommand}" />
+            <AppBarButton Icon="Add"
+                          Label="New"
+                          Command="{Binding NewCommand}" />
+            <AppBarButton Icon="Edit"
+                          Label="Edit"
+                          Command="{Binding EditCommand}" />
+            <AppBarButton Icon="Save"
+                          Label="Save"
+                          Command="{Binding SaveCommand}" />
+            <AppBarButton Icon="Cancel"
+                          Label="Cancel"
+                          Command="{Binding CancelCommand}" />
         </StackPanel>
-        <Frame x:Name="CenterFrame" Content="Main Frame" Grid.Column="1"   HorizontalAlignment="Stretch" Margin="10,10,8,10" VerticalAlignment="Stretch"/>
-
+        <GridView x:Name="DataGridView" Grid.Column="1" ItemsSource="{Binding Users}"    SelectedItem="{Binding SelectedUser, Mode=TwoWay}" >
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="20">
+                        <TextBlock Text="{Binding Id}" FontWeight="Bold" 
+                           Style="{StaticResource BaseTextBlockStyle}"/>
+                        <Image>
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding ImageSource}" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock Text="{Binding Login}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding Email}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding FirstName}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding LastName}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding DayOfBirth}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding Pin}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding Password}" TextWrapping="NoWrap" 
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Login" Grid.Column="0" Grid.Row="0"/>
+            <TextBox  Text="{Binding SelectedUser.Login, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top"  Height="20"/>
+            <TextBlock Text="Email" Grid.Column="0" Grid.Row="1"/>
+            <TextBox  Text="{Binding SelectedUser.Email, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"    Height="20"/>
+            <TextBlock Text="Password" Grid.Column="0" Grid.Row="2"/>
+            <PasswordBox Password="{Binding SelectedUser.Password, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top"    Height="20"/>
+            <TextBlock Text="Pin" Grid.Column="0" Grid.Row="3"/>
+            <PasswordBox MaxLength="4" Grid.Column="1" Grid.Row="3" Password="{Binding SelectedUser.Pin, Mode=TwoWay}" VerticalAlignment="Top"   Height="20" />
+            <TextBlock Text="First Name" Grid.Column="0" Grid.Row="4"/>
+            <TextBox  Text="{Binding SelectedUser.FirstName, Mode=TwoWay}" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top"   Height="20" />
+            <TextBlock Text="Last Name" Grid.Column="0" Grid.Row="5"/>
+            <TextBox  Text="{Binding SelectedUser.LastName, Mode=TwoWay}" Grid.Column="1" Grid.Row="5" VerticalAlignment="Top"    Height="20"/>
+            <TextBlock Text="Birthday" Grid.Column="0" Grid.Row="6"/>
+            <CalendarDatePicker  Date="{Binding SelectedUser.DayOfBirth, Mode=TwoWay}" Grid.Column="1" Grid.Row="6" VerticalAlignment="Top"    Height="20"/>
+        </Grid>
     </Grid>
 </Page>
