@@ -62,10 +62,20 @@ namespace RBSector.OthersPages
         }
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (this.txb_Space.Text.Length > 0)
+            if (cal_srv.isLogin)
             {
-                int length = this.txb_Space.Text.Length;
-                this.txb_Space.Text = this.txb_Space.Text.Substring(0, length - 1);
+                if (this.txb_Space_password.Password.Length > 0)
+                {
+                    int length = this.txb_Space_password.Password.Length;
+                    this.txb_Space_password.Password = this.txb_Space_password.Password.Substring(0, length - 1);
+                }
+            }
+            else {
+                if (this.txb_Space.Text.Length > 0)
+                {
+                    int length = this.txb_Space.Text.Length;
+                    this.txb_Space.Text = this.txb_Space.Text.Substring(0, length - 1);
+                }
             }
         }
         private void btn_Koma_Click(object sender, RoutedEventArgs e)

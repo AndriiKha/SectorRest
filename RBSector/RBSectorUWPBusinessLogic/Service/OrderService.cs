@@ -18,6 +18,7 @@ namespace RBSectorUWPBusinessLogic.Service
         private static OrderService _srv_order;
         public OrderViewModel Products_ORD { get; private set; }
         private Presenter _presenter;
+        //private UserService user_srv;
 
         #region[Events]
         public event EventHandler ChangingNumberCalculator;
@@ -59,9 +60,11 @@ namespace RBSectorUWPBusinessLogic.Service
         #endregion
         private OrderService()
         {
-            Products_ORD = new OrderViewModel(); Products_ORD.UserRecid = UserService.Instance().user.USR_RECID;
+            Products_ORD = new OrderViewModel();
             orders_srv = new OrdersServiceClient.OrdersServiceClient(OrdersServiceClient.OrdersServiceClient.EndpointConfiguration.BasicHttpBinding_IOrdersService);
+            //user_srv = UserService.Instance();
             _presenter = Presenter.Instance();
+            //Products_ORD.UserRecid = user_srv.user.USR_RECID;
             LoadingOrders += ClickLoadingOrders_Event;
         }
 

@@ -36,12 +36,14 @@ namespace RBSector.Control_RightPanel
         Presenter _presenter;
         OrderService _order_srv;
         OrderViewModel orderViewModel;
+        UserService _user_service;
         public OrderPage()
         {
             this.InitializeComponent();
             mn_srv = new MainSubmitService();
             _presenter = Presenter.Instance();
             _order_srv = OrderService.Instance();
+            _user_service = UserService.Instance();
             _order_srv.Saving += Save_Event;
             _product_srv = new ProductService();
             orderViewModel = _order_srv.Products_ORD;
@@ -143,6 +145,7 @@ namespace RBSector.Control_RightPanel
         {
             if (orderViewModel != null)
             {
+                orderViewModel.UserRecid = _user_service.user.USR_RECID;
                 string json = JsonT.SerealizeObject(orderViewModel);
                 if(await mn_srv.SaveOrder(json))
                 {

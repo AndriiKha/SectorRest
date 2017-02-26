@@ -55,7 +55,10 @@ namespace RBSectorUWPBusinessLogic.Service
         #region[Methods]
         public static Presenter Instance()
         {
-            if (presenter == null) presenter = new Presenter();
+            if (presenter == null)
+            {
+                presenter = new Presenter();
+            }
             return presenter;
         }
         public void Initi()

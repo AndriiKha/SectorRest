@@ -125,7 +125,7 @@ namespace RBSector
             tb_srv.Loading += LoadingTab_Event;
             user_srv.LoadingLogin += LoadingLogin_Event;
         }
-        private async void LoadingLogin_Event(object product, EventArgs e)
+        private void LoadingLogin_Event(object product, EventArgs e)
         {
             UserFrame.Navigate(typeof(UserVIewPage));
         }

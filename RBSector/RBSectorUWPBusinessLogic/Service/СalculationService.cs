@@ -53,7 +53,7 @@ namespace RBSectorUWPBusinessLogic.Service
             sb.AppendLine("<hr>");
             sb.AppendLine(HtmlFormatParagraph(Align("Total" + (new string(' ', 10)) + order.Ord_PriceCost.ToString(), AlignEnum.left)));
             sb.AppendLine("<hr>");
-            if (order.Ord_GotMoney == default(decimal))
+            if (order.Ord_GotMoney == default(decimal)|| order.Ord_GotMoney<1)
                 order.Ord_GotMoney = JSonTools.JsonT.ConvertStringToDecimal(calculator_srv.Text);
             sb.AppendLine(HtmlFormatParagraph(Align(("Received" + (new string(' ', 10)) + order.Ord_GotMoney), AlignEnum.right)));
             sb.AppendLine(HtmlFormatParagraph("Rest" + (new string(' ', 10)) + (order.Ord_GotMoney - order.Ord_PriceCost)));
