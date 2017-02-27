@@ -68,7 +68,7 @@
 
         <StackPanel  Grid.Row="1" Orientation="Horizontal">
             <Button Name="btn_Order" Height="50" Width="100" Margin="10,10,10,10" Content="Pay" FontSize="20" Foreground="#FFAE3304" Click="btn_Order_Click"/>
-            <Button Name="btn_Table" Height="50" Width="100" Margin="10,10,10,10" Content="Table" FontSize="20" Foreground="#FFAE3304" Click="btn_Table_Click"/>
+            <!--<Button Name="btn_Table" Height="50" Width="100" Margin="10,10,10,10" Content="Table" FontSize="20" Foreground="#FFAE3304" Click="btn_Table_Click"/>-->
         </StackPanel>
         <TextBlock
             Name="txbl_totalMoney"

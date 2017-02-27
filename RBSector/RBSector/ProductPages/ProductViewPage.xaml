@@ -9,15 +9,19 @@
     mc:Ignorable="d">
 
     <Grid>
-        <RelativePanel Name="relativePanelProducts" Grid.Column="1" Grid.Row="1">
-            <StackPanel Name="StackPanelProducLable"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Name="StackPanelProducLable"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Center" 
                         RelativePanel.AlignTopWithPanel="True" 
                         RelativePanel.AlignLeftWithPanel="True" 
                         RelativePanel.AlignRightWithPanel="True">
-                <TextBlock Name="txb_nameProbuct" Foreground="White" Text="" TextAlignment="Center" FontSize="20"/>
-            </StackPanel>
+            <TextBlock Name="txb_nameProbuct" Foreground="White" Text="{x:Bind _presenter.SelecteNameCategory}" TextAlignment="Center" FontSize="20"/>
+        </StackPanel>
+        <RelativePanel Name="relativePanelProducts" Grid.Column="1" Grid.Row="1">
             <StackPanel>
                 <Button Name="btn_AddProduct" 
                         FontFamily="Segoe MDl2 Assets" 

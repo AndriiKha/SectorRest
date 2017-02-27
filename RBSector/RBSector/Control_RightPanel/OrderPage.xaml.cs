@@ -61,13 +61,13 @@ namespace RBSector.Control_RightPanel
             if (_order_srv.Products_ORD.Product_ORD.Count > 0)
             {
                 btn_Order.Visibility = Visibility.Visible;
-                btn_Table.Visibility = Visibility.Visible;
+                //btn_Table.Visibility = Visibility.Visible;
                 txbl_totalMoney.Visibility = Visibility.Visible;
             }
             else
             {
                 btn_Order.Visibility = Visibility.Collapsed;
-                btn_Table.Visibility = Visibility.Collapsed;
+               // btn_Table.Visibility = Visibility.Collapsed;
                 txbl_totalMoney.Visibility = Visibility.Collapsed;
             }
             

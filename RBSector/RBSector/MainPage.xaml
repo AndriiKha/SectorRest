@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:RBSectorUWPBusinessLogic.ViewModel"
     mc:Ignorable="d" Background="Black">
-
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -23,19 +22,24 @@
         <RelativePanel Name="relativePanelTab"  
                        Grid.Column="2" Background="#FF186A72"
                        >
-            <StackPanel Orientation="Horizontal" RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True">
+            <StackPanel Orientation="Horizontal" 
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignBottomWithPanel="True">
             <Button Name="btn_editMode" 
                     Margin="5,-12.333,-0.333,0.333"
                     Height="67" Width="80"
-                    Click="btn_editMode_Click" Foreground="#FFAE3304" Background="#FF186A72"
+                    Click="btn_editMode_Click" 
+                    Foreground="#FFAE3304" 
+                    Background="#FF186A72"
                     FontFamily="Segoe MDl2 Assets" 
         		    FontSize="40" Content="&#xE104;"
                    />
             <Button Name="btn_OrdersList" 
                     Margin="5,-12.333,-0.333,0.333"
                     Height="67" Width="80"
-                    Click="btn_OrdersList_Click" Foreground="#FFAE3304" Background="#FF186A72"
+                    Click="btn_OrdersList_Click" 
+                    Foreground="#FFAE3304" 
+                    Background="#FF186A72"
                     FontFamily="Segoe MDl2 Assets" 
         		    FontSize="40" Content="&#xEA37;"
                    />

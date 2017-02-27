@@ -58,25 +58,26 @@ namespace RBSector.ProductPages
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (_presenter.isEditMode)
-            { 
+            {
                 bool isSave = false;
                 ProductViewModel product = _srv_product.GetProduct(_presenter.SelectedProductRecid);
                 if (product == null)
                 {
-                    isSave = _srv_product.CreateProduct(this.EditCreateName.Text, this.EditCreatePrice.Text);
+                    if (_presenter.CheckNameUnique<ProductViewModel>(this.EditCreateName.Text))
+                    {
+                        isSave = _srv_product.CreateProduct(this.EditCreateName.Text, this.EditCreatePrice.Text);
+                    }
                 }
                 else
                 {
-                    if (_presenter.CheckNameUnique<ProductViewModel>(this.EditCreateName.Text))
-                    {
-                        product.PR_Name = this.EditCreateName.Text;
-                        product.Price = Decimal.Parse(this.EditCreatePrice.Text);
-                        isSave = _srv_product.Update(product);
-                    }
+                    product.PR_Name = this.EditCreateName.Text;
+                    product.Price = Decimal.Parse(this.EditCreatePrice.Text);
+                    isSave = _srv_product.Update(product);
                 }
                 if (!isSave) this.NameTextBlockEditCreate.Text = "Feild name!!!";
                 else
                 {
+                    Clear();
                     var category = cat_srv.GetCategory(_presenter.SelectedCategoryRecid);
                     if (category != null)
                         _srv_product.SetProductsToBindingModel(_presenter.ProductsForSelectedCategory(category));
@@ -88,7 +89,7 @@ namespace RBSector.ProductPages
             if (e.Parameter is ProductViewModel)
             {
                 Product = e.Parameter as ProductViewModel;
-                txbl_NameObjToEditOrCtreat.Text = Product.PR_Name;
+                //txbl_NameObjToEditOrCtreat.Text = Product.PR_Name;
                 EditCreateName.Text = Product.PR_Name;
                 EditCreatePrice.Text = Product.Price.ToString();
                 SelectedImage.Source = Product.Image;
@@ -134,6 +135,13 @@ namespace RBSector.ProductPages
                 //Product.IG_Description = ingredients.Ingredients.IG_Description;
                 //_srv_product.Update(Product);
             }
+        }
+        private void Clear()
+        {
+            this.EditCreatePrice.Text = string.Empty;
+            this.EditCreateName.Text = string.Empty;
+            this.NameTextBlockEditCreate.Text = string.Empty;
+            SelectedImage.Source = null;
         }
     }
 }

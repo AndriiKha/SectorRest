@@ -20,7 +20,6 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="3" Name="txbl_NameObjToEditOrCtreat" Text="{x:Bind EditCreateName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="1" Name="NameTextBlockEditCreate" Text="Name : "  FontSize="20" Margin="5,5,5,5" Foreground="#FFAE3304"/>
         <TextBlock Grid.Row="2" Name="PriceTextBlockEditCreate" Text="Price : "  FontSize="20" Margin="5,5,5,5" Foreground="#FFAE3304"/>
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="EditCreateName"  Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>

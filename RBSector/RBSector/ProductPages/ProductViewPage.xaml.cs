@@ -35,7 +35,6 @@ namespace RBSector.ProductPages
             _presenter = Presenter.Instance();
             Products = _presenter.Products;
             _order_srv = OrderService.Instance();
-
             _presenter.ClickReadMode += ClickReadMode_Event;
             _presenter.ClickEditMode += ClickEditMode_Event;
         }

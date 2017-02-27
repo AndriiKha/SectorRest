@@ -79,6 +79,8 @@ namespace RBSectorUWPBusinessLogic.Service
         public void Clear()
         {
             Products_ORD.Product_ORD.Clear();
+            Products_ORD.Ord_PriceCost = default(decimal);
+            Products_ORD.Ord_OrderDate = DateTime.MinValue;
             Initi_EnableEvent();
         }
         private ProductViewModel Get(ProductViewModel product)

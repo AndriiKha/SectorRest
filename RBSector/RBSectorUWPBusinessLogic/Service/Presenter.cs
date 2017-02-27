@@ -23,7 +23,9 @@ namespace RBSectorUWPBusinessLogic.Service
 
         #region[Properties]
         public int SelectedTabRecid { get; set; }
+        public string SelecteNameTab { get { return Tabs.Where(x => x.TB_RECID == SelectedTabRecid).Select(x => x.TB_Name).FirstOrDefault(); } }
         public int SelectedCategoryRecid { get; set; }
+        public string SelecteNameCategory { get { return Category.Where(x => x.CT_RECID == SelectedCategoryRecid).Select(x => x.CT_Name).FirstOrDefault(); } }
         public int SelectedProductRecid { get; set; }
         public bool SatusSaving { get; set; }
         public ObservableCollection<TabViewModel> Tabs { get; set; }

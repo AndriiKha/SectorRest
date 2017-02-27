@@ -117,11 +117,8 @@ namespace RBSector.Entry.Entry
                         if (obj is Products)
                         {
                             Products product = session.Get<Products>(RECID);
-                            if (product.PrName != (obj as Products).PrName)//&& !isExist(obj))
-                            {
-                                CRUDHelper.CopyProduct(ref product, obj as Products);
-                                session.SaveOrUpdate(product);
-                            }
+                            CRUDHelper.CopyProduct(ref product, obj as Products);
+                            session.SaveOrUpdate(product);
                         }
                         else if (obj is Images)
                         {
@@ -134,6 +131,7 @@ namespace RBSector.Entry.Entry
                             session.SaveOrUpdate(item);
                             //session.Update(obj);
                         }
+                        session.Transaction.Commit();
                     }
                 }
             }
