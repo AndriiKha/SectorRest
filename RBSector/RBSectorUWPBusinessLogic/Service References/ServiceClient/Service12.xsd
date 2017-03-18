@@ -122,7 +122,7 @@
   <xs:element name="GetUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models" minOccurs="0" name="GetUserResult" nillable="true" type="q3:Usersdata" />
+        <xs:element minOccurs="0" name="GetUserResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -167,7 +167,7 @@
   <xs:element name="GetAllUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q4:ArrayOfUsersdata" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RBSector.DataBase.Models" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q3:ArrayOfUsersdata" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

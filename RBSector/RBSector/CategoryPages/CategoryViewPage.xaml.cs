@@ -62,10 +62,12 @@ namespace RBSector.CategoryPages
         private async void ClickEditMode_Event(object obj, EventArgs e)
         {
             btn_NewCategory.Visibility = Visibility.Visible;
+            txb_nameCategory.Text = string.Empty;
             //CategoryClickItem.ItemClick += GridView_ItemClickCategory;
         }
         private async void ClickReadMode_Event(object obj, EventArgs e)
         {
+            txb_nameCategory.Text = string.Empty;
             btn_NewCategory.Visibility = Visibility.Collapsed;
             //CategoryClickItem.ItemClick -= GridView_ItemClickCategory;
         }

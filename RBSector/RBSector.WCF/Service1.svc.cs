@@ -64,9 +64,9 @@ namespace RBSector.WCF
             return user_entry.UpdateUser(user);
         }
 
-        public Usersdata GetUser(int recId)
+        public string GetUser(int recId)
         {
-            return user_entry.GetUser(recId);
+            return user_entry.GetUserJson(recId);
         }
 
         public bool AddUser(string login, string password, string lname, string fname, string email, string role)

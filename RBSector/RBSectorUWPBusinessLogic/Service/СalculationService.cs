@@ -24,6 +24,7 @@ namespace RBSectorUWPBusinessLogic.Service
         public StringBuilder CreatePdf(OrderViewModel order)
         {
             StringBuilder sb = new StringBuilder();
+            //UserViewModel user = user_srv.GetUserID(order.UserRecid);
             sb.AppendLine(StartHtml());
             string element = "<hr>";
             sb.AppendLine(element);

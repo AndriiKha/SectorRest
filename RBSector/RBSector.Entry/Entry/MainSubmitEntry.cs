@@ -56,10 +56,9 @@ namespace RBSector.Entry.Entry
                         if (item.Contains(DELETED_PART.PRODUCT_DELETED.ToString()))
                         {
                             Products product = product_crud.GetObj_ID(id);
-                            if (product != null && product.Images != null)
-                                image_crud.Delete<Products>(product.Images.ImRecid);
                             product_crud.Delete<Products>(id);
-
+                            if (product != null && product.Images != null)
+                                image_crud.Delete<Images>(product.Images.ImRecid);
                         }
                         if (item.Contains(DELETED_PART.CATEGORY_DELETED.ToString()))
                             product_crud.Delete<Category>(id);

@@ -14,7 +14,7 @@ namespace RBSector.WCF.IService
         bool UpdateUser(Usersdata user);
 
         [OperationContract]
-        Usersdata GetUser(int recId);
+        string GetUser(int recId);
 
         [OperationContract]
         bool AddUser(string login, string password, string lname, string fname, string email, string role);

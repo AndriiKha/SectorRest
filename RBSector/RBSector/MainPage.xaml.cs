@@ -105,16 +105,17 @@ namespace RBSector
         }
         private async void Save_Event(object product, EventArgs e)
         {
+            this.btn_editMode.Visibility = Visibility.Collapsed;
             string json = JsonT.SerealizeObjWithComponent(_presenter.Tabs);
             string result = await mn_srv.SaveResult(json, _presenter.DELETED_ITEM);
             if (!string.IsNullOrEmpty(result))
             {
                 _presenter.ClearCollectionForBinding();
-                tb_srv.SetTabsToBindingModel(result.TabsDeserialize(typeof(TabViewModel)));
-                Loading(null, null);
+                tb_srv.SetTabsToBindingModel(result.TabsDeserialize(typeof(TabViewModel), _presenter.Images));
+                //Loading(null, null);
                 Reload_TCP();
+                this.btn_editMode.Visibility = Visibility.Visible;
             }
-
         }
         private void InitiEvents()
         {
@@ -124,10 +125,17 @@ namespace RBSector
             _presenter.ClickOnTabOrCategory += ClickOnTabOrCategory_Event;
             tb_srv.Loading += LoadingTab_Event;
             user_srv.LoadingLogin += LoadingLogin_Event;
+            user_srv.CheckRole += CheckRole_Event;
         }
         private void LoadingLogin_Event(object product, EventArgs e)
         {
             UserFrame.Navigate(typeof(UserVIewPage));
+        }
+        private void CheckRole_Event(object product, EventArgs e)
+        {
+            if (user_srv.CanEdit)
+                this.btn_editMode.Visibility = Visibility.Visible;
+            else this.btn_editMode.Visibility = Visibility.Collapsed;
         }
         #endregion
         public MainPage()
@@ -191,7 +199,7 @@ namespace RBSector
         private async void btn_OrdersList_Click(object sender, RoutedEventArgs e)
         {
             OrderViewPage ord = new OrderViewPage();
-           await ord.ShowAsync();        
+            await ord.ShowAsync();
         }
     }
 }

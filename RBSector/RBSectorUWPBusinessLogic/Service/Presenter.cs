@@ -32,6 +32,7 @@ namespace RBSectorUWPBusinessLogic.Service
         public ObservableCollection<CategoryViewModel> Category { get; set; }
         public ObservableCollection<ProductViewModel> Products { get; set; }
         public ObservableCollection<OrderViewModel> Orders { get; set; }
+        public ObservableCollection<ImageViewModel> Images { get; set; }
 
         private string deleted_item = string.Empty;
         public string DELETED_ITEM
@@ -123,6 +124,19 @@ namespace RBSectorUWPBusinessLogic.Service
 
         public void ClearCollectionForBinding()
         {
+            if (Images == null) Images = new ObservableCollection<ImageViewModel>();
+            ProductService product_srv = new ProductService();
+            foreach(var image in product_srv.GetAllProducts())
+            {
+                Images.Add(new ImageViewModel()
+                {
+                    bitmapImage = image.Image,
+                    BytesImage = image.IM_Byte,
+                    IM_Name = image.IM_Name,
+                    IM_Type = image.IM_Type,
+                    ByteString = image.ByteString
+                });
+            }
             Products.Clear();
             Category.Clear();
             Tabs.Clear();

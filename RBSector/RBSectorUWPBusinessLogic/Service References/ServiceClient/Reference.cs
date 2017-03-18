@@ -1007,7 +1007,7 @@ namespace RBSectorUWPBusinessLogic.ServiceClient {
         System.Threading.Tasks.Task<bool> UpdateUserAsync(RBSectorUWPBusinessLogic.ServiceClient.Usersdata user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        System.Threading.Tasks.Task<RBSectorUWPBusinessLogic.ServiceClient.Usersdata> GetUserAsync(int recId);
+        System.Threading.Tasks.Task<string> GetUserAsync(int recId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
         System.Threading.Tasks.Task<bool> AddUserAsync(string login, string password, string lname, string fname, string email, string role);
@@ -1070,7 +1070,7 @@ namespace RBSectorUWPBusinessLogic.ServiceClient {
             return base.Channel.UpdateUserAsync(user);
         }
         
-        public System.Threading.Tasks.Task<RBSectorUWPBusinessLogic.ServiceClient.Usersdata> GetUserAsync(int recId) {
+        public System.Threading.Tasks.Task<string> GetUserAsync(int recId) {
             return base.Channel.GetUserAsync(recId);
         }
         

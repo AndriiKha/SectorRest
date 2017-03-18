@@ -78,7 +78,7 @@ namespace RBSector.Entry.Entry
             }
             return string.IsNullOrEmpty(checkedLogin);
         }
-        public Usersdata GetUser(int recid)
+        public Usersdata GetUserObj(int recid)
         {
             Usersdata user = null;
             try
@@ -90,6 +90,21 @@ namespace RBSector.Entry.Entry
                 return user;
             }
             return user;
+        }
+
+        public string GetUserJson(int recid)
+        {
+            Usersdata user = null;
+            try
+            {
+                user = user_crud.GetObj_ID(recid);
+            }
+            catch (Exception exc)
+            {
+                return string.Empty;
+            }
+            if (user == null) return string.Empty;
+            return JsonConvert.SerializeObject(user);
         }
 
         public bool UpdateUser(Usersdata user)

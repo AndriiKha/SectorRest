@@ -14,7 +14,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
 {
     public static class JsonT
     {
-        public static ObservableCollection<TabViewModel> TabsDeserialize(this string json, Type type)
+        public static ObservableCollection<TabViewModel> TabsDeserialize(this string json, Type type, ObservableCollection<ImageViewModel> images = null)
         {
             if (type == typeof(TabViewModel))
             {
@@ -40,7 +40,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
                     {
                         foreach (var categoryJson in tab["Categories"].GetArray())
                         {
-                            tbvm.Categories.Add(CategoryDeserialize(categoryJson.ToString(), tbvm));
+                            tbvm.Categories.Add(CategoryDeserialize(categoryJson.ToString(), tbvm, images));
                         }
                     }
                     tabViewModel.Add(tbvm);
@@ -51,7 +51,7 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             }
             return null;
         }
-        public static CategoryViewModel CategoryDeserialize(this string json, TabViewModel tabParent = null)
+        public static CategoryViewModel CategoryDeserialize(this string json, TabViewModel tabParent = null, ObservableCollection<ImageViewModel> images = null)
         {
             CategoryViewModel category = new CategoryViewModel();
             JsonObject objCategory = JsonValue.Parse(json).GetObject();
@@ -67,13 +67,13 @@ namespace RBSectorUWPBusinessLogic.JSonTools
             {
                 foreach (var productJson in objCategory["Products"].GetArray())
                 {
-                    category.Products.Add(ProductDeserialize(productJson.ToString(), category, tabParent));
+                    category.Products.Add(ProductDeserialize(productJson.ToString(), category, tabParent, images));
                 }
             }
             category.TabParent = tabParent;
             return category;
         }
-        public static ProductViewModel ProductDeserialize(this string json, CategoryViewModel categoryParent = null, TabViewModel tabParent = null)
+        public static ProductViewModel ProductDeserialize(this string json, CategoryViewModel categoryParent = null, TabViewModel tabParent = null, ObservableCollection<ImageViewModel> images = null)
         {
             ImageService im_srv = new ImageService();
             ProductViewModel product = new ProductViewModel();
@@ -98,8 +98,21 @@ namespace RBSectorUWPBusinessLogic.JSonTools
                 if (imageJson.ContainsKey("ImByte"))
                 {
                     string a = imageJson["ImByte"].ToString().Trim('\"');
-                    if (a.Contains("#"))
-                        product.IM_Byte = ImageService.StringToByteForDB(a);
+                    
+                    if (images != null && images.Count > 0)
+                    {
+                        ImageViewModel imageViewModel = images.Where(x => x.IM_Name == product.IM_Name).FirstOrDefault();
+                        if (imageViewModel != null)
+                        {
+                            product.IM_Byte = imageViewModel.BytesImage;
+                            product.Image = imageViewModel.bitmapImage;
+                        }
+                    }
+                    else
+                    {
+                        if (a.Contains("#"))
+                            product.IM_Byte = ImageService.StringToByteForDB(a);
+                    }
                     //product.IM_Byte = im_srv.GetBytes(imageJson["ImByte"].ToString().Trim('\"'));
                     // product.Image = im_srv.GetImage(product.IM_Byte).Result;
                 }

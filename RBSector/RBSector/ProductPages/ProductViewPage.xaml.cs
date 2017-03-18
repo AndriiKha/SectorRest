@@ -29,12 +29,14 @@ namespace RBSector.ProductPages
         private ObservableCollection<ProductViewModel> Products;
         private Presenter _presenter;
         private OrderService _order_srv;
+        private UserService _user_srv;
         public ProductViewPage()
         {
             this.InitializeComponent();
             _presenter = Presenter.Instance();
             Products = _presenter.Products;
             _order_srv = OrderService.Instance();
+            _user_srv = UserService.Instance();
             _presenter.ClickReadMode += ClickReadMode_Event;
             _presenter.ClickEditMode += ClickEditMode_Event;
         }
@@ -48,8 +50,10 @@ namespace RBSector.ProductPages
                 if (_presenter.isEditMode)
                     _presenter.Initi_ClickOnProduct(product);
                 else {
-                    _order_srv.Add(product);
-                    _order_srv.Initi_EnableEvent();
+                    if (!_user_srv.CanEdit) {
+                        _order_srv.Add(product);
+                        _order_srv.Initi_EnableEvent();
+                    }
                 }
             }
         }
@@ -61,11 +65,13 @@ namespace RBSector.ProductPages
         private async void ClickEditMode_Event(object obj, EventArgs e)
         {
             btn_AddProduct.Visibility = Visibility.Visible;
+            txb_nameProbuct.Text = string.Empty;
             // ProductClickItem.ItemClick += GridView_ItemClickProduct;
         }
         private async void ClickReadMode_Event(object obj, EventArgs e)
         {
             btn_AddProduct.Visibility = Visibility.Collapsed;
+            txb_nameProbuct.Text = string.Empty;
             // ProductClickItem.ItemClick -= GridView_ItemClickProduct;
         }
     }

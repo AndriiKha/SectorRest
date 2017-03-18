@@ -56,12 +56,19 @@ namespace RBSector.Entry.Tools
             foreach (var item in jsonOBJ)
             {
                 Tabs tab = new Tabs();
+
                 if (item.ContainsKey("TB_RECID"))
                     tab.RECID = tab.TbRecid = Convert.ToInt32(item["TB_RECID"].ToString().Trim('\"'));
+                else
+                    tab.RECID = tab.TbRecid = Convert.ToInt32(item["TbRecid"].ToString().Trim('\"'));
+
                 if (item.ContainsKey("TB_Name"))
                     tab.TbName = item["TB_Name"].ToString().Trim('\"');
+                else tab.TbName = item["TbName"].ToString().Trim('\"');
+
                 if (item.ContainsKey("Status"))
                     tab.Status = item["Status"].ToString().Trim('\"');
+
                 if (item.ContainsKey("Categories"))
                 {
                     string jsonCategory = item["Categories"].ToString().Trim('\"');
@@ -162,7 +169,7 @@ namespace RBSector.Entry.Tools
                 if (recid >= 0)
                 {
                     UserEntry user_entry = new UserEntry();
-                    Usersdata user = user_entry.GetUser(recid);
+                    Usersdata user = user_entry.GetUserObj(recid);
                     if (user != null)
                     {
                         obj.Usersdata = user;
@@ -211,7 +218,7 @@ namespace RBSector.Entry.Tools
         {
 
             DateTime val = new DateTime();
-           
+
 
             return val;
         }
@@ -236,6 +243,11 @@ namespace RBSector.Entry.Tools
                 return result;
             }
             return -1;
+        }
+        public static string Serialize(object obj)
+        {
+            if (obj == null) return string.Empty;
+            return JsonConvert.SerializeObject(obj);
         }
     }
 }

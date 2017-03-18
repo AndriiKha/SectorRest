@@ -13,5 +13,8 @@ namespace RBSectorUWPBusinessLogic.ViewModel
     {
         public BitmapImage bitmapImage { get; set; }
         public byte[] BytesImage { get; set; }
+        public string IM_Name { get; set; }
+        public string IM_Type { get; set; }
+        public string ByteString { get; set; }
     }
 }

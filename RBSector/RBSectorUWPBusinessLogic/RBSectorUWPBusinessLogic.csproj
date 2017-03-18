@@ -104,6 +104,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="Graph1.dgml" />
     <None Include="project.json" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="Service References\MainServiceClient\RBSectorUWPBusinessLogic.MainServiceClient.Tabs.datasource">
@@ -151,6 +152,7 @@
     <None Include="Service References\ServiceClient\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="UWPBusinessLogicClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IEditOrReadMode.cs" />

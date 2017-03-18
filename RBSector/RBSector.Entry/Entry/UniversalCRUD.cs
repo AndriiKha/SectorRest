@@ -23,6 +23,7 @@ namespace RBSector.Entry.Entry
         {
             try
             {
+                session = NHibernateConf.CreateNewSession;
                 using (session.BeginTransaction())
                 {
                     T item = session.Get<T>(id);
@@ -45,9 +46,44 @@ namespace RBSector.Entry.Entry
             T result = default(T);
             try
             {
+                session = NHibernateConf.CreateNewSession;
                 using (session.BeginTransaction())
                 {
                     result = session.Get<T>(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+            return result;
+        }
+        public object GetObj_Name(string name)
+        {
+            object result = default(T);
+            try
+            {
+                session = NHibernateConf.CreateNewSession;
+                using (session.BeginTransaction())
+                {
+                    if (typeof(T) == typeof(Products))
+                    {
+                        result = (from p in session.Query<Products>()
+                                  where p.PrName.Equals(name)
+                                  select p).FirstOrDefault();
+                    }
+                    if (typeof(T) == typeof(Category))
+                    {
+                        result = (from p in session.Query<Category>()
+                                            where p.CtName.Equals(name)
+                                            select p).FirstOrDefault();
+                    }
+                    if (typeof(T) == typeof(Tabs))
+                    {
+                        result = (from p in session.Query<Tabs>()
+                                            where p.TbName.Equals(name)
+                                            select p).FirstOrDefault();
+                    }
                 }
             }
             catch (Exception ex)
@@ -61,6 +97,7 @@ namespace RBSector.Entry.Entry
             bool res = false;
             try
             {
+                session = NHibernateConf.CreateNewSession;
                 using (session.BeginTransaction())
                 {
                     if (typeof(T) == typeof(Tabs))
@@ -146,6 +183,7 @@ namespace RBSector.Entry.Entry
         {
             try
             {
+                session = NHibernateConf.CreateNewSession;
                 using (session.BeginTransaction())
                 {
                     foreach (var ob in obj)

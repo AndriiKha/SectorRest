@@ -28,7 +28,13 @@ namespace RBSectorUWPBusinessLogic.Service
             if (product == null) product = new ProductViewModel();
             product.PR_RECID = GenerateNextProductID;
             product.PR_Name = name;
-            product.Price = Convert.ToDecimal(price);
+            decimal product_price;
+            if (Decimal.TryParse(price, out product_price))
+            {
+                product.Price = product_price;
+            }
+            else
+                return false;
             product.TabParent = _presenter.GetSelectedTab();
             product.CategoryParent = _presenter.GetSelectedCategory();
             if (SelectedImageForProduct != null)
@@ -126,7 +132,8 @@ namespace RBSectorUWPBusinessLogic.Service
                 _presenter.Products.Clear();
             foreach (var item in products)
             {
-                if (_presenter.Products.Where(x => x.PR_RECID == item.PR_RECID).FirstOrDefault() == null)
+                if (_presenter.Products.Where(x => x.PR_RECID == item.PR_RECID).FirstOrDefault() == null&&
+                    _presenter.Products.Where(x => x.PR_Name == item.PR_Name).FirstOrDefault() == null)
                     _presenter.Products.Add(item);
             }
         }
